@@ -1,5 +1,10 @@
 // Extracted from the original .NET DTOs; see scripts/inventory.py.
-export interface ApiResponse<T> { success: boolean; message: string; statusCode: number; data: T | null; }
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  statusCode: number;
+  data: T | null;
+}
 export interface MetricasSistemaResponseModel {
   alunos: number;
   administradores: number;
@@ -11,8 +16,7 @@ export interface MetricasSistemaResponseModel {
   chamadosPendentes: number;
   chamadosFinalizados: number;
 }
-export interface ObterMetricasSistemaRequestModel {
-}
+export interface ObterMetricasSistemaRequestModel {}
 export interface AtualizarSenhaRequestModel {
   senha: string;
 }
@@ -66,10 +70,8 @@ export interface IniciarVinculoGoogleRequestModel {
 export interface MensagemAutenticacaoResponseModel {
   mensagem: string;
 }
-export interface ObterConfiguracaoAcessoRequestModel {
-}
-export interface ObterVinculoGoogleRequestModel {
-}
+export interface ObterConfiguracaoAcessoRequestModel {}
+export interface ObterVinculoGoogleRequestModel {}
 export interface RedefinirSenhaRequestModel {
   token: string;
   senha: string;
@@ -77,13 +79,11 @@ export interface RedefinirSenhaRequestModel {
 export interface ReenviarConfirmacaoRequestModel {
   email: string;
 }
-export interface RenovarSessaoNavegadorRequestModel {
-}
+export interface RenovarSessaoNavegadorRequestModel {}
 export interface RenovarSessaoRequestModel {
   refreshToken: string;
 }
-export interface SairSessaoRequestModel {
-}
+export interface SairSessaoRequestModel {}
 export interface SessaoNavegadorResponseModel {
   usuario: UsuarioResponseModel;
   expiresIn: number;
@@ -286,8 +286,7 @@ export interface ListarEmailsTransacionaisResponseModel {
   total: number;
   pagina: number;
 }
-export interface ListarFluxosEmailRequestModel {
-}
+export interface ListarFluxosEmailRequestModel {}
 export interface ListarFluxosEmailResponseModel {
   fluxos: FluxoEmailResponseModel[];
 }
@@ -299,18 +298,15 @@ export interface MetricasEmailsResponseModel {
   falhas: number;
   bounces: number;
 }
-export interface ObterMetricasEmailsRequestModel {
-}
-export interface ObterPreferenciaComunicacaoRequestModel {
-}
+export interface ObterMetricasEmailsRequestModel {}
+export interface ObterPreferenciaComunicacaoRequestModel {}
 export interface PreferenciaComunicacaoRequestModel {
   receberInatividade: boolean;
 }
 export interface PreferenciaComunicacaoResponseModel {
   receberInatividade: boolean;
 }
-export interface RegistrarEventoEntregaRequestModel {
-}
+export interface RegistrarEventoEntregaRequestModel {}
 export interface RegistrarEventoEntregaResponseModel {
   recebido: boolean;
 }
@@ -356,12 +352,9 @@ export interface MetaSemanalResponseModel {
   fimSemana: string;
   dias: ProgressoDiaResponseModel[];
 }
-export interface ObterEstatisticasAssuntosRequestModel {
-}
-export interface ObterMetaSemanalRequestModel {
-}
-export interface ObterResumoRevisaoRequestModel {
-}
+export interface ObterEstatisticasAssuntosRequestModel {}
+export interface ObterMetaSemanalRequestModel {}
+export interface ObterResumoRevisaoRequestModel {}
 export interface PrepararTreinoRequestModel {
   quantidade: number;
   modo: string;
@@ -386,8 +379,7 @@ export interface ResumoRevisaoResponseModel {
 export interface SalvarMetaSemanalRequestModel {
   quantidadeSemanal: number;
 }
-export interface AtualizarMinhaContaRequestModel extends DadosPessoaRequestModel {
-}
+export interface AtualizarMinhaContaRequestModel extends DadosPessoaRequestModel {}
 export interface DadosPessoaRequestModel {
   nomeCompleto: string;
   dataNascimento: string | null;
@@ -416,10 +408,8 @@ export interface MinhaContaResponseModel {
   usuario: UsuarioResponseModel;
   pessoa: PessoaResponseModel | null;
 }
-export interface ObterMeuUsuarioRequestModel {
-}
-export interface ObterMinhaContaRequestModel {
-}
+export interface ObterMeuUsuarioRequestModel {}
+export interface ObterMinhaContaRequestModel {}
 export interface ObterUsuarioRequestModel {
   idUsuario: string;
 }
@@ -528,8 +518,7 @@ export interface ListarProvasResponseModel {
   pagina: number;
   quantidadePorPagina: number;
 }
-export interface ListarTemasRequestModel {
-}
+export interface ListarTemasRequestModel {}
 export interface ListarTemasResponseModel {
   itens: TemaResponseModel[];
 }
@@ -745,8 +734,7 @@ export interface ListarTentativasResponseModel {
   pagina: number;
   quantidadePorPagina: number;
 }
-export interface ObterDisponibilidadeAssuntosRequestModel {
-}
+export interface ObterDisponibilidadeAssuntosRequestModel {}
 export interface ObterQuestoesTentativaRequestModel {
   idTentativa: string;
 }
@@ -814,8 +802,7 @@ export interface TentativaSimuladoResponseModel {
   tempoGastoSegundos: number;
   respostas: RespostaTentativaResponseModel[];
 }
-export interface VerificarSistemaRequestModel {
-}
+export interface VerificarSistemaRequestModel {}
 export interface VerificarSistemaResponseModel {
   aplicacao: string;
   versaoDotNet: string;
