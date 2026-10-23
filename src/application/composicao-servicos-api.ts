@@ -6,7 +6,11 @@ import type {
   ConexaoTransacoesPostgreSql,
   IdentidadeUsuarioAutenticado,
 } from "../infrastructure/conexao-transacoes-postgresql.js";
-import { RepositorioConsultasNegocioPostgreSql } from "../infrastructure/repositorio-consultas-postgresql.js";
+import {
+  RepositorioConsultasNegocioPostgreSql,
+  type RepositorioConsultasNegocio,
+} from "../infrastructure/repositorio-consultas-postgresql.js";
+import type { ServicoComunicacaoSupabase } from "../infrastructure/comunicacao-supabase.js";
 import { operacoesAdministracaoEmailsTransacionais } from "./administracao-emails-transacionais.service.js";
 import { operacoesAnaliseQuestoesInteligenciaArtificial } from "./analise-questoes-inteligencia-artificial.service.js";
 import { ServicoAutenticacaoContasSessoes } from "./autenticacao-contas-sessoes.service.js";
@@ -30,9 +34,11 @@ export function criarServicosAplicacaoApi(
   clienteOpenAI: ClienteAnaliseQuestoesOpenAI,
   user: IdentidadeUsuarioAutenticado,
   sinalCancelamento?: AbortSignal,
+  repositorio?: RepositorioConsultasNegocio,
+  comunicacao?: ServicoComunicacaoSupabase,
 ) {
   const contextoAutorizacao = new ServicoAutorizacaoUsuarioAutenticado(
-    new RepositorioConsultasNegocioPostgreSql(conexaoPostgreSql, user),
+    repositorio ?? new RepositorioConsultasNegocioPostgreSql(conexaoPostgreSql, user),
   );
 
   const operacoesSimulado = operacoesGeracaoCadastroSimulados(contextoAutorizacao);
@@ -59,11 +65,11 @@ export function criarServicosAplicacaoApi(
     ...operacoesChamadosSuporte(contextoAutorizacao),
     ...operacoesPreferenciasComunicacao(
       contextoAutorizacao,
-      servicoAutenticacao.servicoEmailsTransacionais,
+      comunicacao ?? servicoAutenticacao.servicoEmailsTransacionais,
     ),
     ...operacoesAdministracaoEmailsTransacionais(
       contextoAutorizacao,
-      servicoAutenticacao.servicoEmailsTransacionais,
+      comunicacao ?? servicoAutenticacao.servicoEmailsTransacionais,
     ),
     ...operacoesAnaliseQuestoesInteligenciaArtificial(
       contextoAutorizacao,
@@ -89,9 +95,9 @@ export function criarServicosAplicacaoApi(
         {
           aplicacao: "ConcursaAI",
           versaoDotNet: process.versions.node,
-          bancoConfigurado: conexaoPostgreSql.estaConfigurada,
+          bancoConfigurado: repositorio ? true : conexaoPostgreSql.estaConfigurada,
         },
-        "API em execução. A presença de configuração não representa um teste de conectividade com o PostgreSQL.",
+        "API em execução. Consulte /api/health/ready para verificar a conectividade com o banco.",
       ),
   };
 }

@@ -8,7 +8,7 @@ import {
   type IdentidadeUsuarioAutenticado,
 } from "./conexao-transacoes-postgresql.js";
 
-type NomeTabelaDominioPostgreSql = keyof typeof tableJson;
+export type NomeTabelaDominioPostgreSql = keyof typeof tableJson;
 
 interface MapeamentoTabelaDominioPostgreSql {
   table: string;
@@ -71,6 +71,19 @@ export interface ParametrosConsultaPostgreSql {
   offset?: number;
   limit?: number;
 }
+
+export type RepositorioConsultasNegocio = Pick<
+  RepositorioConsultasNegocioPostgreSql,
+  | "user"
+  | "consultarPaginaRegistros"
+  | "obterRegistroObrigatorio"
+  | "obterRegistroOpcional"
+  | "existeRegistro"
+  | "listarRegistros"
+  | "executarMutacaoRegistro"
+  | "executarFuncaoPostgreSql"
+  | "executarFuncaoPostgreSqlComContrato"
+>;
 
 export class RepositorioConsultasNegocioPostgreSql {
   constructor(

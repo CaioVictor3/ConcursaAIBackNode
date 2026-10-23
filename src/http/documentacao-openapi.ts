@@ -82,7 +82,7 @@ export function gerarDocumentoOpenApi() {
     const op: Record<string, unknown> = {
       operationId: rotaApi.controller + "_" + rotaApi.action,
       tags: [rotaApi.controller],
-      security: rotaApi.anonymous ? [] : [{ bearerAuth: [] }, { browserSession: [] }],
+      security: rotaApi.anonymous ? [] : [{ bearerAuth: [] }],
       responses,
     };
 
@@ -101,6 +101,8 @@ export function gerarDocumentoOpenApi() {
     }
 
     if (rotaApi.controller === "Navegador") {
+      op.description =
+        "Rota de sessão HttpOnly utilizada pelo frontend. Para testá-la, abra /api/docs pela origem do frontend, cadastrada em CORS_ORIGINS. O navegador envia Origin automaticamente. Para autenticar no Swagger da API, prefira as rotas Autenticacao e o botão Authorize.";
       op.parameters = [
         ...((op.parameters as unknown[]) ?? []),
         {
@@ -108,12 +110,6 @@ export function gerarDocumentoOpenApi() {
           name: "X-Concursa-Client",
           required: rotaApi.method !== "GET",
           schema: { type: "string", enum: ["web"] },
-        },
-        {
-          in: "header",
-          name: "Origin",
-          required: rotaApi.method !== "GET",
-          schema: { type: "string" },
         },
       ];
     }
@@ -151,8 +147,21 @@ export function gerarDocumentoOpenApi() {
   paths["/api/health"] = {
     get: {
       operationId: "health",
+      tags: ["Saúde da API"],
       security: [],
       responses: { 200: { description: "Processo em execução" } },
+    },
+  };
+
+  paths["/api/health/ready"] = {
+    get: {
+      operationId: "verificarConexaoSupabase",
+      tags: ["Saúde da API"],
+      security: [],
+      responses: {
+        200: { description: "Conexão com o Supabase disponível" },
+        503: { description: "Conexão com o Supabase indisponível" },
+      },
     },
   };
 
@@ -179,7 +188,7 @@ export function gerarDocumentoOpenApi() {
     403: { description: "Acesso não autorizado" },
   });
 
-  const segurancaHonra = [{ bearerAuth: [] }, { browserSession: [] }];
+  const segurancaHonra = [{ bearerAuth: [] }];
   const parametroPessoa = {
     in: "path",
     name: "idPessoa",
@@ -381,17 +390,22 @@ export function gerarDocumentoOpenApi() {
     info: {
       title: "ConcursaAI API",
       version: "1.0.0",
-      description: "API Node.js independente; contratos preservados da API .NET.",
+      description:
+        "Backend Next.js do ConcursaAI.\n\n" +
+        "Para testar rotas protegidas: execute POST /api/Autenticacao/entrar-estudante ou /api/Autenticacao/entrar-administrador com e-mail e senha. Copie data.accessToken da resposta e informe somente o token em Authorize (sem o prefixo Bearer). A autorização permanece apenas nesta página e é removida ao recarregar.\n\n" +
+        "As rotas Navegador utilizam cookies HttpOnly e a origem autorizada do frontend. Abra /api/docs pelo frontend para testar esse fluxo. As demais rotas também aceitam a sessão do frontend; no Swagger da API, utilize Bearer.",
     },
+    servers: [{ url: "/", description: "Servidor atual" }],
     paths,
     components: {
       schemas,
       securitySchemes: {
-        bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
-        browserSession: {
-          type: "apiKey",
-          in: "cookie",
-          name: "concursa-sessao",
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+          description:
+            "Informe data.accessToken retornado pelo login em Autenticacao, sem o prefixo Bearer.",
         },
       },
     },

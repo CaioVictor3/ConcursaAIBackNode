@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": false,
+    "incremental": false,
+    "rootDir": "src",
+    "outDir": "dist-worker",
+    "plugins": []
+  },
+  "include": ["src/worker-emails-supabase.ts"],
+  "exclude": ["node_modules", ".next"]
+}

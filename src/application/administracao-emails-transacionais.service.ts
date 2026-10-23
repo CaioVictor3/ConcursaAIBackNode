@@ -13,7 +13,14 @@ import { ServicoAutorizacaoUsuarioAutenticado } from "./autorizacao-usuario-aute
 
 export function operacoesAdministracaoEmailsTransacionais(
   contextoAutorizacao: ServicoAutorizacaoUsuarioAutenticado,
-  servicoEmails: ServicoEnvioEmailsTransacionaisResend,
+  servicoEmails: Pick<
+    ServicoEnvioEmailsTransacionaisResend,
+    | "listarHistoricoEmails"
+    | "obterMetricasEmails"
+    | "reprocessarEmailComFalha"
+    | "listarFluxosEmail"
+    | "atualizarFluxoEmail"
+  >,
 ) {
   return {
     async listarHistorico(

@@ -1,85 +1,80 @@
-# ConcursaAI — API Node.js + TypeScript
+# ConcursaAI — API Next.js
 
-Backend independente em Express 5. O runtime não depende de .NET, frontend, Supabase Auth ou Data API. Preserva as 96 rotas da API original, seus DTOs e as funções PostgreSQL existentes.
+O frontend React/Vite chama somente `/api`. O backend Next.js App Router autentica no Supabase Auth e consulta tabelas/RPCs pela Data API com a sessão do usuário. O runtime HTTP não utiliza conexão PostgreSQL direta ou pooler.
 
-**Situação:** implementação dos módulos e rotas entregue e validada localmente. A homologação integral com OpenAI, Google e Resend reais permanece pendente das credenciais. Os adaptadores reais estão implementados; os testes usam provedores controlados apenas durante a execução dos testes.
+As regras de negócio e os contratos de request/response existentes são reaproveitados. O repositório Supabase converte consultas, filtros, paginação e JSON das RPCs; as políticas RLS continuam responsáveis pela separação dos dados dos alunos.
 
 ## Executar localmente
 
-Recomendado Node.js 24 LTS (`nvm use`); mínimo 22.16. PostgreSQL 17 com a estrutura e permissões existentes.
+Use Node.js 24 e configure `.env.local` **neste backend**:
+
+```dotenv
+SUPABASE_URL=https://SEU_PROJETO.supabase.co
+SUPABASE_PUBLISHABLE_KEY=
+SUPABASE_SECRET_KEY=
+CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+AUTH_CLIENT_URL=http://localhost:5173
+```
+
+A URL deve ser a raiz do projeto, sem `/rest/v1`. A chave secreta fica somente no servidor; é usada nos callbacks de IA, webhooks, verificações e operações administrativas. Consultas normais usam a chave publicável com o token do usuário, respeitando RLS. Os arquivos de ambiente são ignorados pelo Git e pelo Docker.
 
 ```sh
 npm ci
-cp -n .env.example .env # preserva .env existente
-# Preencha DATABASE_URL, AUTH_SIGNING_KEY e as integrações necessárias.
 npm run dev
 ```
 
-A configuração local existente foi reaproveitada em `.env`, com permissão 0600 e ignorada pelo Git. Não substitua esse arquivo pelo exemplo se já estiver configurado.
+A API utiliza a porta 3000. No projeto irmão `../ConcursaAI`, execute `npm run dev`; o Vite utiliza a porta 5173 e encaminha `/api` à API. Para outro destino local, configure `VITE_API_PROXY_TARGET` no ambiente do Vite. O frontend não recebe chaves do Supabase, OpenAI ou Resend.
 
-Endereço padrão: `http://127.0.0.1:3000`. Ajuste `HOST` e `PORT` no ambiente.
+## Verificação
 
-- `GET /api/health`: saúde do processo; não garante conectividade com dependências.
-- `GET /api/Sistema/verificar-sistema`: contrato legado preservado.
-- `GET /openapi/v1.json` ou `/api/openapi.json`: OpenAPI 3.1.
-- `/api/docs`: Swagger UI.
-- `npm run check:database`: consulta somente de leitura para verificar conexão e papel restrito.
+```sh
+npm run check:database
+npm run check:integration
+npm run check:worker
+npm run build
+npm test
+```
 
-Não é necessário manter um frontend em execução. Clientes HTTP podem usar `Authorization: Bearer TOKEN`. `AUTH_CLIENT_URL` e `CORS_ORIGINS` são necessários para links de email e fluxos de navegador/OAuth que dependam de uma origem de retorno.
+`check:database` verifica a Data API com uma consulta sem retornar dados pessoais. `check:integration` exige os dois servidores locais em execução; cria contas e uma questão temporárias, verifica aluno/administrador, isolamento, simulado, resposta/correção, honra, métricas, preferências e logout, e remove os dados ao terminar. Pode apontar para outro proxy **local** com `CONCURSA_TEST_API_URL`.
 
-## Build e produção
+- `GET /api/health`: processo e presença de configuração.
+- `GET /api/health/ready`: consulta real ao Supabase; retorna 503 quando a conexão não estiver disponível.
+- `GET /api/openapi.json`: contratos HTTP.
+
+## Swagger
+
+Abra [http://localhost:3000/swagger](http://localhost:3000/swagger) para consultar e testar as rotas. `/swagger/index.html` também redireciona à interface em `/api/docs`. O Swagger utiliza o documento `/api/openapi.json`, gerado a partir dos contratos da API, e carrega seus arquivos pelo próprio backend.
+
+Para testar uma rota protegida:
+
+1. Em **Autenticacao**, execute `POST /api/Autenticacao/entrar-estudante` ou `entrar-administrador`, informando e-mail e senha.
+2. Copie `data.accessToken` da resposta.
+3. Clique em **Authorize** e cole somente o token, sem o prefixo `Bearer`.
+4. Abra a rota desejada, selecione **Try it out**, preencha o request e clique em **Execute**.
+
+A autorização não é persistida ao recarregar a página. As chamadas desse fluxo usam Bearer e não alteram os cookies da sessão do frontend. Para testar as rotas **Navegador**, que usam cookies HttpOnly e proteção de origem, acesse [http://localhost:5173/api/docs](http://localhost:5173/api/docs) pelo proxy do frontend; essa origem deve estar em `CORS_ORIGINS`. O cabeçalho `X-Concursa-Client` é preenchido pelo Swagger, e `Origin` pelo navegador.
+
+O endpoint `/api/health/ready` permite verificar a comunicação com o Supabase pela própria interface. Na publicação, use `/swagger` no domínio da API ou `/api/docs` na origem que encaminha `/api` ao backend. A integração segue a [instalação](https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/) e as [opções oficiais do Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
+
+Os testes de unidade usam provedores controlados. O teste de integração usa o banco real e não envia e-mails nem consome OpenAI. O acervo real permanece preservado; dados temporários são removidos por seus identificadores.
+
+## Publicação
 
 ```sh
 npm run build
-NODE_ENV=production HOST=0.0.0.0 PORT=3000 npm run start
+npm start
 ```
 
-Configure os secrets no serviço de hospedagem, mantenha TLS até o PostgreSQL e termine HTTPS no proxy da plataforma. `AUTH_SIGNING_KEY` precisa conter pelo menos 64 bytes codificados em base64; reutilize a chave original para conservar JWTs e links já emitidos. Configure `TRUST_PROXY_HOPS` apenas para a quantidade efetiva de proxies confiáveis. CORS aceita uma lista de origens explícitas separadas por vírgulas; o padrão vazio permite clientes HTTP diretos, sem habilitar acesso de origens de navegador.
+O Dockerfile utiliza o output `standalone` do Next.js, Node 24 e usuário sem privilégios. Configure as variáveis privadas no Render; não inclua arquivos `.env` na imagem. O health check é `/api/health`; a prontidão do banco pode ser acompanhada em `/api/health/ready`.
 
-```sh
-docker build -t concursa-api .
-docker run --rm --env-file .env -e NODE_ENV=production -e HOST=0.0.0.0 -p 3000:3000 concursa-api
-```
+O worker de e-mails funciona em processo separado com `npm run worker:email`, após o build. No Render, use o comando `node dist-worker/worker-emails-supabase.js` em um Background Worker com as mesmas variáveis privadas, além de `RESEND_API_KEY`, `RESEND_FROM` e `AUTH_CLIENT_URL`. A origem de `AUTH_CLIENT_URL` deve estar em `CORS_ORIGINS`. `npm run check:worker` valida a conexão sem enviar mensagens. A reserva e a confirmação dos envios usam RPCs transacionais acessíveis somente à credencial do servidor.
 
-O Dockerfile usa Node 24, usuário sem privilégios e somente dependências de produção na imagem final. A imagem não inclui `.env`. O build da imagem não foi executado nesta entrega porque o daemon Docker estava indisponível. O build TypeScript e os scripts reais de desenvolvimento e produção foram executados.
+Em produção, sirva frontend e API pela mesma origem, encaminhando `/api` para este backend. Essa configuração mantém os cookies de sessão `HttpOnly`, `Secure` e `SameSite=Lax`. Libere a origem pública em `CORS_ORIGINS` e nos Redirect URLs do Supabase Auth. Atrás do proxy do Render, configure `TRUST_PROXY_HOPS=1`.
 
-SIGTERM/SIGINT interrompem o worker, aguardam requisições, encerram conexões ociosas e fecham o pool. O limite de encerramento é 30 segundos. O health check da plataforma deve usar `/api/health`.
+Google depende do provedor habilitado no Supabase. Os e-mails de confirmação e recuperação utilizam a configuração SMTP do Supabase Auth; para Resend, configure o SMTP desse provedor no painel do Supabase. Envio real de e-mail e OAuth real não fazem parte do teste automatizado de integração.
 
-## Banco e segurança
+## Banco e código legado
 
-Use uma URL PostgreSQL com `concursa_backend` (ou `concursa_backend.<referência>` para o pooler). Conexões remotas exigem `sslmode=verify-full`; `DATABASE_CA_FILE` permite a CA fornecida no projeto. O runtime nunca usa `postgres`, `service_role` ou `bypassrls`.
+As migrations incrementais desta migração ficam em `database/migrations`. Foram aplicadas no projeto ConcursaAI as migrations de honra, consumo/perguntas de IA, permissões Data API, comunicação, sincronização de perfis e operação. Elas não são executadas automaticamente na inicialização da API.
 
-As operações de negócio executam `SET LOCAL ROLE concursa_dados` e definem claims de usuário dentro da mesma transação, na mesma conexão. Credenciais e filas permanecem nos schemas privados `identidade` e `comunicacao`. Nenhuma migration é executada na inicialização. Os scripts históricos em `database/reference/migrations` são referência auditável; não devem ser reaplicados ao banco existente. Contêm inclusive uma limpeza histórica de acervo, executada nesta entrega somente no banco descartável de testes.
-
-JWT HS256 inclui `sub`, `sid`, `tipo` e `jti`, exige issuer/audience/expiração e valida a sessão persistida. A autorização consulta o perfil no banco. Hashes ASP.NET Identity v2/v3 e bcrypt são aceitos; hashes legados são atualizados para PBKDF2-SHA512/210.000 iterações após login válido. Refresh tokens têm rotação, detecção de reutilização e revogação. Login e CEP preservam limites de 10 e 30 requisições por minuto por IP.
-
-Cookies de navegador usam HttpOnly, SameSite e Secure em produção. Mutações desse transporte exigem origem autorizada e `X-Concursa-Client: web`. A cifragem dos cookies mudou de ASP.NET Data Protection para AES-256-GCM com chaves derivadas; usuários que utilizavam cookies antigos precisam entrar novamente. JWTs Bearer, refresh tokens persistidos e links de email permanecem compatíveis.
-
-## Testes e evidências
-
-```sh
-npm run test:all
-npm run test:parity # requer Python 3, SDK .NET 10 e a pasta de origem ao lado
-```
-
-`test:all` executa build, testes de contratos/segurança/provedores, início e encerramento pelos scripts npm, PostgreSQL real descartável, importador e auditoria de preservação da origem. `test:parity` copia a origem para `.tmp`, compila a cópia e compara HTTP contra ela usando outro PostgreSQL descartável. Nenhum teste modifica dados do banco existente. O relatório da comparação declara o alcance dos cenários, a normalização de timestamps e a diferença justificada do histórico de email.
-
-As funções SQL originais e as sete suítes SQL foram preservadas. A imagem de PostgreSQL usada nos testes locais é 17.10; a conexão existente foi verificada somente por leitura no PostgreSQL 17.11. Os testes de provedores não enviam emails reais nem geram consumo na OpenAI.
-
-## Importação administrativa
-
-```sh
-npm run import:prova -- arquivo.json
-CONCURSA_API_URL=http://127.0.0.1:3000 CONCURSA_IMPORT_TOKEN=TOKEN npm run import:prova -- arquivo.json --aplicar
-```
-
-A primeira execução somente valida. `--aplicar` exige token de administrador, confere prova e temas, salva progresso e permite retomada. O importador antigo da apostila continua explicitamente descontinuado, como na origem. Não registre o token em arquivos versionados ou histórico de shell.
-
-## Documentação detalhada
-
-- [Padrões de nomes, organização e formatação](docs/PADROES_DE_NOMENCLATURA.md).
-- [Inventário e checklist de módulos/rotas](docs/MIGRACAO.md).
-- [Configurações, integrações, banco e operação](docs/CONFIGURACAO.md).
-- [Resultados, diferenças e bloqueios](docs/VALIDACAO.md).
-- [Inventário de 469 arquivos e hashes da origem](docs/source-inventory.json).
-- [Comparação HTTP executada](docs/http-parity-results.json).
+As implementações Express/PostgreSQL e os testes de compatibilidade permanecem no repositório para consulta e comparação. A API Next e o worker atual utilizam a Data API e não precisam de `DATABASE_URL`. O worker não é iniciado por `npm run dev` ou `npm start`; execute seu comando próprio quando quiser processar a fila. Os documentos antigos de paridade referem-se ao backend Express anterior.

@@ -1,7 +1,10 @@
 import "dotenv/config";
 import { readFileSync } from "node:fs";
 
-export function carregarConfiguracoesAmbiente(env: NodeJS.ProcessEnv = process.env) {
+export function carregarConfiguracoesAmbiente(
+  env: NodeJS.ProcessEnv = process.env,
+  opcoes: { supabase?: boolean } = {},
+) {
   const obterTextoAmbiente = (name: string, fallback = "") => env[name] ?? fallback;
 
   const obterNumeroAmbiente = (
@@ -64,7 +67,7 @@ export function carregarConfiguracoesAmbiente(env: NodeJS.ProcessEnv = process.e
 
   const production = obterTextoAmbiente("NODE_ENV", "development") === "production";
 
-  if (production && chaveConfiguracao.length < 64) {
+  if (production && !opcoes.supabase && chaveConfiguracao.length < 64) {
     throw new Error("AUTH_SIGNING_KEY deve conter pelo menos 64 bytes em base64.");
   }
 
@@ -89,13 +92,13 @@ export function carregarConfiguracoesAmbiente(env: NodeJS.ProcessEnv = process.e
     origins,
     trustProxy: obterNumeroAmbiente("TRUST_PROXY_HOPS", 0, 0, 10),
     logLevel: obterTextoAmbiente("LOG_LEVEL", "info"),
-    databaseUrl: obterTextoAmbiente(
-      "DATABASE_URL",
-      obterTextoAmbiente("ConnectionStrings__ConcursaAI"),
-    ),
-    databaseCa: obterTextoAmbiente("DATABASE_CA_FILE")
-      ? readFileSync(obterTextoAmbiente("DATABASE_CA_FILE"), "utf8")
-      : undefined,
+    databaseUrl: opcoes.supabase
+      ? ""
+      : obterTextoAmbiente("DATABASE_URL", obterTextoAmbiente("ConnectionStrings__ConcursaAI")),
+    databaseCa:
+      !opcoes.supabase && obterTextoAmbiente("DATABASE_CA_FILE")
+        ? readFileSync(obterTextoAmbiente("DATABASE_CA_FILE"), "utf8")
+        : undefined,
     poolMax: obterNumeroAmbiente("DATABASE_POOL_MAX", 20, 1, 100),
     databaseTimeout: obterNumeroAmbiente("DATABASE_TIMEOUT_MS", 15000, 100, 120000),
     databaseCommandTimeout: obterNumeroAmbiente("DATABASE_COMMAND_TIMEOUT_MS", 60000, 100, 300000),

@@ -16,6 +16,7 @@ import {
 } from "./criptografia-senhas-tokens-links.js";
 import type { PendingEmail } from "./repositorio-contas-sessoes-postgresql.js";
 import { validarUrlHttps, type HttpFetch } from "./seguranca-requisicoes-https.js";
+import type { PersistenciaWorkerEmailsSupabase } from "./persistencia-worker-emails-supabase.js";
 
 interface EmailTransacionalReservado {
   idEmailTransacional: string;
@@ -86,6 +87,7 @@ export class ServicoEnvioEmailsTransacionaisResend {
     readonly conexaoPostgreSql: ConexaoTransacoesPostgreSql,
     readonly config: ConfiguracoesAmbiente,
     readonly clienteHttp: HttpFetch = fetch,
+    readonly persistenciaSupabase?: PersistenciaWorkerEmailsSupabase,
   ) {}
 
   get estaDisponivel() {
@@ -105,6 +107,12 @@ export class ServicoEnvioEmailsTransacionaisResend {
     if (!tiposEventoEmailTransacional.includes(type as TipoEventoEmailTransacional)) {
       return false;
     }
+    if (this.persistenciaSupabase) {
+      return (
+        (await this.listarFluxosEmail()).find((fluxo) => fluxo.tipoEvento === type)?.habilitado ??
+        false
+      );
+    }
 
     const resultadoAtualizacaoFluxoEmail =
       await this.conexaoPostgreSql.executarConsultaSqlParametrizada<{
@@ -119,11 +127,17 @@ export class ServicoEnvioEmailsTransacionaisResend {
 
   async listarFluxosEmail(): Promise<ContratosApi.FluxoEmailResponseModel[]> {
     const fluxosEmailPersistidos = (
-      await this.conexaoPostgreSql.executarConsultaSqlParametrizada<{
-        tipo_evento: string;
-        habilitado: boolean;
-        atualizado_em: Date;
-      }>("select tipo_evento,habilitado,atualizado_em from comunicacao.workflows")
+      await (this.persistenciaSupabase
+        ? this.persistenciaSupabase.executar<{
+            tipo_evento: string;
+            habilitado: boolean;
+            atualizado_em: Date;
+          }>("listarFluxos")
+        : this.conexaoPostgreSql.executarConsultaSqlParametrizada<{
+            tipo_evento: string;
+            habilitado: boolean;
+            atualizado_em: Date;
+          }>("select tipo_evento,habilitado,atualizado_em from comunicacao.workflows"))
     ).rows;
 
     return tiposEventoEmailTransacional.map((type) => {
@@ -191,6 +205,7 @@ export class ServicoEnvioEmailsTransacionaisResend {
     params: Record<string, unknown> = {},
     client?: PoolClient,
   ) {
+    if (this.persistenciaSupabase) return this.persistenciaSupabase.executar(nomeConsulta, params);
     const sql = consultasSqlEmailsTransacionais[nomeConsulta];
 
     if (!sql) {
@@ -357,6 +372,10 @@ export class ServicoEnvioEmailsTransacionaisResend {
       webhook.length > 200 ||
       identificadorEmail.length > 200
     ) {
+      return;
+    }
+    if (this.persistenciaSupabase) {
+      await this.persistenciaSupabase.registrarWebhook(webhook, identificadorEmail, event);
       return;
     }
 
@@ -613,21 +632,24 @@ export class ServicoEnvioEmailsTransacionaisResend {
 
       const identificadorEmail = await this.enviarEmailResend(email, sinalCancelamento);
 
-      await this.conexaoPostgreSql.executarTransacao(async (clienteTransacaoPostgreSql) => {
-        const resultadoRegistroEventoEmail = await this.executarConsultaEmail(
-          "marcarEmailAceitoProvedor",
-          { ...params, provedor: identificadorEmail },
-          clienteTransacaoPostgreSql,
-        );
-
-        if (resultadoRegistroEventoEmail.rowCount === 1) {
-          await this.executarConsultaEmail(
-            "aplicarEventosRecebidosEmail",
-            { id: identificadorEmail },
+      if (this.persistenciaSupabase) {
+        await this.persistenciaSupabase.confirmarEnvio({ ...params, provedor: identificadorEmail });
+      } else
+        await this.conexaoPostgreSql.executarTransacao(async (clienteTransacaoPostgreSql) => {
+          const resultadoRegistroEventoEmail = await this.executarConsultaEmail(
+            "marcarEmailAceitoProvedor",
+            { ...params, provedor: identificadorEmail },
             clienteTransacaoPostgreSql,
           );
-        }
-      });
+
+          if (resultadoRegistroEventoEmail.rowCount === 1) {
+            await this.executarConsultaEmail(
+              "aplicarEventosRecebidosEmail",
+              { id: identificadorEmail },
+              clienteTransacaoPostgreSql,
+            );
+          }
+        });
 
       registradorEventos.info(
         { emailId: email.idEmailTransacional, type: email.tipo_evento },

@@ -1,8 +1,6 @@
 import { randomUUID } from "node:crypto";
-import type { Request as ExpressRequest, Response as ExpressResponse } from "express";
 import { type NextRequest, NextResponse } from "next/server";
 import { pino } from "pino";
-import { browser } from "../aplicacao-http-express.js";
 import { ServicoAutenticacaoContasSessoes } from "../application/autenticacao-contas-sessoes.service.js";
 import { criarServicosAplicacaoApi } from "../application/composicao-servicos-api.js";
 import { carregarConfiguracoesAmbiente } from "../config/configuracoes-ambiente.js";
@@ -13,10 +11,6 @@ import {
   criarRespostaSucesso,
   ErroRegraNegocioHttp,
 } from "../domain/erros-validacoes-respostas-api.js";
-import {
-  GerenciadorCookiesSessaoNavegador,
-  type TokensSessaoNavegador,
-} from "./cookies-sessao-navegador.js";
 import { criarDespachoOperacoesApi } from "./despacho-operacoes-rotas-api.js";
 import {
   atenderRotaAdicionalNext,
@@ -36,8 +30,11 @@ import {
 import { ServicoEnvioEmailsTransacionaisResend } from "../infrastructure/envio-emails-transacionais-resend.js";
 import { RepositorioContasSessoesPostgreSql } from "../infrastructure/repositorio-contas-sessoes-postgresql.js";
 import { criarClienteSupabaseRequisicao } from "../utils/supabase/server.js";
+import { RepositorioConsultasNegocioSupabase } from "../infrastructure/repositorio-consultas-supabase.js";
+import { ServicoComunicacaoSupabase } from "../infrastructure/comunicacao-supabase.js";
+import { criarClienteSupabaseAdministrativo } from "../utils/supabase/admin.js";
 
-const config = carregarConfiguracoesAmbiente();
+const config = carregarConfiguracoesAmbiente(process.env, { supabase: true });
 const logger = pino({
   level: config.logLevel,
   redact: ["authorization", "cookie", "password", "senha", "token"],
@@ -51,7 +48,6 @@ const auth = new ServicoAutenticacaoContasSessoes(
   new ClienteAutenticacaoGoogle(config, fetch),
 );
 const openai = new ClienteAnaliseQuestoesOpenAI(config, fetch);
-const cookies = new GerenciadorCookiesSessaoNavegador(config);
 const documentoOpenApi = gerarDocumentoOpenApi();
 const limites = new Map<string, { quantidade: number; ate: number }>();
 
@@ -62,6 +58,17 @@ type CookiePendente = {
   valor: string;
   opcoes: Record<string, unknown>;
 };
+
+function identificarEnderecoCliente(requisicao: Request) {
+  if (!config.trustProxy) return "direto";
+  return (
+    requisicao.headers
+      .get("x-forwarded-for")
+      ?.split(",")
+      .map((item) => item.trim())
+      .at(-config.trustProxy) ?? "proxy"
+  );
+}
 
 function limitarRequisicoes(chave: string, limite: number) {
   const agora = Date.now();
@@ -145,47 +152,6 @@ function responder(
   return resposta;
 }
 
-async function processarNavegador(
-  action: string,
-  requisicao: Request,
-  consulta: Record<string, string | string[]>,
-  body: unknown,
-  user: IdentidadeUsuarioAutenticado,
-  cookiesPendentes: CookiePendente[],
-) {
-  let conteudo: unknown;
-  const requisicaoAdaptada = {
-    method: requisicao.method,
-    body,
-    query: consulta,
-    headers: { cookie: requisicao.headers.get("cookie") ?? undefined },
-    get: (nome: string) => requisicao.headers.get(nome) ?? undefined,
-  } as unknown as ExpressRequest;
-  const respostaAdaptada = {
-    json(valor: unknown) {
-      conteudo = valor;
-      return this;
-    },
-    cookie(nome: string, valor: string, opcoes: Record<string, unknown>) {
-      cookiesPendentes.push({ nome, valor, opcoes });
-      return this;
-    },
-    clearCookie(nome: string, opcoes: Record<string, unknown>) {
-      cookiesPendentes.push({ nome, valor: "", opcoes: { ...opcoes, expires: new Date(0) } });
-      return this;
-    },
-  } as unknown as ExpressResponse;
-
-  await browser(
-    action,
-    requisicaoAdaptada,
-    respostaAdaptada,
-    criarServicosAplicacaoApi(db, auth, openai, user, requisicao.signal),
-    cookies,
-  );
-  return conteudo;
-}
-
 async function processarWebhook(requisicao: Request) {
   const bytes = Buffer.from(await requisicao.arrayBuffer());
   if (
@@ -209,11 +175,15 @@ async function processarWebhook(requisicao: Request) {
     throw new ErroRegraNegocioHttp("Evento inválido.");
   }
   if (evento.type.trim() && evento.data.email_id.trim()) {
-    await emails.registrarEventoWebhook(
-      requisicao.headers.get("svix-id")!,
-      evento.data.email_id,
-      evento.type,
+    const { error } = await criarClienteSupabaseAdministrativo().rpc(
+      "registrar_evento_resend_backend",
+      {
+        p_webhook: requisicao.headers.get("svix-id")!,
+        p_idmensagem: evento.data.email_id,
+        p_evento: evento.type,
+      },
     );
+    if (error) throw error;
   }
   return criarRespostaSucesso({ recebido: true }, "Evento recebido.");
 }
@@ -252,6 +222,23 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       return resposta;
     }
 
+    if (caminho === "/api/health/ready" && metodo === "GET") {
+      const { error } = await criarClienteSupabaseAdministrativo()
+        .from("usuarios")
+        .select("idUsuario", { head: true })
+        .limit(1);
+      if (error) throw error;
+      return responder(
+        criarRespostaSucesso(
+          { status: "ready", banco: "supabase-data-api" },
+          "Conexão com o Supabase verificada.",
+        ),
+        200,
+        requisicao,
+        identificador,
+        cookiesPendentes,
+      );
+    }
     if (caminho === "/api/health" && metodo === "GET") {
       return responder(
         criarRespostaSucesso(
@@ -259,7 +246,7 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
             status: "healthy",
             aplicacao: "ConcursaAI",
             runtime: "next",
-            bancoConfigurado: db.estaConfigurada,
+            bancoConfigurado: !!(process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL),
           },
           "API em execução.",
         ),
@@ -273,12 +260,16 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       return responder(documentoOpenApi, 200, requisicao, identificador, cookiesPendentes);
     }
 
-    const sessao = cookies.lerCookieCriptografado<TokensSessaoNavegador>(
-      { headers: { cookie: requisicao.headers.get("cookie") ?? undefined } } as ExpressRequest,
-      "sessao",
-    );
     const mutacao = !["GET", "HEAD"].includes(metodo);
-    if (mutacao && (caminho.toLowerCase().startsWith("/api/navegador") || sessao)) {
+    const tokenBearer = requisicao.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
+    const possuiCookieSupabase = /(?:^|;\s*)sb-[^=]+-auth-token(?:\.\d+)?=/.test(
+      requisicao.headers.get("cookie") ?? "",
+    );
+    if (
+      mutacao &&
+      !tokenBearer &&
+      (caminho.toLowerCase().startsWith("/api/navegador") || possuiCookieSupabase)
+    ) {
       if (
         requisicao.headers.get("X-Concursa-Client") !== "web" ||
         !origem ||
@@ -307,13 +298,16 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
           Object.assign(cabecalhosSessao, cabecalhos);
         },
       );
-      if (caminho.startsWith("/api/Navegador/entrar-")) {
-        const enderecoCliente =
-          requisicao.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
+      if (/^\/api\/(Navegador|Autenticacao)\//.test(caminho) && metodo !== "GET") {
+        const enderecoCliente = identificarEnderecoCliente(requisicao);
         limitarRequisicoes("auth:" + enderecoCliente, 10);
       }
-      const dados = await atenderAutenticacaoSupabaseNext(metodo, caminho, supabase, () =>
-        lerCorpoJson(requisicao),
+      const dados = await atenderAutenticacaoSupabaseNext(
+        metodo,
+        caminho,
+        supabase,
+        () => lerCorpoJson(requisicao),
+        origem && config.origins.includes(origem) ? origem : config.auth.clientUrl || undefined,
       );
       const resposta = responder(dados, 200, requisicao, identificador, cookiesPendentes);
       Object.entries(cabecalhosSessao).forEach(([nome, valor]) =>
@@ -328,23 +322,20 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       throw new ErroRegraNegocioHttp("Endpoint não encontrado.", 404);
     }
 
-    const cabecalho = requisicao.headers.get("authorization");
-    const token =
-      cabecalho?.match(/^Bearer\s+(.+)$/i)?.[1] ?? (!cabecalho ? sessao?.accessToken : undefined);
+    const supabase = criarClienteSupabaseRequisicao(requisicao as NextRequest, (valores) => {
+      cookiesPendentes.push(...valores);
+    });
     let usuario: IdentidadeUsuarioAutenticado = { id: "", sessionId: "", token: "" };
-    if (token) {
-      try {
-        usuario = await auth.autenticarTokenAcessoJwt(token);
-      } catch (erro) {
-        if (!rota?.anonymous) throw erro;
-      }
+    const autenticado = await supabase.auth.getUser();
+    if (!autenticado.error && autenticado.data.user) {
+      usuario = { id: autenticado.data.user.id, sessionId: "", token: "supabase-auth" };
     }
     if (!rota?.anonymous && !usuario.id) {
       throw new ErroRegraNegocioHttp("Entre na sua conta para continuar.", 401);
     }
+    const repositorioSupabase = new RepositorioConsultasNegocioSupabase(supabase, usuario);
 
-    const enderecoCliente =
-      requisicao.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
+    const enderecoCliente = identificarEnderecoCliente(requisicao);
     if (rota?.controller === "Autenticacao" || rota?.controller === "Navegador") {
       limitarRequisicoes("auth:" + enderecoCliente, 10);
     } else if (rota?.controller === "Cep") {
@@ -362,6 +353,7 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
         db,
         openai,
         () => lerCorpoJson(requisicao),
+        repositorioSupabase,
       );
       if (!adicional.encontrada) {
         throw new ErroRegraNegocioHttp("Endpoint não encontrado.", 404);
@@ -373,35 +365,27 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       throw new ErroRegraNegocioHttp("Endpoint não encontrado.", 404);
     }
     const corpo = rota.binding === "query" ? undefined : await lerCorpoJson(requisicao);
-    const respostaDados =
-      rota.controller === "Navegador"
-        ? await processarNavegador(
-            rota.action,
-            requisicao,
-            consulta,
-            corpo,
-            usuario,
-            cookiesPendentes,
-          )
-        : await (async () => {
-            const servicos = criarServicosAplicacaoApi(
-              db,
-              auth,
-              openai,
-              usuario,
-              requisicao.signal,
-            );
-            const despacho = criarDespachoOperacoesApi(servicos, rota.binding === "query");
-            const manipulador = despacho[rota.path as keyof typeof despacho];
-            if (!manipulador) throw new Error("Endpoint sem implementação.");
-            const entrada = rota.binding === "query" ? consulta : corpo;
-            if (entrada === undefined) {
-              throw new ErroRegraNegocioHttp(
-                "Confira os campos informados e envie uma requisição válida.",
-              );
-            }
-            return manipulador(entrada);
-          })();
+    const respostaDados = await (async () => {
+      const servicos = criarServicosAplicacaoApi(
+        db,
+        auth,
+        openai,
+        usuario,
+        requisicao.signal,
+        repositorioSupabase,
+        new ServicoComunicacaoSupabase(supabase),
+      );
+      const despacho = criarDespachoOperacoesApi(servicos, rota.binding === "query");
+      const manipulador = despacho[rota.path as keyof typeof despacho];
+      if (!manipulador) throw new Error("Endpoint sem implementação.");
+      const entrada = rota.binding === "query" ? consulta : corpo;
+      if (entrada === undefined) {
+        throw new ErroRegraNegocioHttp(
+          "Confira os campos informados e envie uma requisição válida.",
+        );
+      }
+      return manipulador(entrada);
+    })();
 
     return responder(respostaDados, 200, requisicao, identificador, cookiesPendentes);
   } catch (erro) {

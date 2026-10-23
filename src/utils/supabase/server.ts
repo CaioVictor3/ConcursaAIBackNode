@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
+import { createClient as criarCliente } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { obterConfiguracaoPublicaSupabase } from "./config.js";
@@ -7,6 +8,12 @@ export async function createClient() {
   const cookieStore = await cookies();
   const { url, chave } = obterConfiguracaoPublicaSupabase();
   return createServerClient(url, chave, {
+    cookieOptions: {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    },
     cookies: {
       getAll: () => cookieStore.getAll(),
       setAll: (valores, _cabecalhos) => {
@@ -31,7 +38,23 @@ export function criarClienteSupabaseRequisicao(
   registrar: (cookies: CookieSupabasePendente[], cabecalhos: Record<string, string>) => void,
 ) {
   const { url, chave } = obterConfiguracaoPublicaSupabase();
+  const token = requisicao.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
+  if (token) {
+    const cliente = criarCliente(url, chave, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+    });
+    const getUser = cliente.auth.getUser.bind(cliente.auth);
+    cliente.auth.getUser = () => getUser(token);
+    return cliente;
+  }
   return createServerClient(url, chave, {
+    cookieOptions: {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    },
     cookies: {
       getAll: () => requisicao.cookies.getAll(),
       setAll: (valores, cabecalhos) => {

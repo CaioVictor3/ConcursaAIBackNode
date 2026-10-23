@@ -8,7 +8,10 @@ import { ServicoAutorizacaoUsuarioAutenticado } from "./autorizacao-usuario-aute
 
 export function operacoesPreferenciasComunicacao(
   contextoAutorizacao: ServicoAutorizacaoUsuarioAutenticado,
-  servicoEmails: ServicoEnvioEmailsTransacionaisResend,
+  servicoEmails: Pick<
+    ServicoEnvioEmailsTransacionaisResend,
+    "obterPreferenciaEmail" | "atualizarPreferenciaEmail"
+  >,
 ) {
   return {
     async obterMinhaPreferencia(

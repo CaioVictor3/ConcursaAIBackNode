@@ -117,3 +117,25 @@ test("conta inativa não recebe sessão", async () => {
   );
   assert.equal(falso.saiu(), true);
 });
+
+test("troca autenticada preserva a sessão atual e recuperação encerra todas", async () => {
+  for (const acao of ["atualizar-senha", "redefinir-senha"]) {
+    const { cliente } = clienteFalso();
+    let escopo = "";
+    Object.assign(cliente.auth, {
+      getUser: async () => ({ data: { user: { id: idUsuario } }, error: null }),
+      updateUser: async () => ({ error: null }),
+      signOut: async (opcoes: { scope: string }) => {
+        escopo = opcoes.scope;
+        return { error: null };
+      },
+    });
+    await atenderAutenticacaoSupabaseNext(
+      acao === "atualizar-senha" ? "PUT" : "POST",
+      `/api/Autenticacao/${acao}`,
+      cliente,
+      async () => ({ senha: "NovaSenha-123", token: "sessao-supabase" }),
+    );
+    assert.equal(escopo, acao === "atualizar-senha" ? "others" : "global");
+  }
+});

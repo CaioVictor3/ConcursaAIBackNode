@@ -1,12 +1,12 @@
 import type { UsuarioResponseModel } from "../contracts/modelos-requisicoes-respostas-api.js";
 import { ErroRegraNegocioHttp } from "../domain/erros-validacoes-respostas-api.js";
-import type { RepositorioConsultasNegocioPostgreSql } from "../infrastructure/repositorio-consultas-postgresql.js";
+import type { RepositorioConsultasNegocio } from "../infrastructure/repositorio-consultas-postgresql.js";
 import { criarFiltroIgualdade } from "../infrastructure/repositorio-consultas-postgresql.js";
 
 export class ServicoAutorizacaoUsuarioAutenticado {
   private account?: UsuarioResponseModel;
 
-  constructor(readonly repo: RepositorioConsultasNegocioPostgreSql) {}
+  constructor(readonly repo: RepositorioConsultasNegocio) {}
 
   async exigirUsuarioAtivo() {
     if (!this.repo.user.id) {

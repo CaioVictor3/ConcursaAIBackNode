@@ -1,5 +1,7 @@
 import { ServicoPerguntasContextuaisAnaliseQuestoesIA } from "../application/perguntas-contextuais-analise-questoes-ia.service.js";
 import { ServicoSistemaHonraEstudantesAdministracao } from "../application/sistema-honra-estudantes-administracao.service.js";
+import { ServicoSistemaHonraSupabase } from "../application/sistema-honra-supabase.service.js";
+import { RepositorioConsultasNegocioSupabase } from "../infrastructure/repositorio-consultas-supabase.js";
 import {
   criarRespostaSucesso,
   ErroRegraNegocioHttp,
@@ -77,13 +79,16 @@ export async function atenderRotaAdicionalNext(
   db: ConexaoTransacoesPostgreSql,
   openai: ClienteAnaliseQuestoesOpenAI,
   lerCorpo: () => Promise<unknown>,
+  repositorio?: RepositorioConsultasNegocioSupabase,
 ): Promise<{ encontrada: boolean; resposta?: unknown }> {
   const metodo = requisicao.method;
   const url = new URL(requisicao.url);
   const pagina = () => inteiro(url.searchParams.get("pagina") ?? 1, "página", 1, 100_000);
   const tamanhoPagina = () =>
     inteiro(url.searchParams.get("quantidadePorPagina") ?? 20, "quantidade por página", 1, 50);
-  const honra = new ServicoSistemaHonraEstudantesAdministracao(db, usuario);
+  const honra = repositorio
+    ? new ServicoSistemaHonraSupabase(repositorio.supabase, repositorio)
+    : new ServicoSistemaHonraEstudantesAdministracao(db, usuario);
 
   if (metodo === "GET" && caminho === "/api/honra/estudante/meu-progresso") {
     return {
@@ -230,7 +235,7 @@ export async function atenderRotaAdicionalNext(
   );
   if ((metodo === "GET" && historicoIa) || (metodo === "POST" && perguntaIa)) {
     const idQuestao = identificador((historicoIa ?? perguntaIa)?.[1], "a questão");
-    const ia = new ServicoPerguntasContextuaisAnaliseQuestoesIA(db, usuario, openai);
+    const ia = new ServicoPerguntasContextuaisAnaliseQuestoesIA(db, usuario, openai, repositorio);
     if (metodo === "GET") {
       const idTentativa = identificador(url.searchParams.get("idTentativa"), "a tentativa");
       return {

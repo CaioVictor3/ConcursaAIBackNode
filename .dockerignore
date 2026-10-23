@@ -1,5 +1,8 @@
 node_modules
 dist
+dist-worker
+.next
+tsconfig.tsbuildinfo
 .tmp
 .env
 .env.*

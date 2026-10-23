@@ -31,6 +31,8 @@ async function smoke(mode: "dev" | "production") {
         HOSTNAME: "127.0.0.1",
         PORT: String(port),
         DATABASE_URL: "",
+        SUPABASE_URL: "",
+        NEXT_PUBLIC_SUPABASE_URL: "",
         AUTH_SIGNING_KEY: randomBytes(64).toString("base64"),
         EMAIL_WORKER_ENABLED: "false",
         LOG_LEVEL: "silent",
@@ -82,6 +84,36 @@ async function smoke(mode: "dev" | "production") {
     }
 
     assert.ok(ready, "Servidor não iniciou: " + logs);
+
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const redirecionamento = await fetch(baseUrl + "/swagger", { redirect: "manual" });
+    assert.equal(redirecionamento.status, 307);
+    assert.equal(redirecionamento.headers.get("location"), "/api/docs");
+
+    const pagina = await fetch(baseUrl + "/api/docs");
+    assert.equal(pagina.status, 200);
+    assert.match(pagina.headers.get("content-type")!, /text\/html/);
+    assert.match(await pagina.text(), /ConcursaAI API · Swagger/);
+
+    for (const arquivo of ["swagger-ui.css", "swagger-ui-bundle.js", "swagger-initializer.js"]) {
+      const resposta = await fetch(baseUrl + "/api/docs/" + arquivo);
+      assert.equal(resposta.status, 200, arquivo);
+      assert.ok((await resposta.text()).length > 100, arquivo);
+    }
+
+    const arquivoInexistente = await fetch(baseUrl + "/api/docs/package.json");
+    assert.equal(arquivoInexistente.status, 404);
+
+    const documento = await (await fetch(baseUrl + "/api/openapi.json")).json();
+    assert.equal(documento.openapi, "3.1.0");
+    assert.equal(documento.servers[0].url, "/");
+    assert.ok(documento.paths["/api/Autenticacao/entrar-estudante"].post.requestBody);
+    assert.equal(documento.components.securitySchemes.bearerAuth.scheme, "bearer");
+    assert.ok(documento.paths["/api/health/ready"].get);
+    const execucao = await fetch(baseUrl + "/api/health", {
+      method: Object.keys(documento.paths["/api/health"])[0]!.toUpperCase(),
+    });
+    assert.equal(execucao.status, 200);
   } finally {
     if (child.pid && child.exitCode === null) {
       if (process.platform === "win32") {

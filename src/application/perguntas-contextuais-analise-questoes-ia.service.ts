@@ -1,4 +1,3 @@
-import type { PoolClient } from "pg";
 import { ErroRegraNegocioHttp } from "../domain/erros-validacoes-respostas-api.js";
 import type {
   ConexaoTransacoesPostgreSql,
@@ -6,6 +5,7 @@ import type {
 } from "../infrastructure/conexao-transacoes-postgresql.js";
 import { ClienteAnaliseQuestoesOpenAI } from "../infrastructure/cliente-analise-questoes-openai.js";
 import { RepositorioConsultasNegocioPostgreSql } from "../infrastructure/repositorio-consultas-postgresql.js";
+import type { RepositorioConsultasNegocio } from "../infrastructure/repositorio-consultas-postgresql.js";
 import { ServicoAutorizacaoUsuarioAutenticado } from "./autorizacao-usuario-autenticado.js";
 
 export interface InteracaoContextualQuestaoIA {
@@ -26,17 +26,15 @@ export class ServicoPerguntasContextuaisAnaliseQuestoesIA {
   private readonly autorizacao: ServicoAutorizacaoUsuarioAutenticado;
 
   constructor(
-    private readonly conexaoPostgreSql: ConexaoTransacoesPostgreSql,
-    private readonly usuarioAutenticado: IdentidadeUsuarioAutenticado,
+    conexaoPostgreSql: ConexaoTransacoesPostgreSql,
+    usuarioAutenticado: IdentidadeUsuarioAutenticado,
     private readonly clienteOpenAI: ClienteAnaliseQuestoesOpenAI,
+    repositorio?: RepositorioConsultasNegocio,
   ) {
     this.autorizacao = new ServicoAutorizacaoUsuarioAutenticado(
-      new RepositorioConsultasNegocioPostgreSql(conexaoPostgreSql, usuarioAutenticado),
+      repositorio ??
+        new RepositorioConsultasNegocioPostgreSql(conexaoPostgreSql, usuarioAutenticado),
     );
-  }
-
-  private executarComoUsuario<T>(operacao: (cliente: PoolClient) => Promise<T>): Promise<T> {
-    return this.conexaoPostgreSql.executarComoUsuarioAutenticado(this.usuarioAutenticado, operacao);
   }
 
   async consultarHistorico(
@@ -45,14 +43,10 @@ export class ServicoPerguntasContextuaisAnaliseQuestoesIA {
   ): Promise<InteracaoContextualQuestaoIA[]> {
     await this.autorizacao.exigirEstudanteComCadastroCompleto();
 
-    return this.executarComoUsuario(async (cliente) => {
-      const resultadoConsulta = await cliente.query<{ historico: InteracaoContextualQuestaoIA[] }>(
-        `select public.consultar_historico_perguntas_contextuais_ia($1::uuid, $2::uuid) as historico`,
-        [identificadorTentativa, identificadorQuestao],
-      );
-
-      return resultadoConsulta.rows[0]?.historico ?? [];
-    });
+    return this.autorizacao.repo.executarFuncaoPostgreSql<InteracaoContextualQuestaoIA[]>(
+      "consultar_historico_perguntas_contextuais_ia",
+      { p_idtentativa: identificadorTentativa, p_idquestao: identificadorQuestao },
+    );
   }
 
   async responderPergunta(
@@ -63,39 +57,29 @@ export class ServicoPerguntasContextuaisAnaliseQuestoesIA {
     await this.autorizacao.exigirEstudanteComCadastroCompleto();
     this.clienteOpenAI.exigirConfiguracaoOpenAI();
 
-    const reserva = await this.executarComoUsuario(async (cliente) => {
-      const resultadoReserva = await cliente.query<{ reserva: ReservaPerguntaContextual }>(
-        `select public.reservar_pergunta_contextual_ia($1::uuid, $2::uuid, $3) as reserva`,
-        [identificadorTentativa, identificadorQuestao, pergunta],
-      );
-
-      return resultadoReserva.rows[0]!.reserva;
-    });
+    const reserva = await this.autorizacao.repo.executarFuncaoPostgreSql<ReservaPerguntaContextual>(
+      "reservar_pergunta_contextual_ia",
+      {
+        p_idtentativa: identificadorTentativa,
+        p_idquestao: identificadorQuestao,
+        p_pergunta: pergunta,
+      },
+    );
 
     const salvarResultado = (
       falhou: boolean,
       resposta: string | null,
       usoTokens: { tokensEntrada: number; tokensSaida: number; tokensEntradaCache: number } | null,
     ) =>
-      this.executarComoUsuario(async (cliente) => {
-        const resultadoSalvamento = await cliente.query<{ salvou: boolean }>(
-          `select public.salvar_pergunta_contextual_ia(
-            $1::uuid, $2, $3, $4::boolean, $5::integer, $6::integer,
-            $7::integer, $8::numeric
-          ) as salvou`,
-          [
-            reserva.idSolicitacao,
-            resposta,
-            this.clienteOpenAI.config.openai.model,
-            falhou,
-            usoTokens?.tokensEntrada ?? null,
-            usoTokens?.tokensSaida ?? null,
-            usoTokens?.tokensEntradaCache ?? null,
-            this.clienteOpenAI.calcularCustoEstimadoUsd(usoTokens),
-          ],
-        );
-
-        return resultadoSalvamento.rows[0]?.salvou ?? false;
+      this.autorizacao.repo.executarFuncaoPostgreSql<boolean>("salvar_pergunta_contextual_ia", {
+        p_id_solicitacao: reserva.idSolicitacao,
+        p_resposta: resposta,
+        p_modelo: this.clienteOpenAI.config.openai.model,
+        p_falhou: falhou,
+        p_tokens_entrada: usoTokens?.tokensEntrada ?? null,
+        p_tokens_saida: usoTokens?.tokensSaida ?? null,
+        p_tokens_entrada_cache: usoTokens?.tokensEntradaCache ?? null,
+        p_custo_estimado_usd: this.clienteOpenAI.calcularCustoEstimadoUsd(usoTokens),
       });
 
     try {
