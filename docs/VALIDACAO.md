@@ -4,7 +4,7 @@
 
 - Build TypeScript estrito: passou.
 - Testes Node de contratos, segurança, criptografia, provedores, limite por IP, inicialização e shutdown: 13 testes passaram.
-- Integração com PostgreSQL 17 real e descartável: inclui migração do histórico completo, as sete suítes SQL originais, autenticação, RLS concorrente, cadastros, provas, questões, simulados, correção, estudo, IA, suporte, comunicação e navegador. Resultados detalhados na execução de `npm run test:postgres`.
+- Integração com PostgreSQL 17 real e descartável: 19 verificações passaram. Inclui migração do histórico completo, as sete suítes SQL originais, autenticação, RLS concorrente, cadastros, provas, questões, simulados, correção, estudo, IA, suporte, comunicação e navegador. Resultados detalhados na execução de `npm run test:postgres`.
 - Importador administrativo: 5 testes passaram.
 - Comparação HTTP executada das 96 rotas contra uma cópia .NET compilada: 95 respostas equivalentes nos cenários escolhidos e uma correção de erro SQL explicitamente aceita pelo teste. 97 verificações da suíte passaram. [Evidência JSON](http-parity-results.json).
 - Suíte .NET original executada em cópia isolada: 149 testes passaram, zero ignorados.

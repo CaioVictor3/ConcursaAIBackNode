@@ -1,0 +1,8 @@
+node_modules
+dist
+.tmp
+database/reference
+docs/source-inventory.json
+docs/http-parity-results.json
+docs/validation-results.json
+package-lock.json

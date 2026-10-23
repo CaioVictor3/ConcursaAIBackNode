@@ -1,0 +1,81 @@
+{
+  "dateLocal": "2026-10-22",
+  "build": {
+    "command": "npm run build",
+    "passed": true
+  },
+  "dependencyInstall": {
+    "command": "npm ci",
+    "passed": true
+  },
+  "tests": [
+    {
+      "command": "npm test",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:postgres",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:importacao",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:parity",
+      "passed": 97,
+      "failed": 0,
+      "endpointComparisons": 96,
+      "equivalentScenarios": 95,
+      "documentedFixes": 1
+    },
+    {
+      "command": "dotnet test (isolated copy)",
+      "passed": 149,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "sourceIntegrity": {
+    "files": 469,
+    "unchanged": true
+  },
+  "realDatabase": {
+    "readOnly": true,
+    "reachable": true,
+    "postgres": "17.11",
+    "restrictedRole": true
+  },
+  "realViaCep": {
+    "reachable": true,
+    "contractValidated": true
+  },
+  "realOpenAI": {
+    "tested": false,
+    "reason": "Credencial ausente"
+  },
+  "realGoogle": {
+    "tested": false,
+    "reason": "Credenciais ausentes"
+  },
+  "realResend": {
+    "tested": false,
+    "reason": "Credenciais e remetente ausentes"
+  },
+  "dockerImage": {
+    "built": false,
+    "reason": "Daemon Docker indisponível"
+  },
+  "productionReadyHomologationComplete": false,
+  "npmAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  }
+}

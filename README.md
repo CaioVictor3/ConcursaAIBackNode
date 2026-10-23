@@ -10,7 +10,7 @@ Recomendado Node.js 24 LTS (`nvm use`); mínimo 22.16. PostgreSQL 17 com a estru
 
 ```sh
 npm ci
-cp .env.example .env # somente se .env ainda não existir
+cp -n .env.example .env # preserva .env existente
 # Preencha DATABASE_URL, AUTH_SIGNING_KEY e as integrações necessárias.
 npm run dev
 ```
@@ -77,6 +77,7 @@ A primeira execução somente valida. `--aplicar` exige token de administrador, 
 
 ## Documentação detalhada
 
+- [Padrões de nomes, organização e formatação](docs/PADROES_DE_NOMENCLATURA.md).
 - [Inventário e checklist de módulos/rotas](docs/MIGRACAO.md).
 - [Configurações, integrações, banco e operação](docs/CONFIGURACAO.md).
 - [Resultados, diferenças e bloqueios](docs/VALIDACAO.md).

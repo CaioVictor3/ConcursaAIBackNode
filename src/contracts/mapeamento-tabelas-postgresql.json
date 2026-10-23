@@ -1,0 +1,312 @@
+{
+  "Tema": {
+    "table": "temas",
+    "key": "idTema",
+    "select": "idTema,nome",
+    "columns": {
+      "idTema": "Guid",
+      "nome": "string"
+    }
+  },
+  "Prova": {
+    "table": "provas",
+    "key": "idProva",
+    "select": "idProva,ano,orgao,idOrganizadora,organizadora,cargo,composicao_confirmada,revisao_pendente",
+    "columns": {
+      "idProva": "Guid",
+      "ano": "int",
+      "orgao": "string",
+      "idOrganizadora": "Guid?",
+      "organizadora": "string?",
+      "cargo": "string?",
+      "composicao_confirmada": "bool",
+      "revisao_pendente": "bool"
+    }
+  },
+  "Questao": {
+    "table": "questoes",
+    "key": "idQuestao",
+    "select": "idQuestao,idProva:idConcurso,idTema,numero,enunciado,tipo,dificuldade,fonte,imagem_url,status,idPessoaCriadora,criada_em,atualizada_em",
+    "columns": {
+      "idTema": "Guid?",
+      "numero": "int?",
+      "idQuestao": "Guid",
+      "idConcurso": "Guid?",
+      "idBanca": "Guid?",
+      "idDisciplina": "Guid?",
+      "idAssunto": "Guid?",
+      "enunciado": "string",
+      "tipo": "string",
+      "dificuldade": "string",
+      "ano": "int?",
+      "fonte": "string",
+      "imagem_url": "string?",
+      "explicacao": "string",
+      "status": "string",
+      "idPessoaCriadora": "Guid?",
+      "criada_em": "DateTimeOffset",
+      "atualizada_em": "DateTimeOffset"
+    }
+  },
+  "AlternativaQuestao": {
+    "table": "alternativas",
+    "key": "idAlternativa",
+    "select": "idAlternativa,idQuestao,letra,texto,ordem,criada_em",
+    "columns": {
+      "idAlternativa": "Guid",
+      "idQuestao": "Guid",
+      "letra": "string",
+      "texto": "string",
+      "ordem": "int",
+      "criada_em": "DateTimeOffset"
+    }
+  },
+  "GabaritoQuestao": {
+    "table": "gabaritos",
+    "key": "idQuestao",
+    "select": "idQuestao,idAlternativaCorreta,status,explicacao,fonte_gabarito,atualizado_em",
+    "columns": {
+      "idQuestao": "Guid",
+      "idAlternativaCorreta": "Guid?",
+      "status": "string",
+      "explicacao": "string",
+      "fonte_gabarito": "string?",
+      "atualizado_em": "DateTimeOffset"
+    }
+  },
+  "RespostaTentativaSimulado": {
+    "table": "respostas_simulado",
+    "key": "idResposta",
+    "select": "idResposta,idTentativa,idQuestao,idAlternativaSelecionada,respondida_em",
+    "columns": {
+      "idResposta": "Guid",
+      "idTentativa": "Guid",
+      "idQuestao": "Guid",
+      "idAlternativaSelecionada": "Guid?",
+      "respondida_em": "DateTimeOffset?"
+    }
+  },
+  "Simulado": {
+    "table": "simulados",
+    "key": "idSimulado",
+    "select": "idSimulado,nome,descricao,idConcurso,duracao_minutos,tipo,publico,idPessoaCriadora,status,criado_em",
+    "columns": {
+      "idSimulado": "Guid",
+      "nome": "string",
+      "descricao": "string",
+      "idConcurso": "Guid?",
+      "duracao_minutos": "int?",
+      "tipo": "string",
+      "publico": "bool",
+      "idPessoaCriadora": "Guid?",
+      "status": "string",
+      "criado_em": "DateTimeOffset"
+    }
+  },
+  "QuestaoSimulado": {
+    "table": "simulado_questoes",
+    "key": "idSimuladoQuestao",
+    "select": "idSimuladoQuestao,idSimulado,idQuestao,ordem,peso,criado_em",
+    "columns": {
+      "idSimuladoQuestao": "Guid",
+      "idSimulado": "Guid",
+      "idQuestao": "Guid",
+      "ordem": "int",
+      "peso": "decimal",
+      "criado_em": "DateTimeOffset"
+    }
+  },
+  "TentativaSimulado": {
+    "table": "tentativas_simulado",
+    "key": "idTentativa",
+    "select": "idTentativa,idSimulado,idPessoa,status,iniciada_em,finalizada_em,pontuacao,total_anuladas,total_sem_gabarito,total_acertos,total_erros,total_nao_respondidas,tempo_gasto_segundos",
+    "columns": {
+      "total_anuladas": "int",
+      "total_sem_gabarito": "int",
+      "idTentativa": "Guid",
+      "idSimulado": "Guid",
+      "idPessoa": "Guid",
+      "status": "string",
+      "iniciada_em": "DateTimeOffset",
+      "finalizada_em": "DateTimeOffset?",
+      "pontuacao": "decimal?",
+      "total_acertos": "int",
+      "total_erros": "int",
+      "total_nao_respondidas": "int",
+      "tempo_gasto_segundos": "int",
+      "correcao_json": "JsonElement?"
+    }
+  },
+  "AnaliseQuestao": {
+    "table": "analises_questoes",
+    "key": "idUsuario",
+    "select": "idUsuario,idQuestao,contexto_hash,status,idSolicitacao,conteudo,modelo,iniciada_em,gerada_em",
+    "columns": {
+      "idUsuario": "Guid",
+      "idQuestao": "Guid",
+      "contexto_hash": "string",
+      "status": "string",
+      "idSolicitacao": "Guid",
+      "conteudo": "JsonElement?",
+      "modelo": "string?",
+      "iniciada_em": "DateTimeOffset",
+      "gerada_em": "DateTimeOffset?"
+    }
+  },
+  "LimiteDiarioAnaliseQuestao": {
+    "table": "limites_analises_ia",
+    "key": "idUsuario",
+    "select": "idUsuario,dia,solicitacoes",
+    "columns": {
+      "idUsuario": "Guid",
+      "dia": "DateOnly",
+      "solicitacoes": "int"
+    }
+  },
+  "MensagemSuporte": {
+    "table": "mensagens_suporte",
+    "key": "idMensagem",
+    "select": "idMensagem,idChamado,idPessoaAutor,nome_autor,papel_autor,conteudo,tipo,criada_em",
+    "columns": {
+      "idMensagem": "Guid",
+      "idChamado": "Guid",
+      "idPessoaAutor": "Guid",
+      "nome_autor": "string",
+      "papel_autor": "string",
+      "conteudo": "string",
+      "tipo": "string",
+      "criada_em": "DateTimeOffset"
+    }
+  },
+  "ChamadoSuporte": {
+    "table": "chamados_suporte",
+    "key": "idChamado",
+    "select": "idChamado,idPessoa,nome_estudante,assunto,categoria,status,idAdministradorResponsavel,idAdministradorFinalizador,criado_em,atualizado_em,finalizado_em,resolucao",
+    "columns": {
+      "idChamado": "Guid",
+      "idPessoa": "Guid",
+      "nome_estudante": "string",
+      "assunto": "string",
+      "categoria": "string",
+      "status": "string",
+      "idAdministradorResponsavel": "Guid?",
+      "idAdministradorFinalizador": "Guid?",
+      "criado_em": "DateTimeOffset",
+      "atualizado_em": "DateTimeOffset",
+      "finalizado_em": "DateTimeOffset?",
+      "resolucao": "string?"
+    }
+  },
+  "Estudante": {
+    "table": "estudantes",
+    "key": "idEstudante",
+    "select": "idEstudante,criado_em",
+    "columns": {
+      "idEstudante": "Guid",
+      "criado_em": "DateTimeOffset"
+    }
+  },
+  "Usuario": {
+    "table": "usuarios",
+    "key": "idUsuario",
+    "select": "idPessoa,nome_completo,email,avatar_url,tipo,estado_cadastro,ultimo_acesso_em,criado_em,atualizado_em,cadastro_completo,idUsuario",
+    "columns": {
+      "idPessoa": "Guid",
+      "nome_completo": "string",
+      "email": "string",
+      "avatar_url": "string?",
+      "tipo": "string",
+      "estado_cadastro": "string",
+      "ultimo_acesso_em": "DateTimeOffset?",
+      "criado_em": "DateTimeOffset",
+      "atualizado_em": "DateTimeOffset",
+      "cadastro_completo": "bool",
+      "idUsuario": "Guid"
+    }
+  },
+  "Pessoa": {
+    "table": "pessoas",
+    "key": "idPessoa",
+    "select": "idPessoa,nome_completo,data_nascimento,cpf,cep,logradouro,numero,complemento,bairro,cidade,uf,criado_em,atualizado_em",
+    "columns": {
+      "idPessoa": "Guid",
+      "nome_completo": "string",
+      "data_nascimento": "DateOnly?",
+      "cpf": "string?",
+      "cep": "string?",
+      "logradouro": "string?",
+      "numero": "string?",
+      "complemento": "string?",
+      "bairro": "string?",
+      "cidade": "string?",
+      "uf": "string?",
+      "criado_em": "DateTimeOffset",
+      "atualizado_em": "DateTimeOffset"
+    }
+  },
+  "Concurso": {
+    "table": "concursos",
+    "key": "idConcurso",
+    "select": "idConcurso,idOrganizadora,composicao_confirmada,nome,orgao,cargo,estado,ano,descricao,status,criado_em",
+    "columns": {
+      "idOrganizadora": "Guid?",
+      "composicao_confirmada": "bool",
+      "idConcurso": "Guid",
+      "nome": "string",
+      "orgao": "string",
+      "cargo": "string",
+      "estado": "string",
+      "ano": "int",
+      "descricao": "string?",
+      "status": "string",
+      "criado_em": "DateTimeOffset"
+    }
+  },
+  "Assunto": {
+    "table": "assuntos",
+    "key": "idAssunto",
+    "select": "idAssunto,idDisciplina,idAssuntoPai,nome,descricao,criado_em",
+    "columns": {
+      "idAssunto": "Guid",
+      "idDisciplina": "Guid",
+      "idAssuntoPai": "Guid?",
+      "nome": "string",
+      "descricao": "string?",
+      "criado_em": "DateTimeOffset"
+    }
+  },
+  "Banca": {
+    "table": "bancas",
+    "key": "idBanca",
+    "select": "idBanca,nome,sigla,criado_em",
+    "columns": {
+      "idBanca": "Guid",
+      "nome": "string",
+      "sigla": "string",
+      "criado_em": "DateTimeOffset"
+    }
+  },
+  "Disciplina": {
+    "table": "disciplinas",
+    "key": "idDisciplina",
+    "select": "idDisciplina,nome,descricao,ativa,criado_em,area",
+    "columns": {
+      "idDisciplina": "Guid",
+      "nome": "string",
+      "descricao": "string",
+      "ativa": "bool",
+      "criado_em": "DateTimeOffset",
+      "area": "string?"
+    }
+  },
+  "MetaSemanalEstudo": {
+    "table": "metas_estudo",
+    "key": "idPessoa",
+    "select": "idPessoa,quantidade_semanal,atualizada_em",
+    "columns": {
+      "idPessoa": "Guid",
+      "quantidade_semanal": "int",
+      "atualizada_em": "DateTimeOffset"
+    }
+  }
+}

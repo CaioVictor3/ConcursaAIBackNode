@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T02:31:01.875Z",
+  "generatedAt": "2026-10-23T02:46:57.549Z",
   "scope": "96 endpoints; GET com fixtures e mutações com entradas vazias, sem chamadas a provedores externos; datas normalizadas para UTC e versão do runtime desconsiderada.",
   "comparisons": [
     {
