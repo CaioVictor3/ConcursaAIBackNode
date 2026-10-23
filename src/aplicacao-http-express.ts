@@ -432,7 +432,7 @@ export function criarAplicacaoHttpExpress(options: OpcoesInicializacaoAplicacao 
   };
 }
 
-async function browser(
+export async function browser(
   action: string,
   requisicaoHttp: Request,
   respostaHttp: Response,

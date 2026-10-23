@@ -90,6 +90,13 @@ export function classificarErroAplicacao(error: unknown): {
     };
   }
 
+  if (erroCapturado.message === "Connection terminated due to connection timeout") {
+    return {
+      status: 503,
+      message: "O banco está indisponível. Confira a configuração da conexão ou tente novamente mais tarde.",
+    };
+  }
+
   if (
     erroCapturado.code &&
     (/^[0-9A-Z]{5}$/.test(erroCapturado.code) ||

@@ -81,7 +81,13 @@ test("health independente, CORS, OpenAPI e erros JSON sem secrets", async () => 
 
   const spec = (await request(aplicacaoExpress).get("/openapi/v1.json")).body;
 
-  assert.equal(Object.keys(spec.paths).length, 97);
+  for (const rotaApi of routes) {
+    assert.ok(spec.paths[rotaApi.path], `Rota ausente no OpenAPI: ${rotaApi.path}`);
+    assert.ok(
+      spec.paths[rotaApi.path][rotaApi.method.toLowerCase()],
+      `Método ausente no OpenAPI: ${rotaApi.method} ${rotaApi.path}`,
+    );
+  }
 
   assert.ok(spec.components.schemas.CriarQuestaoRequestModel);
 
@@ -334,6 +340,10 @@ test("SQL parametrizado e classificação de falhas preservados", () => {
   );
 
   assert.equal(classificarErroAplicacao(new Error("secret")).message.includes("secret"), false);
+  assert.equal(
+    classificarErroAplicacao(new Error("Connection terminated due to connection timeout")).status,
+    503,
+  );
 });
 
 test("rate limit de autenticação limita a 10 tentativas por minuto", async () => {

@@ -4,6 +4,7 @@ import { spawn } from "node:child_process";
 import { once } from "node:events";
 import { createServer } from "node:net";
 import { randomBytes } from "node:crypto";
+import { resolve } from "node:path";
 
 async function smoke(mode: "dev" | "production") {
   const port = await new Promise<number>((resolve) => {
@@ -16,20 +17,28 @@ async function smoke(mode: "dev" | "production") {
     });
   });
 
-  const child = spawn("npm", ["run", mode === "dev" ? "dev" : "start"], {
-    env: {
-      ...process.env,
-      NODE_ENV: mode === "dev" ? "development" : "production",
-      HOST: "127.0.0.1",
-      PORT: String(port),
-      DATABASE_URL: "",
-      AUTH_SIGNING_KEY: randomBytes(64).toString("base64"),
-      EMAIL_WORKER_ENABLED: "false",
-      LOG_LEVEL: "silent",
+  const child = spawn(
+    process.execPath,
+    [
+      resolve("node_modules/next/dist/bin/next"),
+      mode === "dev" ? "dev" : "start",
+      ...(mode === "dev" ? ["--webpack"] : []),
+    ],
+    {
+      env: {
+        ...process.env,
+        NODE_ENV: mode === "dev" ? "development" : "production",
+        HOSTNAME: "127.0.0.1",
+        PORT: String(port),
+        DATABASE_URL: "",
+        AUTH_SIGNING_KEY: randomBytes(64).toString("base64"),
+        EMAIL_WORKER_ENABLED: "false",
+        LOG_LEVEL: "silent",
+      },
+      detached: process.platform !== "win32",
+      stdio: ["ignore", "pipe", "pipe"],
     },
-    detached: process.platform !== "win32",
-    stdio: ["ignore", "pipe", "pipe"],
-  });
+  );
 
   const exited = once(child, "exit");
 
@@ -98,10 +107,10 @@ async function smoke(mode: "dev" | "production") {
   }
 }
 
-test("npm run dev inicia em localhost/porta configurada e encerra", { timeout: 20000 }, () =>
+test("Next dev inicia em localhost/porta configurada e encerra", { timeout: 20000 }, () =>
   smoke("dev"),
 );
 
-test("npm run start executa build em produção e encerra", { timeout: 20000 }, () =>
+test("Next start executa build em produção e encerra", { timeout: 20000 }, () =>
   smoke("production"),
 );

@@ -7,9 +7,9 @@
     "node": ">=22.16.0"
   },
   "scripts": {
-    "dev": "tsx watch src/servidor-http.ts",
-    "build": "tsc",
-    "start": "node dist/servidor-http.js",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write src tests scripts tools/importacao/scripts package.json tsconfig.json",
     "format:check": "prettier --check src tests scripts tools/importacao/scripts package.json tsconfig.json",
@@ -23,6 +23,8 @@
     "import:prova": "node tools/importacao/scripts/importar-prova.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
     "bcryptjs": "3.0.3",
     "cors": "2.8.6",
     "dotenv": "18.0.9",
@@ -30,8 +32,11 @@
     "express-rate-limit": "8.7.1",
     "helmet": "8.3.0",
     "jose": "6.2.13",
+    "next": "^16.4.3",
     "pg": "8.23.1",
     "pino": "10.4.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "swagger-ui-express": "5.0.1"
   },
   "devDependencies": {
@@ -39,12 +44,13 @@
     "@types/express": "5.0.6",
     "@types/node": "26.6.5",
     "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
     "@types/supertest": "7.2.1",
     "@types/swagger-ui-express": "4.1.8",
     "embedded-postgres": "17.10.0-beta.17",
     "prettier": "3.9.10",
     "supertest": "7.3.1",
     "tsx": "4.23.15",
-    "typescript": "7.0.2"
+    "typescript": "^6.0.2"
   }
 }

@@ -23,11 +23,14 @@ try {
 } catch (error) {
   const erroConexao = error as { code?: string; name?: string };
 
+  const tempoConexaoEsgotado =
+    error instanceof Error && error.message === "Connection terminated due to connection timeout";
+
   console.log(
     JSON.stringify({
       reachable: false,
       errorType: erroConexao.name,
-      code: erroConexao.code ?? "CONFIGURATION",
+      code: erroConexao.code ?? (tempoConexaoEsgotado ? "CONNECTION_TIMEOUT" : "CONFIGURATION"),
     }),
   );
 
