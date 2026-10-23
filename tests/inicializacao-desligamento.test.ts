@@ -115,12 +115,11 @@ async function smoke(mode: "dev" | "production") {
     });
     assert.equal(execucao.status, 200);
   } finally {
-    if (child.pid && child.exitCode === null) {
-      if (process.platform === "win32") {
-        child.kill("SIGTERM");
-      } else {
-        process.kill(-child.pid, "SIGTERM");
-      }
+    let encerramentoSolicitado = false;
+
+    if (child.pid && child.exitCode === null && child.signalCode === null) {
+      encerramentoSolicitado =
+        process.platform === "win32" ? child.kill("SIGTERM") : process.kill(-child.pid, "SIGTERM");
     }
 
     const result = await Promise.race([
@@ -135,7 +134,12 @@ async function smoke(mode: "dev" | "production") {
       }),
     ]);
 
-    assert.ok(result[0] === 0 || result[1] === "SIGTERM", "Falha no shutdown: " + String(result));
+    // O Next pode tratar SIGTERM e chamar process.exit(143), em vez de emitir o sinal no exit.
+    const encerradoPorSigterm =
+      encerramentoSolicitado &&
+      (result[1] === "SIGTERM" || (result[0] === 143 && result[1] === null));
+
+    assert.ok(result[0] === 0 || encerradoPorSigterm, "Falha no shutdown: " + String(result));
   }
 }
 
