@@ -1,0 +1,583 @@
+{
+  "generatedAt": "2026-10-23T02:31:01.875Z",
+  "scope": "96 endpoints; GET com fixtures e mutações com entradas vazias, sem chamadas a provedores externos; datas normalizadas para UTC e versão do runtime desconsiderada.",
+  "comparisons": [
+    {
+      "path": "/api/Administracao/obter-metricas-sistema",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/AnaliseQuestao/consultar-analise-questao",
+      "method": "GET",
+      "status": 409,
+      "match": true
+    },
+    {
+      "path": "/api/AnaliseQuestao/solicitar-analise-questao",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Assunto/listar-assuntos",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Assunto/obter-assunto",
+      "method": "GET",
+      "status": 404,
+      "match": true
+    },
+    {
+      "path": "/api/Assunto/criar-assunto",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Assunto/atualizar-assunto",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Assunto/excluir-assunto",
+      "method": "DELETE",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/confirmar-email",
+      "method": "POST",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/redefinir-senha",
+      "method": "POST",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/entrar-estudante",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/entrar-administrador",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/cadastrar-estudante",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/renovar-sessao",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/solicitar-recuperacao-senha",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/reenviar-confirmacao",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/sair-sessao",
+      "method": "POST",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "/api/Autenticacao/atualizar-senha",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Banca/listar-bancas",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Banca/obter-banca",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Banca/criar-banca",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Banca/atualizar-banca",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Banca/excluir-banca",
+      "method": "DELETE",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Cep/consultar-cep",
+      "method": "GET",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Concurso/listar-concursos",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Concurso/obter-concurso",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Concurso/criar-concurso",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Concurso/atualizar-concurso",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Concurso/excluir-concurso",
+      "method": "DELETE",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Conta/obter-minha-conta",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Conta/atualizar-minha-conta",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Disciplina/listar-disciplinas",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Disciplina/obter-disciplina",
+      "method": "GET",
+      "status": 404,
+      "match": true
+    },
+    {
+      "path": "/api/Disciplina/criar-disciplina",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Disciplina/atualizar-disciplina",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Disciplina/desativar-disciplina",
+      "method": "PATCH",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/EmailsTransacionais/listar-historico",
+      "method": "GET",
+      "status": 200,
+      "match": false,
+      "difference": "Correção justificada: a origem concatena mensagem_erro e from sem espaço e retorna 503; o Node executa SQL válido e retorna o histórico."
+    },
+    {
+      "path": "/api/EmailsTransacionais/obter-metricas",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/EmailsTransacionais/reprocessar-falha",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/EmailsTransacionais/listar-fluxos",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/EmailsTransacionais/atualizar-fluxo",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Estudo/obter-resumo-revisao",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Estudo/listar-questoes-revisao",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Estudo/gerar-treino-revisao",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Estudo/gerar-treino-recomendado",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Estudo/obter-estatisticas-assuntos",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Estudo/obter-meta-semanal",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Estudo/salvar-meta-semanal",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/obter-configuracao-acesso",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/obter-vinculo-google",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/iniciar-vinculo-google",
+      "method": "POST",
+      "status": 503,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/iniciar-google",
+      "method": "POST",
+      "status": 503,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/concluir-google",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/entrar-estudante",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/entrar-administrador",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/renovar-sessao",
+      "method": "POST",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/confirmar-sessao",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Navegador/sair-sessao",
+      "method": "POST",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "/api/PreferenciaComunicacao/obter-minha-preferencia",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/PreferenciaComunicacao/atualizar-minha-preferencia",
+      "method": "PUT",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Prova/listar-provas",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Prova/obter-prova",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Prova/listar-temas",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Prova/criar-prova",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Prova/atualizar-prova",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Prova/listar-pendencias-provas",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Prova/iniciar-prova",
+      "method": "POST",
+      "status": 403,
+      "match": true
+    },
+    {
+      "path": "/api/Questao/listar-questoes",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Questao/obter-questao",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Questao/criar-questao",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Questao/atualizar-questao",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Questao/arquivar-questao",
+      "method": "PATCH",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/ResendWebhook/registrar-evento-entrega",
+      "method": "POST",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "/api/Simulado/criar-simulado-filtrado",
+      "method": "POST",
+      "status": 403,
+      "match": true
+    },
+    {
+      "path": "/api/Simulado/listar-simulados",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Simulado/obter-simulado",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Simulado/criar-simulado",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Simulado/atualizar-simulado",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Simulado/gerar-simulado-personalizado",
+      "method": "POST",
+      "status": 403,
+      "match": true
+    },
+    {
+      "path": "/api/Simulado/obter-disponibilidade-assuntos",
+      "method": "GET",
+      "status": 403,
+      "match": true
+    },
+    {
+      "path": "/api/Sistema/verificar-sistema",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Suporte/listar-chamados",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Suporte/obter-chamado",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Suporte/abrir-chamado",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Suporte/responder-chamado",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Suporte/finalizar-chamado",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Tentativa/iniciar-tentativa-simulado",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Tentativa/obter-tentativa-simulado",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Tentativa/responder-questao-simulado",
+      "method": "PUT",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Tentativa/finalizar-tentativa-simulado",
+      "method": "POST",
+      "status": 400,
+      "match": true
+    },
+    {
+      "path": "/api/Tentativa/obter-resultado-tentativa",
+      "method": "GET",
+      "status": 409,
+      "match": true
+    },
+    {
+      "path": "/api/Tentativa/listar-minhas-tentativas",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Tentativa/obter-questoes-tentativa",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Usuario/obter-meu-usuario",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Usuario/listar-usuarios",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "/api/Usuario/obter-usuario",
+      "method": "GET",
+      "status": 200,
+      "match": true
+    }
+  ]
+}

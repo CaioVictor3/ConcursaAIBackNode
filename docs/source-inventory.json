@@ -1,0 +1,3581 @@
+{
+  "files": [
+    {
+      "path": ".dockerignore",
+      "bytes": 109,
+      "sha256": "13f2bc9eb24226eb379123744592dc173d01e92586c38069346bf240450ccd43"
+    },
+    {
+      "path": ".editorconfig",
+      "bytes": 269,
+      "sha256": "95545f3d1de707ae523e3a280d7d1cd8324d104c4fe07b8bb8e4764d14354c09"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 2518,
+      "sha256": "45a7cbb7d9942ba7ffce0b20bc8dbe2d1196533bc6e4bd245871d77fb1eedfdc"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 103,
+      "sha256": "248c2ccad69443b801e018af4ffc5fb5a852ec95fcc05cfcccd522083e143d22"
+    },
+    {
+      "path": "ConcursaAI.Api/Autenticacao/FluxoGoogleNavegador.cs",
+      "bytes": 1914,
+      "sha256": "ee11cbb36c8ec2f8186bf1360eef2ac38dc77b4219a9297d72ba1a2292bc2822"
+    },
+    {
+      "path": "ConcursaAI.Api/Autenticacao/ProtecaoNavegadorMiddleware.cs",
+      "bytes": 1193,
+      "sha256": "830e53db41c6c0a1b0b733980a524073bf8e9216d293d5f3811e55247eca80e2"
+    },
+    {
+      "path": "ConcursaAI.Api/Autenticacao/SessaoNavegador.cs",
+      "bytes": 1799,
+      "sha256": "c7817f597c58f0d2e0339a80ad57da8641514f6bd115a3177ea84e5a3254b56b"
+    },
+    {
+      "path": "ConcursaAI.Api/Autenticacao/SupabaseJwksRetriever.cs",
+      "bytes": 733,
+      "sha256": "286004616e8b0f63eebb4d05740a0b68de3a2566bf8a3cc055938204ed8611d4"
+    },
+    {
+      "path": "ConcursaAI.Api/ConcursaAI.Api.csproj",
+      "bytes": 906,
+      "sha256": "01e78c7194f1259ac15ccce65e0f580232a7d301dd7ca6b927d3e8e361d60c4d"
+    },
+    {
+      "path": "ConcursaAI.Api/Contratos/ContratosOpenApiTransformer.cs",
+      "bytes": 2454,
+      "sha256": "6fa6fa16dcea12d66709be34f2447ceef6b5a4240e776b9d5323e402eb62ebbc"
+    },
+    {
+      "path": "ConcursaAI.Api/Contratos/openapi.snapshot.json",
+      "bytes": 261557,
+      "sha256": "307bc247d462869e7d8a89ed52775bbd450c8d351af39de7f23af6a9163ce44d"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/AdministracaoController.cs",
+      "bytes": 818,
+      "sha256": "200cbd0bef5692c8581f641e201ff63ae0ba21e2f44c2787b75b3b30654f8b68"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/AnaliseQuestaoController.cs",
+      "bytes": 1286,
+      "sha256": "d29e27779a9fba946f1749e191e37f7650f4543ab4e46d392194c20bcca16202"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/AssuntoController.cs",
+      "bytes": 2247,
+      "sha256": "cecb8bb98c0824eff9ffaae5d9e19cc8efb188ec8a71ba81ba853111e8fa4f58"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/AutenticacaoController.cs",
+      "bytes": 4565,
+      "sha256": "52b590349c0e2138c67bd36a9dd540d1dd2f29da5707470016d16c74516c5981"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/BancaController.cs",
+      "bytes": 2181,
+      "sha256": "37756a03f5ad62cc4be24dc7d8916d5cfded98c6fe48056d51400d95f6eeaef9"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/CepController.cs",
+      "bytes": 828,
+      "sha256": "17cbcb332b701cb0bff4a99110622ca4ecfd2868348ed56a7fc7e77b077688a3"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/ConcursoController.cs",
+      "bytes": 2280,
+      "sha256": "1063842642a06191ed91d421ae0d0016d9ff3f7147f831428b816195692d04a8"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/ContaController.cs",
+      "bytes": 1161,
+      "sha256": "091139552343a42578cd1a9f9febd9c375d659be36cca6123b8e412cce5b364b"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/DisciplinaController.cs",
+      "bytes": 2352,
+      "sha256": "e2ccaf056dbdbed2f20d34f4c0192949c760878ab7e88f892ea216a9a6f2e1cf"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/EmailsTransacionaisController.cs",
+      "bytes": 2292,
+      "sha256": "358492565870c77d3ddc88f44993cf4a72b78be45cf8baae7bbd4053ad4fe6f7"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/EstudoController.cs",
+      "bytes": 3278,
+      "sha256": "451ca0c246b9c84136f74a8b082def3d24ce4511d3e88002411d99cdb6c5c56d"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/NavegadorController.cs",
+      "bytes": 6269,
+      "sha256": "dd6fe43f7bec2bc352859ad669428e7c53408a99725f81a2913e6fc38b126e41"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/PreferenciaComunicacaoController.cs",
+      "bytes": 1255,
+      "sha256": "837ae6ad8600566dc6be9a8f300199524ec650abb0c2570f33108a0855b09952"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/ProvaController.cs",
+      "bytes": 2896,
+      "sha256": "1a1c0b24ad2378ca9d3ed36254cdc0ae664eda3b590da10cf2181a0ed82d4dea"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/QuestaoController.cs",
+      "bytes": 2241,
+      "sha256": "9c7161601b5863c1b0a32fc5580c62ea7e02b939c460ef3bd8f6612c35c24929"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/ResendWebhookController.cs",
+      "bytes": 2047,
+      "sha256": "2fff48a943711945d398efe654eb929107af7ee1903d83b4bf021b811f8d77da"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/SimuladoController.cs",
+      "bytes": 3173,
+      "sha256": "e09a5d7fb98b20a1c1805bee150709341ef0936a5b77bc0bce304c50a6359f60"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/SistemaController.cs",
+      "bytes": 901,
+      "sha256": "5c44ea47ff2be2c056300633b9b7331ad832b47385b4dba015fa40b85238bf58"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/SuporteController.cs",
+      "bytes": 2299,
+      "sha256": "588dbf0ae50903af8bb81aa85214e9b48695eeabb1605d85f1dd92929e99a894"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/TentativaController.cs",
+      "bytes": 3383,
+      "sha256": "d291b31eff1b5593fd52afe3efb4ac4bb0a96c8c3e8680b609c77c5df5dbd56e"
+    },
+    {
+      "path": "ConcursaAI.Api/Controllers/UsuarioController.cs",
+      "bytes": 1508,
+      "sha256": "23946e469828cc00e09ab7def441649e3a445d8294839f7558a37682dbce31a2"
+    },
+    {
+      "path": "ConcursaAI.Api/Handler/TratamentoErrosMiddleware.cs",
+      "bytes": 2870,
+      "sha256": "d623067fbdf380939ebd66b76d60ed5009dde2de706ceef1a584833fd6ce83a2"
+    },
+    {
+      "path": "ConcursaAI.Api/Program.cs",
+      "bytes": 11153,
+      "sha256": "c1b6ffd17267b37550803788a7d26337f0f2b5849031e38419afc823e803c2fd"
+    },
+    {
+      "path": "ConcursaAI.Api/Properties/AssemblyInfo.cs",
+      "bytes": 91,
+      "sha256": "e27b5368981546a28feb1e0e2726589e7522b6c4eaf92a3cb1586818899f31d5"
+    },
+    {
+      "path": "ConcursaAI.Api/Service/CurrentUserService.cs",
+      "bytes": 832,
+      "sha256": "2e9bcac37ed5aaaa498730f345630d94b4bb382c5c9b3d82ea74daf24af027e8"
+    },
+    {
+      "path": "ConcursaAI.Api/Service/RegistroServices.cs",
+      "bytes": 2500,
+      "sha256": "392ea6a62e26cd50b2f678c1199a53e93b354bc1170c774ee2a439438d06b576"
+    },
+    {
+      "path": "ConcursaAI.Api/Workers/EmailsTransacionaisWorker.cs",
+      "bytes": 3678,
+      "sha256": "c8ccbcd6f0f27aed2fe0ce81d32dbe1361e63090e95e2585b269c2e7e20a1bf1"
+    },
+    {
+      "path": "ConcursaAI.Api/appsettings.Development.json",
+      "bytes": 270,
+      "sha256": "285a62df449d8a24168f9f93a03275d2b923c6d646d204612c0ac92f5ff4aad8"
+    },
+    {
+      "path": "ConcursaAI.Api/appsettings.json",
+      "bytes": 1688,
+      "sha256": "9dddafee73b896f9fdeacaabfca9b1a25299d35b8c1e1ce34f7c984f0cb29f5e"
+    },
+    {
+      "path": "ConcursaAI.Api/certificados/supabase-prod-ca-2021.crt",
+      "bytes": 1367,
+      "sha256": "700723581420dd1ac98fd7e9ac529f0ef210eadcaf87fc868a3ad7d114c2f3b7"
+    },
+    {
+      "path": "ConcursaAI.Api/packages.lock.json",
+      "bytes": 17772,
+      "sha256": "a08f881bbb510f9b3b01f36f2baeaa4177010a435873dae23b517db6be6d3061"
+    },
+    {
+      "path": "ConcursaAI.Application/ConcursaAI.Application.csproj",
+      "bytes": 400,
+      "sha256": "56b10357f23b5dbff5cab44919c99ea36169798b470bc5faa0deb438b3239037"
+    },
+    {
+      "path": "ConcursaAI.Application/Helpers/ProjecoesRespostas.cs",
+      "bytes": 5108,
+      "sha256": "5a675185af2b721b58e5b9811f52c55e88229961229c4c90cfe42be9b05b815b"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Administracao/IAdministracaoService.cs",
+      "bytes": 356,
+      "sha256": "38e30ae144526a362bc10540bdb18ccad1484ef17c727e918301cbe9fb3e8275"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Autenticacao/IAutenticacaoService.cs",
+      "bytes": 2570,
+      "sha256": "3aa636d1f18eb50566b77269f177b282308cb21ca2bdb2ec8ac99e248370966a"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Cadastro/IAssuntoService.cs",
+      "bytes": 911,
+      "sha256": "c64037685ec57849bb1c97a664a0912437ceecd30ccf137cefa919d459bc533b"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Cadastro/IBancaService.cs",
+      "bytes": 877,
+      "sha256": "3e18069d9f910ec48ea7913c7ca91b5b292db29427993ecf99b2b09ee71a4d42"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Cadastro/IConcursoService.cs",
+      "bytes": 928,
+      "sha256": "06e9a5e96d4bd93fd5ad60d1c388d07f8747edb7d13e2e3d7a9b16f3642f7f83"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Cadastro/IDisciplinaService.cs",
+      "bytes": 966,
+      "sha256": "3dcecbed46af781e9a8263a1dd3255c6f332f78eac405a3c3d318ced2982a8cb"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Comunicacao/IEmailsTransacionaisAdministracaoService.cs",
+      "bytes": 1004,
+      "sha256": "1d8491b749729469adf0b774991e9ec7ece23f193619292cdf3e068f2ff9cf4a"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Comunicacao/IPreferenciaComunicacaoService.cs",
+      "bytes": 556,
+      "sha256": "298b36f89eaad7f6ccce38618229cdaacf7ec93199a027510d7cf7464acfa5f0"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Estudo/IEstudoService.cs",
+      "bytes": 1363,
+      "sha256": "bbdfd4754fe0dfc6fde9cc10b63a0c977966e699082af7920b81a27f2a4b361a"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/ICurrentUserService.cs",
+      "bytes": 152,
+      "sha256": "58b54dfcc3bde6b2399133699c42ed38bdabfa78ef48afa25bd9d8e317e73060"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Identidade/IContaService.cs",
+      "bytes": 485,
+      "sha256": "e7b7cb07872054a1e5ceed547c193a266ea119840a61f034a107df21bbf2c181"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Identidade/IUsuarioService.cs",
+      "bytes": 619,
+      "sha256": "28381c9c40cb429966a664c2c11c6400e97901e024422d1e9dcf5a7a31bc0c4b"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Integracoes/ICepService.cs",
+      "bytes": 323,
+      "sha256": "f1322a38ad322aabc816d1829bb3e926614370492ebfa15decb23e7d07b2d864"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/InteligenciaArtificial/IAnaliseQuestaoService.cs",
+      "bytes": 559,
+      "sha256": "68a00e33669c01b4ffb17dca77b47673d4e97137156eec4f77c7a15d9328d65e"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Provas/IProvaService.cs",
+      "bytes": 1245,
+      "sha256": "25a1a26f99647d4502f2f84332d476282d2b4d72ae9226c3ef5edbcdb66c0363"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Questoes/IQuestaoService.cs",
+      "bytes": 905,
+      "sha256": "e942d87d4810328a05e43b9c9474b90520d322cc6d9aa10f44102a9522e941fb"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Simulados/ISimuladoService.cs",
+      "bytes": 1302,
+      "sha256": "7bb62bb4fd117170d4884e938416331b090e9e2d3c16b7a81eccb82db25f0afa"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Simulados/ITentativaService.cs",
+      "bytes": 1395,
+      "sha256": "ae17e0bdc115d107fe08a7327819bb1f1c81386161ff6da2e36a0e0cd9dead25"
+    },
+    {
+      "path": "ConcursaAI.Application/Interface/Suporte/ISuporteService.cs",
+      "bytes": 933,
+      "sha256": "26e2d520a1a10dd1288bd74a0bb1d154b2f5c212ac0a0fe8f1a18808cb768d34"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Administracao/MetricasSistemaResponseModel.cs",
+      "bytes": 516,
+      "sha256": "d902389d9a30546df2a3e78392b64fca9834122fbd8ed1e4cd46f012fede73a4"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Administracao/ObterMetricasSistemaRequestModel.cs",
+      "bytes": 113,
+      "sha256": "e7ac21017e151118240aa5dd979132f0fc15c9f9e1b5b0ed79b8d9127290d550"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/AtualizarSenhaRequestModel.cs",
+      "bytes": 213,
+      "sha256": "7d64199d9da5694b8a68149e8d4e62c1bd4666204da634e48864a0a87300fc75"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/CadastrarEstudanteRequestModel.cs",
+      "bytes": 441,
+      "sha256": "d9f6d66a35b9e529e761aa438e5c163ff8b84aa61ff779027abdf69ffa8dcea9"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/CadastroEstudanteResponseModel.cs",
+      "bytes": 207,
+      "sha256": "11a55adb43f2f358fd7ffe4eea7b12108ca4bb522ad3eb2e83b6ff029bd1aa7e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/ConcluirGoogleRequestModel.cs",
+      "bytes": 210,
+      "sha256": "871d99f5ff67c219421acffe4ee2be08da2ccdb49279313d9c656f3ae6279828"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/ConfiguracaoAcessoResponseModel.cs",
+      "bytes": 201,
+      "sha256": "7c733886707d2538514cc1a3eed40f1507a46e0eb241048960560e807d587c0f"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/ConfirmarEmailAutenticacaoRequestModel.cs",
+      "bytes": 169,
+      "sha256": "23816d9e7b60fb1419dd03e9e81383c54615b3e316dd3c76cc2c2eaa185086d5"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/EntrarAdministradorRequestModel.cs",
+      "bytes": 327,
+      "sha256": "53dab09da885765bc51b4305d7354f16007d1f3e5dc94624174d7b9fff1a7fde"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/EntrarContaRequestModel.cs",
+      "bytes": 151,
+      "sha256": "d148094661ad3ab92d6fe9e2eef4b0825d65d4dfeef2d204b556992f1f4dc52e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/EntrarEstudanteRequestModel.cs",
+      "bytes": 323,
+      "sha256": "21ede59044ae855b473a4b987c4b2b8e789bd039a0d17ae037cfe0ed0c26d160"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/FluxoGoogleResponseModel.cs",
+      "bytes": 409,
+      "sha256": "57e63f188b6a2db5b9f97ab0c0d05d74d79f61a662de04dbbe17acea9ad11d61"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/IniciarGoogleRequestModel.cs",
+      "bytes": 194,
+      "sha256": "57908a62bb5fd1a84b26d584bc6f8fd62ae2cde43a1600a6c092d3a177e9250a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/IniciarVinculoGoogleRequestModel.cs",
+      "bytes": 201,
+      "sha256": "355d9e7a9c7d6b5057a3fdce911e9b1a1ed4aad9bc14ccc27519c1955a15feac"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/MensagemAutenticacaoResponseModel.cs",
+      "bytes": 170,
+      "sha256": "5aa041e21d42a3a1ed0c1b4dcebad33516e5aa191fef418bc813e0fb3b286d99"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/ObterConfiguracaoAcessoRequestModel.cs",
+      "bytes": 115,
+      "sha256": "f3910f491ea286ab953b20e17c3f56224d92331aebe9092cff4fc5b76122bff7"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/ObterVinculoGoogleRequestModel.cs",
+      "bytes": 110,
+      "sha256": "15a616d48e6437cf5167b15678ed9c4b97bdf5948c9475c4de872cc765b8f4f9"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/RedefinirSenhaRequestModel.cs",
+      "bytes": 208,
+      "sha256": "3032de6b6453685f8a10a9f8404420abe85702b95acf8c8cd510970d65173dc1"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/ReenviarConfirmacaoRequestModel.cs",
+      "bytes": 219,
+      "sha256": "06a7285a5c18d1751e16ddeb6ecaf32cbdaa79e912fd154eca41eb180d980d2b"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/RenovarSessaoNavegadorRequestModel.cs",
+      "bytes": 114,
+      "sha256": "7bc523bdcbf2dd3f37124e721ee6f1e4ab4a9db3a65afe547ae0e4e1e659e02f"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/RenovarSessaoRequestModel.cs",
+      "bytes": 220,
+      "sha256": "1a17bd015f178f402c0a6e4bd3d3129184f43146301656f1735998c88b2a93c9"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/SairSessaoRequestModel.cs",
+      "bytes": 102,
+      "sha256": "f1f3a21d0865d272aa9ccffc735595bd607c72dc8f822bcabaa3c4cd9fc97859"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/SessaoNavegadorResponseModel.cs",
+      "bytes": 257,
+      "sha256": "7c0ab862f6b044765880721f06962ebcac2fb610c2067102ba2225f2d5aa6a09"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/SessaoResponseModel.cs",
+      "bytes": 421,
+      "sha256": "9a062ee62c3f63da6ffc67d71994929bb00781282d3c6abacbc0dd0b5ffd4ce7"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/SolicitarRecuperacaoSenhaRequestModel.cs",
+      "bytes": 225,
+      "sha256": "1249444a56b2d888319ca75ff90261e69b5c3c93c6b6c2b1b038d78ad2445a6f"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/TrocarCodigoGoogleRequestModel.cs",
+      "bytes": 372,
+      "sha256": "0a2ed393f8cb49374e8dc54433106a824a0866175d3cd05d062c4669962c4c41"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/UrlGoogleResponseModel.cs",
+      "bytes": 150,
+      "sha256": "5565bb35d45941daa0012814f6f68162ec59009d1e0c1d705041ac806065fd6c"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Autenticacao/VinculoGoogleResponseModel.cs",
+      "bytes": 142,
+      "sha256": "5830e668c5163727ee1894f1b964c48624de8a1d97f29ac827a4ba2ed7ec91cb"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Assunto/AssuntoResponseModel.cs",
+      "bytes": 384,
+      "sha256": "7e0ef565edafb83d72d3bf6c90c1fa970ec0c2eee47318657283cc1b7c3b31e8"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Assunto/AtualizarAssuntoRequestModel.cs",
+      "bytes": 233,
+      "sha256": "5f227a2fcc67a45a01564e5dccea03bd4beb6df8f7f55aa1fc0fe1c61e355dbd"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Assunto/CriarAssuntoRequestModel.cs",
+      "bytes": 394,
+      "sha256": "0164be910f24e57a53372ea4f0df10c4d46d782fb735f473a714f1a21e58dbfc"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Assunto/ExcluirAssuntoRequestModel.cs",
+      "bytes": 197,
+      "sha256": "3ed4bf307146894dc6486ca653a4f891d0a5c0b3affc3f63dd1eef30be5e14af"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Assunto/ListarAssuntosRequestModel.cs",
+      "bytes": 286,
+      "sha256": "11217c61ff991ecf527c5ecd5a8830af2c31b5301785bbd429cc00df770092fa"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Assunto/ListarAssuntosResponseModel.cs",
+      "bytes": 304,
+      "sha256": "976ed7f77e6586415543f54f27603eeb7bc3226ef95858026f1df242ba09bff0"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Assunto/ObterAssuntoRequestModel.cs",
+      "bytes": 195,
+      "sha256": "00f270467e35373045b2ee2459b090093797ae766e96f6c789dbb9ade5a6a9f3"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Banca/AtualizarBancaRequestModel.cs",
+      "bytes": 225,
+      "sha256": "d870b9ac5459044180107f57a80f41d37a95f31ee31d587e2019060c41110d51"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Banca/BancaResponseModel.cs",
+      "bytes": 302,
+      "sha256": "3a567e0cfdd48e47a11a174bd582f109d6d84389a546cb9ceedb2ce62e30a633"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Banca/CriarBancaRequestModel.cs",
+      "bytes": 259,
+      "sha256": "8403ea5733c3a5afe8737e5608045525d506d59b64d5c91bbbb0bf33b3aeb770"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Banca/ExcluirBancaRequestModel.cs",
+      "bytes": 191,
+      "sha256": "8740e9591f88857e59aa872f9a168f919d4aa62b70eec62d9618b80ffac23c7b"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Banca/ListarBancasRequestModel.cs",
+      "bytes": 237,
+      "sha256": "1a6651cb4cf499b8e6bba808d4933d67b1ce6fda936ca7b7c12d8e1897cbcd79"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Banca/ListarBancasResponseModel.cs",
+      "bytes": 298,
+      "sha256": "df04e6f8ddb10de69fee29aee2735b4c1a484cac5056356e2720b12f10b4ad9d"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Banca/ObterBancaRequestModel.cs",
+      "bytes": 189,
+      "sha256": "c0e8b30c05aa7776994d8d92ec69db4aa92b1848021b270bc89c5db81e1b606c"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Concurso/AtualizarConcursoRequestModel.cs",
+      "bytes": 237,
+      "sha256": "b9ab5ffd332d57c62ad8fc378bd9c07d522db7eff140d6838c4bb30724e8b5db"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Concurso/ConcursoResponseModel.cs",
+      "bytes": 551,
+      "sha256": "0518ac1c7807110fe22e3abcad7798215eac244cdebe2c3010f908469c9469c1"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Concurso/CriarConcursoRequestModel.cs",
+      "bytes": 510,
+      "sha256": "53ba093a95a66b2f5fb84f2c6af667011505f06ec1e5eccf3574f15ac114093e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Concurso/ExcluirConcursoRequestModel.cs",
+      "bytes": 200,
+      "sha256": "d8af5159c574b7d9fadeba088b76088f8f2ebb4e9afe48711899e36c05d34fe1"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Concurso/ListarConcursosRequestModel.cs",
+      "bytes": 243,
+      "sha256": "315af953b54599fd1f55c13806599903f3efd94305cb900836a0db992be5073a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Concurso/ListarConcursosResponseModel.cs",
+      "bytes": 307,
+      "sha256": "1e9bb24b320bc720a4d80d60c5826e95a18633ca266f14023371ceb46222645e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Concurso/ObterConcursoRequestModel.cs",
+      "bytes": 198,
+      "sha256": "6d7f19e0fdc6b4bdb8cfb6a2ba0125fa6b51e7e656179a25c07b627657d25ec7"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Disciplina/AtualizarDisciplinaRequestModel.cs",
+      "bytes": 245,
+      "sha256": "f1fb161fbfe01606ec71d614a8adc71595ba767facf86388bdf652040a9ca690"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Disciplina/CriarDisciplinaRequestModel.cs",
+      "bytes": 357,
+      "sha256": "bdf0c7d03b7b8aef1574178beadd01076d6796873ca1e6d03cda41b555d2f263"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Disciplina/DesativarDisciplinaRequestModel.cs",
+      "bytes": 208,
+      "sha256": "9d311e4c120e7e05f6d73d835970b22904cff71aa55b0ee3f29a314df7d59381"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Disciplina/DisciplinaResponseModel.cs",
+      "bytes": 395,
+      "sha256": "88599a6f9644c2b55cc5a2906f1fb2240bf415cc718b7bd4dd6906bd07620583"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Disciplina/ListarDisciplinasRequestModel.cs",
+      "bytes": 247,
+      "sha256": "aa45a7923531368b7a3a000da463879c57b78f7ce4edb052a1683f109d96853e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Disciplina/ListarDisciplinasResponseModel.cs",
+      "bytes": 313,
+      "sha256": "bad729791ea632439ea5ed0c2363965b68e75f1e9760361302959bcdf12d31c1"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Cadastro/Disciplina/ObterDisciplinaRequestModel.cs",
+      "bytes": 204,
+      "sha256": "e4626361979b4c0612eb02cc047eb4783010f870b871ecdce4e7903571d3fd67"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/AtualizarFluxoEmailRequestModel.cs",
+      "bytes": 213,
+      "sha256": "f5603af6ff054a66792e18586aa46f8f4d5f4db9beebb549c03867bf3f38570c"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/EmailTransacionalResponseModel.cs",
+      "bytes": 699,
+      "sha256": "d18bcb6e2c9793ece27d585ec2a8590365d6aa8f76b89ccb92b386902be73326"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/FluxoEmailResponseModel.cs",
+      "bytes": 266,
+      "sha256": "ba7d34b61c6b5ba44662249d0a534552331313b0c99961334d50ca3b05727336"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ListarEmailsTransacionaisRequestModel.cs",
+      "bytes": 424,
+      "sha256": "9280478bc4d7d4b4cd173d0095ef0106e53da71c7d1964878341794fa291249c"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ListarEmailsTransacionaisResponseModel.cs",
+      "bytes": 274,
+      "sha256": "57bfb1ef35142c6cec7d167ff04fc0c7b71eac1b608c8e13d952174d277edafd"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ListarFluxosEmailRequestModel.cs",
+      "bytes": 105,
+      "sha256": "c493809edaa6e538a832046296aac4b46f2f44b3aca2f180bbddd814ad50f980"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ListarFluxosEmailResponseModel.cs",
+      "bytes": 187,
+      "sha256": "0f7e990e48bcda22af8648a9dd8c974fb01befe4ff0ecffaf9586871a600eb5b"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/MetricasEmailsResponseModel.cs",
+      "bytes": 341,
+      "sha256": "9b91b8495410b7bd1c974ba2a45117d39de5ebb162ad42d24ea5a76092c5c8cb"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ObterMetricasEmailsRequestModel.cs",
+      "bytes": 107,
+      "sha256": "27addb94e0604afdf741f27b483076da5b9118cb47a9590c487ca2c5e21fb536"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ObterPreferenciaComunicacaoRequestModel.cs",
+      "bytes": 115,
+      "sha256": "7219771e961aa7da18acbcc86a8dae6cf9cf9b4b62bb9ee3e36b0aab1a30ec36"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/PreferenciaComunicacaoRequestModel.cs",
+      "bytes": 163,
+      "sha256": "323442c10a226156181d7438374e3a06d5de45f09b5419575499f1e02a364bd5"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/PreferenciaComunicacaoResponseModel.cs",
+      "bytes": 164,
+      "sha256": "54118822a48d174e0db1ed48e95a21f1b084c0133b66936447c4aec79e29f560"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/RegistrarEventoEntregaRequestModel.cs",
+      "bytes": 110,
+      "sha256": "cde26e67724ab57f0b542694e24b02190ad54e55905d318b785b2fb7338ea4ef"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/RegistrarEventoEntregaResponseModel.cs",
+      "bytes": 154,
+      "sha256": "247d6cc7c958a807bb841b17c7f99af3967dda216479d9d9b8f94c1972417987"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ReprocessarEmailRequestModel.cs",
+      "bytes": 158,
+      "sha256": "316b19f4a404ea9fb475e4ede31e5e833aae98136dc099c11901140e50d043a9"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Comunicacao/ReprocessarEmailResponseModel.cs",
+      "bytes": 165,
+      "sha256": "c42fd4a6ebb56de854d0587b46c1965a4ed624ea14028b054da2d7eab9be4a63"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/EstatisticaAssuntoResponseModel.cs",
+      "bytes": 452,
+      "sha256": "e3fcfb7a59f334829ad26cc74a0551f01a0157b08613f28714841fa9feff2c8d"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/EstatisticasAssuntosResponseModel.cs",
+      "bytes": 191,
+      "sha256": "f159f803c8ffd68b0d32e3bee3d0174bf84c4fc188255d184887256bf9ddb9fb"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/GerarTreinoRecomendadoRequestModel.cs",
+      "bytes": 149,
+      "sha256": "7b4713cf3141326692c7534b2ca51d3e543617d01ef308ba5c927601b49fa31e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/GerarTreinoRevisaoRequestModel.cs",
+      "bytes": 145,
+      "sha256": "0f33945c2525657ddb646df1ad11561fc99e2643d334b60fc54d5312b215a915"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/ListarQuestoesRevisaoRequestModel.cs",
+      "bytes": 149,
+      "sha256": "4950616fc0a89dcbe1394a215d8dcf74f3bb7d293eca22bd023044a8d83c8053"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/ListarQuestoesRevisaoResponseModel.cs",
+      "bytes": 298,
+      "sha256": "56c802bfb7c1618a4e572074d2c1dfbaaae146151abc3788f6c5fc3de6210792"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/MetaSemanalResponseModel.cs",
+      "bytes": 381,
+      "sha256": "afa5c48448ccae31f9f60cb5b1b7fd7cc0b8a516525f1bf6e704b7da839baf37"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/ObterEstatisticasAssuntosRequestModel.cs",
+      "bytes": 111,
+      "sha256": "cf7343b0a23276b307d0789a9eeda63d9f8031f9acc93cc44e4bd407a89a2052"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/ObterMetaSemanalRequestModel.cs",
+      "bytes": 102,
+      "sha256": "94dade7fcd1390bf54530446b891c1db680a90139425dfdd8f1d962764aa7f61"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/ObterResumoRevisaoRequestModel.cs",
+      "bytes": 104,
+      "sha256": "af97fd897b122b17a53e69210816b800d91be4807d12a8f28041a9a1171bd815"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/PrepararTreinoRequestModel.cs",
+      "bytes": 129,
+      "sha256": "ebc5ad6e87a72a6bdaa2095ccbb083f818f9192dce0c5866c73a932eabb629dc"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/ProgressoDiaResponseModel.cs",
+      "bytes": 176,
+      "sha256": "e31f6dffc2b244d803ccd09973ab78a9f294d56826db10c219f921fde0633e3e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/QuestaoRevisaoResponseModel.cs",
+      "bytes": 409,
+      "sha256": "60d6ad3ff7e0b060cb6f1b879e76ddae57e0b9cada52e516d02742731f022667"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/ResumoRevisaoResponseModel.cs",
+      "bytes": 319,
+      "sha256": "0f72a8a40371a578ce48d52be679df56e60bc872cc67688087d0e61f5a526317"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Estudo/SalvarMetaSemanalRequestModel.cs",
+      "bytes": 151,
+      "sha256": "053cb220780ce16ea50d2756b7c5594e8b890c1e1c95a50dfcee14ca53fcc97b"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/AtualizarMinhaContaRequestModel.cs",
+      "bytes": 135,
+      "sha256": "1f6c1447ffb2a23db00854a1e62f935967cacf046f809ce0ce12b1ad07c453d9"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/DadosPessoaRequestModel.cs",
+      "bytes": 1116,
+      "sha256": "495f44f892f34f603a9267f31b8bc96d67d2d1f8503259e6ef597bdfa5cbcd36"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/ListarUsuariosRequestModel.cs",
+      "bytes": 281,
+      "sha256": "a724bba8c69d0fcb954f2ee8d369ac55767f189ea74d8f3e59665df084bdc0e2"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/ListarUsuariosResponseModel.cs",
+      "bytes": 298,
+      "sha256": "3ed6240fabe364bbfc80ecbf358ab1b270006c5eb83d8ab8bb734a793e8e1e4a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/MinhaContaResponseModel.cs",
+      "bytes": 217,
+      "sha256": "af682d76e6bfebb6c1d23f871933257cc1ae56d53537ebfad35da17a8eef05b1"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/ObterMeuUsuarioRequestModel.cs",
+      "bytes": 105,
+      "sha256": "b540e2905c5e9f9e947a246d6b686c2478780b2259e405b9dd86dc1b22032fd2"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/ObterMinhaContaRequestModel.cs",
+      "bytes": 105,
+      "sha256": "4d252ff054bef74dc9fcb560b349661f6de7788f65c50a81f9164b515af87585"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/ObterUsuarioRequestModel.cs",
+      "bytes": 196,
+      "sha256": "5f6c882bddba9a97a8366b5b5cc370138c595be7edfdf27d39869d01a4ed73d7"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/PessoaResponseModel.cs",
+      "bytes": 566,
+      "sha256": "a83a20b051487ac978c7a24d66d4fce4602d9ca43aff364d362705fc7775547f"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Identidade/UsuarioResponseModel.cs",
+      "bytes": 574,
+      "sha256": "ddb9c309e11397372375c70c68c40c1de89c67e205749b2c3216130966f12266"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Integracoes/ConsultarCepRequestModel.cs",
+      "bytes": 156,
+      "sha256": "cde14f84e20dca742ac080fb73843029d5c600e12d02f902beaa7be423fd6e31"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Integracoes/ConsultarCepResponseModel.cs",
+      "bytes": 174,
+      "sha256": "63c97594e55bb4a461d038d5073e3319774fb0301541154ff767e449152c4b0e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/InteligenciaArtificial/AnaliseQuestaoResponseModel.cs",
+      "bytes": 343,
+      "sha256": "860d61c2b4569f31978bcd1cdcf7bd42327dc1b2808004686a607b27f06648fa"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/InteligenciaArtificial/ConsultarAnaliseQuestaoRequestModel.cs",
+      "bytes": 315,
+      "sha256": "79e3667384fbcc6f831e8d8f6bcb96292b8056cde1fc5081c3f0d2b7901f24b4"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/InteligenciaArtificial/ConsultarAnaliseQuestaoResponseModel.cs",
+      "bytes": 229,
+      "sha256": "d19419967099989560bf02b1cc0487bfa0936bb81aa4047b466ffce0014dd324"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/InteligenciaArtificial/ConteudoAnaliseQuestaoResponseModel.cs",
+      "bytes": 515,
+      "sha256": "7453b551f5cf1aebebe2bd201e3e1909b63488b75d89bdca0248d6efb257e763"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/InteligenciaArtificial/JustificativaAlternativaResponseModel.cs",
+      "bytes": 233,
+      "sha256": "a8f9e1e5033275d046f704d7d24fdde760f24a9fd61865a27901faddfc76f6d0"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/InteligenciaArtificial/SolicitarAnaliseQuestaoRequestModel.cs",
+      "bytes": 315,
+      "sha256": "6a29e31a1d3b100f3d431ec12deac7878c33c32c69035bf73679c11e7f3e6825"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/InteligenciaArtificial/ValidarAnaliseQuestaoRequestModel.cs",
+      "bytes": 176,
+      "sha256": "8f4bf99b627b3aa21c1c82ceccce4d9210f9008b23e87e95a6ec5224ff99b834"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/AtualizarProvaRequestModel.cs",
+      "bytes": 160,
+      "sha256": "9b7ef1363b0da5a3e52a350fadb769fa72f48d18d9264758d259d5b9f2ecb495"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/CriarProvaRequestModel.cs",
+      "bytes": 316,
+      "sha256": "e000f2098552d49032a2e96392ea6f2dff2c4583e03cf7566daaeccc45bf51af"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/IniciarProvaRequestModel.cs",
+      "bytes": 133,
+      "sha256": "32e7dc97614c03576473717cb2938d897f88d301ffe5a97cdb26f68c74e5165d"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ListarPendenciasProvasRequestModel.cs",
+      "bytes": 198,
+      "sha256": "78445dd22a8dcb1edc7cc7f7ba1df3fb0dfb19a2ba5b35f643032c6e3c4acc0e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ListarPendenciasProvasResponseModel.cs",
+      "bytes": 293,
+      "sha256": "2d6797786a85b2c6fef460d423f18f9d1d58626e4a991fcc8d982f5cf4e946c6"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ListarProvasRequestModel.cs",
+      "bytes": 358,
+      "sha256": "76af3cee7f8cc1559ae99dbdc6c5eaf9457eee9787f6546b5f3536f470b746eb"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ListarProvasResponseModel.cs",
+      "bytes": 290,
+      "sha256": "6ba5351e8fd6cb30e478308b19e5642c5eb3fa680b6d5c07fb261b0141968ea3"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ListarTemasRequestModel.cs",
+      "bytes": 97,
+      "sha256": "ffff31a8098686c5a8b5db609d6b819c08cfbc84c0f7c3b741403aab89032287"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ListarTemasResponseModel.cs",
+      "bytes": 164,
+      "sha256": "9e14f5d384082f86c02ef39c4d16086bd46c361399d729b5dd22d1039ebc2d3a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ObterProvaRequestModel.cs",
+      "bytes": 131,
+      "sha256": "2bafd9b71d59f3869d019c423e8351b8b8ef21b3aa1c247841249f58f15a6f5e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/PendenciaProvaResponseModel.cs",
+      "bytes": 234,
+      "sha256": "ca6b83a7d414cfebc9280dba2709615f60713cc037b5c34563b18052ffaf1373"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/ProvaResponseModel.cs",
+      "bytes": 445,
+      "sha256": "821c65cf0069c7114befce89a245c583d8bf8613e498b8f66a86d12942b8dc6f"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Provas/TemaResponseModel.cs",
+      "bytes": 181,
+      "sha256": "27c820bdcd31f9a5e56de5b20d88125bd5c136cfe92d8c13d9251bb899aefdf1"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/AlternativaQuestaoRequestModel.cs",
+      "bytes": 350,
+      "sha256": "8dbe358076c5757539881df1bba039ac40b5b2565a68506e86386cba94654f6b"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/AlternativaQuestaoResponseModel.cs",
+      "bytes": 294,
+      "sha256": "67c9945124e08498b3bb4fda084e25c0d056f147d24c0fc55e12877d0ed1b111"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/AlternativaVinculadaResponseModel.cs",
+      "bytes": 338,
+      "sha256": "6ec1b4cfa573e2be53a105748f61508963817da1d7292b7658ab0f943a79c43d"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/ArquivarQuestaoRequestModel.cs",
+      "bytes": 197,
+      "sha256": "9ba295de3c1f075c158b7aeada20a0fd0ee308f830d440ac5d6b0fba2fa279d2"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/AtualizarQuestaoRequestModel.cs",
+      "bytes": 225,
+      "sha256": "aedd45baffdaf6b769ae0c16e39f5ad4191ddbb0907980c33ce709d3092c2e37"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/CriarQuestaoRequestModel.cs",
+      "bytes": 802,
+      "sha256": "82714f314f68e8293d7aa81e47ebe5549a9bc9bebbaa4ba8f5dc7a6d2a578c2a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/GabaritoQuestaoResponseModel.cs",
+      "bytes": 270,
+      "sha256": "765ffe082bb8544a0476405e1464e08f22be44cb097aa6f9227acddfb69a17b5"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/ListarQuestoesRequestModel.cs",
+      "bytes": 568,
+      "sha256": "3a0a2d99d493940aba99b951ded2ec7fe4d8102f0e94bd6dd47cf3b1ef997c07"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/ListarQuestoesResponseModel.cs",
+      "bytes": 303,
+      "sha256": "17d5ac1a1159e734dfd400304ad928aa65472f9d0164f4e90119ac6192d4ff8c"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/ObterQuestaoRequestModel.cs",
+      "bytes": 194,
+      "sha256": "330e18c9a4689df8cf57e689d9409996d320156bd58ddb114b060403a1d39704"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/QuestaoPublicaResponseModel.cs",
+      "bytes": 917,
+      "sha256": "06a7e59ce88750ce97611760c9b9bf6acdf3e7a0acc177e3273d73c6d3e1e08b"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Questoes/QuestaoResponseModel.cs",
+      "bytes": 249,
+      "sha256": "bdfd7f4b07dbc85fdb11e521692d3d2cf08c27395c4c8083dc80322e4068883a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Response.cs",
+      "bytes": 280,
+      "sha256": "3ef7ce2408daecb87d99ae5a1ffb9593406c2a2febb97f5eabc9904f96675773"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/AtualizarSimuladoRequestModel.cs",
+      "bytes": 229,
+      "sha256": "08116a0c8d62428785c0ced8e472ca83ebfe207591747c2cb84d99b1eea08ace"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ComposicaoSimuladoResponseModel.cs",
+      "bytes": 226,
+      "sha256": "483af512b3b391f9630a8e8db6e976f2f8159543702d49e8a02b72c832cda344"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/CorrecaoBancoResponseModel.cs",
+      "bytes": 186,
+      "sha256": "ff6e5e4865bf0a4085b09f6ca209046feacd6eccfae91950cfae8c0e08c6cbbb"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/CotaAssuntoRequestModel.cs",
+      "bytes": 235,
+      "sha256": "71dd93d232b1c4584c4397465f651cb0c99e29e9865915f12fb20bfe961af6c9"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/CotaTemaRequestModel.cs",
+      "bytes": 176,
+      "sha256": "b5c67fa1c0f2d645c8d94f5d372dc454c2ec3941c07c3b0f528fe3b841e7b5b4"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/CriarSimuladoFiltradoRequestModel.cs",
+      "bytes": 485,
+      "sha256": "eaf3454100b16850779d116169fb7bfcd211afe5d512551f2b583c7e80eb7770"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/CriarSimuladoRequestModel.cs",
+      "bytes": 557,
+      "sha256": "c50f01d966a08c80f8cd1c1d4a69fda674882eda284f8386c2d2bb007bfe0ce7"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/DisponibilidadeAssuntoResponseModel.cs",
+      "bytes": 350,
+      "sha256": "a259646c038d58344db91e4847798d3624d82348a7c3669af51664d6904c3671"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/DisponibilidadeAssuntosResponseModel.cs",
+      "bytes": 244,
+      "sha256": "2e1faec43352367169880f9ab088bdebb2e97ab69561548f1b8ca995c263b133"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/FinalizarTentativaSimuladoRequestModel.cs",
+      "bytes": 211,
+      "sha256": "8b0e4da53ac4ffb5842815561ac6c370b6782501100fa9e2f1ed48b39b03d499"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/GerarSimuladoPersonalizadoRequestModel.cs",
+      "bytes": 241,
+      "sha256": "6fd5b8f501d3950b2c5c93b7c9cd69e4db8a37f51a071effe53629d6aa3c0caa"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/GerarSimuladoResponseModel.cs",
+      "bytes": 186,
+      "sha256": "2283890a4c9405d1b186c8dca3944c27b83a580bbdfb7daa105a9fa775e05f6e"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/IniciarTentativaSimuladoRequestModel.cs",
+      "bytes": 208,
+      "sha256": "3d6e07851278819f2f1c121901d0442cd8f8fa0c2615cc07c8eaa71588187a34"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ItemCorrecaoBancoResponseModel.cs",
+      "bytes": 432,
+      "sha256": "56e4169ad377865d310b855d1a8aeb193dbbe3f3587b706e9fce8fd4c2b85453"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ItemResultadoTentativaResponseModel.cs",
+      "bytes": 514,
+      "sha256": "03f6d49bba640919c8a28e1888e8b4001f4d87c678cee2b119cedd7fcac21e7c"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ListarMinhasTentativasRequestModel.cs",
+      "bytes": 209,
+      "sha256": "91c8a2d5d76658cab14316af9a38cc3f47f1d9eb9b8ff388be2f632854ac567a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ListarSimuladosRequestModel.cs",
+      "bytes": 249,
+      "sha256": "ac5d841997042fa7f26f6d10e9683c7eda86c9fb82e93f5a1a5c7de23088cabe"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ListarSimuladosResponseModel.cs",
+      "bytes": 299,
+      "sha256": "a49ab63676b64da33ef6a5d8f01dd25dda969a03559e3951cfaef2e812ca7526"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ListarTentativasResponseModel.cs",
+      "bytes": 309,
+      "sha256": "78500fabe14f090f251caffed8badf622d5b9e0466befe1913a279b75c015ba0"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ObterDisponibilidadeAssuntosRequestModel.cs",
+      "bytes": 117,
+      "sha256": "46ae04939534f2a0bd8716c38de0c334c2e753154a80f48bb3e9d4c8efdb36a8"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ObterQuestoesTentativaRequestModel.cs",
+      "bytes": 207,
+      "sha256": "9208334628cf5510dcbc7f2457849fe42456e4fe570ed1b2d3794b42a20432ee"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ObterResultadoTentativaRequestModel.cs",
+      "bytes": 208,
+      "sha256": "289e4d8bbdd4bf380d6c21a9317a0a749e59517cb25bb1248727cb31c509994d"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ObterSimuladoRequestModel.cs",
+      "bytes": 197,
+      "sha256": "678efec4ca494f2eb7d7af07b657c93f0c2db4f07f73cb45ff9494cd7a73269a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ObterTentativaSimuladoRequestModel.cs",
+      "bytes": 207,
+      "sha256": "6ac62486a3569a4bdf1b76b94396a0f5474733d3ffcc2988618f3a17226d40bf"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/QuestoesTentativaResponseModel.cs",
+      "bytes": 234,
+      "sha256": "49715d473cea722c602f09a02b61ccadea990404e9822f514e824205cab94b97"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ResponderQuestaoSimuladoRequestModel.cs",
+      "bytes": 360,
+      "sha256": "efa7a3d07efbf85acc0f9ce5994137ff4875a235bdba95fe25ff5e2f1e4118bf"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/RespostaTentativaResponseModel.cs",
+      "bytes": 261,
+      "sha256": "06b1b95d32db4a7ec441920a0ed7219e5f9d3282ff34a94b55aa517d6b32447d"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/RespostaTentativaVinculadaResponseModel.cs",
+      "bytes": 314,
+      "sha256": "ea6710fdd1b04da25129b3e648525567f35141593547245e46908f30a9275b28"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/ResultadoTentativaResponseModel.cs",
+      "bytes": 336,
+      "sha256": "3703fc7c62f4e57df1ffa7f0c9ab59b71afe275acdc83b639bc623b873793b8a"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/SimuladoResponseModel.cs",
+      "bytes": 603,
+      "sha256": "33f2e6173630bf99013e57753e9dcc927915382e730359bc19437ff95d592777"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Simulados/TentativaSimuladoResponseModel.cs",
+      "bytes": 958,
+      "sha256": "c35a3401582cb3c81a91089c2131e619f000d4a6b4c32702001a6ded4f9b94d8"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Sistema/VerificarSistemaRequestModel.cs",
+      "bytes": 100,
+      "sha256": "b5321244251e9510d57ecde0b1979f4339d898fcba7e233912750d339df1b227"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Sistema/VerificarSistemaResponseModel.cs",
+      "bytes": 164,
+      "sha256": "1c8eeb1c1a1ce6f5c28d126513d3ee59363e2d1277a718b4821ef249009e905c"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/AbrirChamadoRequestModel.cs",
+      "bytes": 379,
+      "sha256": "b2100bf090adc2a319ba0e23dcd33b86133478abf44bf3bb3f8757d6f158ce1d"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/ChamadoSuporteResponseModel.cs",
+      "bytes": 834,
+      "sha256": "6fffac9e5387643af42d36ea04e82600769ee01b0a2c5cf6a232a2ebc3a223f1"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/FinalizarChamadoRequestModel.cs",
+      "bytes": 309,
+      "sha256": "b7a30444077e14d40de6cfdfe303467ba041bbcb11b47c2055dcecadde4d5cf4"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/ListarChamadosRequestModel.cs",
+      "bytes": 240,
+      "sha256": "6ca36f63095d77dbf0016eb67a9c2cb7d21484749684215b9e6255e3cd14a9e3"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/ListarChamadosResponseModel.cs",
+      "bytes": 302,
+      "sha256": "4b3f95bdf90a634eb171a76e8f62761f9237e192cb9c8574da21c1928c7ee730"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/MensagemChamadoResponseModel.cs",
+      "bytes": 478,
+      "sha256": "54586676a3187a299c12abeb67a8e5fc8cc5d1936288f72aa87517d5ddb50a3f"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/ObterChamadoRequestModel.cs",
+      "bytes": 193,
+      "sha256": "6a9699136309d68e53231ad59f12dd8e39385170b8f140650c0f26e24d3555a4"
+    },
+    {
+      "path": "ConcursaAI.Application/Models/Suporte/ResponderChamadoRequestModel.cs",
+      "bytes": 308,
+      "sha256": "3750326acb289da76f7ce1239185714fce0e6bf3815652359f9eb7f9bfdaeb2f"
+    },
+    {
+      "path": "ConcursaAI.Application/Properties/AssemblyInfo.cs",
+      "bytes": 91,
+      "sha256": "e27b5368981546a28feb1e0e2726589e7522b6c4eaf92a3cb1586818899f31d5"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Administracao/AdministracaoService.cs",
+      "bytes": 1146,
+      "sha256": "27347295eebdae50f56dc2ff492523739ed0c8161ed6d16b3b565af3658f53fe"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Autenticacao/AutenticacaoService.Google.cs",
+      "bytes": 5530,
+      "sha256": "67170a6a3346dd0631f08c019b18aa71c425b8349ce006bd7ad770bdc95725c1"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Autenticacao/AutenticacaoService.cs",
+      "bytes": 12979,
+      "sha256": "d08039a7321f7e179f0f7f58afeed4b54ff30512c47e445c6ef9accbdc550297"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/BaseService.cs",
+      "bytes": 3943,
+      "sha256": "9ba6b04f77038e961756d06ce82a6ac5d24440aa1d9810dfa97ceff77e8f569b"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Cadastro/AssuntoService.cs",
+      "bytes": 8310,
+      "sha256": "f17e05614026db6fd9e6504847787472006a90f116d45b163402e54a5e011266"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Cadastro/BancaService.cs",
+      "bytes": 5542,
+      "sha256": "1adf17a321eb52badb7636c1de7f1f61738e6c49b3d35b070d7d1a447c71d8a8"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Cadastro/ConcursoService.cs",
+      "bytes": 7405,
+      "sha256": "528394d42cbfd7cd3da2578a25a1b4a3d8f4f74ed92777d755040c5abbe52846"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Cadastro/DisciplinaService.cs",
+      "bytes": 6242,
+      "sha256": "1e510e740c6379917b506307bb15bcd7fe84c7286040157a560fce21a5d5064f"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Comunicacao/EmailsTransacionaisAdministracaoService.cs",
+      "bytes": 4670,
+      "sha256": "47e89395b832aa9bf4cd6325ba0b33619b2897766f2d1eb84057aac964222952"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Comunicacao/PreferenciaComunicacaoService.cs",
+      "bytes": 1676,
+      "sha256": "83495fe52fb877c45808c0be6e2270a4f3f2d156a26cb0cf83425ea3284b0fcd"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Estudo/EstudoService.cs",
+      "bytes": 6090,
+      "sha256": "b4295ea327fa26b78c7a91eecc253fd102347629b9b28cd76062707ed73dcce5"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Identidade/ContaService.cs",
+      "bytes": 2583,
+      "sha256": "ba5b39c6c485e2dcf466bf5b8d9acc40979664f02bcb33f62f6bde16c8c35830"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Identidade/UsuarioService.cs",
+      "bytes": 3066,
+      "sha256": "cb35bc2ab8c90a6620ee64b32305df5a85b648f1d21b5d20b6145758e2d05a07"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Integracoes/CepService.cs",
+      "bytes": 2694,
+      "sha256": "2b7ae5969eca4a284a774a04b781d615f663365420232fad7da7dcc69fb70c75"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/InteligenciaArtificial/AnaliseQuestaoService.cs",
+      "bytes": 7437,
+      "sha256": "81f77926d2c5deabb73072487977bf0a853406179fa191fd351b47650393bcc7"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Provas/ProvaService.cs",
+      "bytes": 6117,
+      "sha256": "ddd2bf410d9532d1cac06b26530af198840461f8af367763512aa8e562f3d55a"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Questoes/QuestaoService.cs",
+      "bytes": 10843,
+      "sha256": "cd73be170326448b5ad305451e0cfa512ced0443bca652b2cc1e5ca7b7ed73e6"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Simulados/SimuladoService.cs",
+      "bytes": 13438,
+      "sha256": "db0075ec67ff0f8c70d71680c36db9a227db1b843336c0b74a00cbcdbe1b8869"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Simulados/TentativaService.cs",
+      "bytes": 14784,
+      "sha256": "cf357499a2f8b36b29916ab20985ec7bf082d24befa82d5f475aa6ece521b283"
+    },
+    {
+      "path": "ConcursaAI.Application/Services/Suporte/SuporteService.cs",
+      "bytes": 5776,
+      "sha256": "a53a5090e779e00a4a06752d281879f8aec5f8d377af498af7f4d189ddb48fa5"
+    },
+    {
+      "path": "ConcursaAI.Application/Validacao/ValidadorDadosPessoa.cs",
+      "bytes": 2349,
+      "sha256": "178e299040d5ba5d27bb3682dc40a50b60ffb5b9214683648706fdce2b8f0e57"
+    },
+    {
+      "path": "ConcursaAI.Application/packages.lock.json",
+      "bytes": 19494,
+      "sha256": "4a24321a40b27d4cda93bce28a73f1068024aefad13db2d9b3fd2c91391bb84c"
+    },
+    {
+      "path": "ConcursaAI.Domain/Cadastro/Assunto.cs",
+      "bytes": 1098,
+      "sha256": "358413a35a11502997b8e54d09b37af2c2b5c1e7ac8578af5bad5fb7f9aef1e3"
+    },
+    {
+      "path": "ConcursaAI.Domain/Cadastro/Banca.cs",
+      "bytes": 708,
+      "sha256": "9f2ac3551812da00ce53345cc11b1f9f6f9a6b49e26ec039a91e3420b183189a"
+    },
+    {
+      "path": "ConcursaAI.Domain/Cadastro/Concurso.cs",
+      "bytes": 1592,
+      "sha256": "c294302dcfd4de36537ccd7cec41adf02639cb8456f3c8bbead3a883255d24e9"
+    },
+    {
+      "path": "ConcursaAI.Domain/Cadastro/Disciplina.cs",
+      "bytes": 1033,
+      "sha256": "fc73146f6b18437b21cffcfe41030036e7383c8d1df248427903da81dc26702e"
+    },
+    {
+      "path": "ConcursaAI.Domain/Cadastro/Tema.cs",
+      "bytes": 280,
+      "sha256": "2e34f34110e007b35d81ac852d4cba9fca9acc79f28f789778186aedba39f1b8"
+    },
+    {
+      "path": "ConcursaAI.Domain/Comunicacao/EmailTransacional.cs",
+      "bytes": 2369,
+      "sha256": "06b2ef4ba998359615e1d2c1d2278623ffda227c2ad3d1dbe11d488c873f96b2"
+    },
+    {
+      "path": "ConcursaAI.Domain/Comunicacao/EventoResend.cs",
+      "bytes": 678,
+      "sha256": "47d1d21fd0f6a5fc02eedc2444101f53464f3bd8603403921e4d1e6f198f5fce"
+    },
+    {
+      "path": "ConcursaAI.Domain/Comunicacao/FluxoEmail.cs",
+      "bytes": 481,
+      "sha256": "1e8850038a0734d01956e1a00628b883eed9d0308ea26e5dd3987bf2f6d3f5bb"
+    },
+    {
+      "path": "ConcursaAI.Domain/Comunicacao/PreferenciaComunicacao.cs",
+      "bytes": 525,
+      "sha256": "c47cf0dd1bc73ed95bdcdc2c9f4f25e6c06f6ac94c6afced9aff63510300b7f2"
+    },
+    {
+      "path": "ConcursaAI.Domain/ConcursaAI.Domain.csproj",
+      "bytes": 210,
+      "sha256": "11c0c110e19c9eaeaef66a0382f7a3e4ff6ab395d99ca6664e1ba378371cc47c"
+    },
+    {
+      "path": "ConcursaAI.Domain/Estudo/MetaSemanalEstudo.cs",
+      "bytes": 554,
+      "sha256": "2d7144817401aabdfbb7d8ec3fa2dc45cb16caa131f0e9c868c2c1cf7853b0ad"
+    },
+    {
+      "path": "ConcursaAI.Domain/Handle/ServiceException.cs",
+      "bytes": 188,
+      "sha256": "060b381164733927597b9a70a95654bf142b49a1188b0ef0fd5a52db9a741d15"
+    },
+    {
+      "path": "ConcursaAI.Domain/Identidade/Estudante.cs",
+      "bytes": 401,
+      "sha256": "5b4a0e438b98f6e380aef27f52dc47ecfd5b6ed21e58d71cd77a807ffd5c1d58"
+    },
+    {
+      "path": "ConcursaAI.Domain/Identidade/Pessoa.cs",
+      "bytes": 1583,
+      "sha256": "ce84562589f2abeb3904f3a3f383b6dc00a03d4ace420615f57a1dc8ad30f58f"
+    },
+    {
+      "path": "ConcursaAI.Domain/Identidade/Usuario.cs",
+      "bytes": 1546,
+      "sha256": "6918a8a0aaf1df156e5b66c2342ca19269363371da2b830d1716c24c09520236"
+    },
+    {
+      "path": "ConcursaAI.Domain/InteligenciaArtificial/AnaliseQuestao.cs",
+      "bytes": 1231,
+      "sha256": "7bb4f6ffe20963bd5883d3d9988d23f18739816e7016907261a5e29989275faf"
+    },
+    {
+      "path": "ConcursaAI.Domain/InteligenciaArtificial/LimiteDiarioAnaliseQuestao.cs",
+      "bytes": 505,
+      "sha256": "4fa0d16bce6ff3c2b651f8ce3260f61d2ad22285c78543cd8469c9cdd1154670"
+    },
+    {
+      "path": "ConcursaAI.Domain/Interfaces/IContextoAutenticacaoBanco.cs",
+      "bytes": 182,
+      "sha256": "3b13157ab007931279ede35faf88203f73c42bb9fae8a3c37e67d47e786f5315"
+    },
+    {
+      "path": "ConcursaAI.Domain/Questoes/AlternativaQuestao.cs",
+      "bytes": 836,
+      "sha256": "267f5503909afca2cf0473e617f03ca910e4f8f56cf2a183b603a00104dd11f2"
+    },
+    {
+      "path": "ConcursaAI.Domain/Questoes/GabaritoQuestao.cs",
+      "bytes": 933,
+      "sha256": "095590963fadb0bf6ca632968795f0a7ca1816512ec072f0d4bea00923013acd"
+    },
+    {
+      "path": "ConcursaAI.Domain/Questoes/Questao.cs",
+      "bytes": 2141,
+      "sha256": "1b0b051f4ca478a1f3c6ec302786ac26dcf0aa464d2189e2e75c677ddc8e569d"
+    },
+    {
+      "path": "ConcursaAI.Domain/Simulados/QuestaoSimulado.cs",
+      "bytes": 826,
+      "sha256": "4daf4bbd65e48257cff55878801b063177ecd7db41f44e67b36f42f28693962a"
+    },
+    {
+      "path": "ConcursaAI.Domain/Simulados/RespostaTentativaSimulado.cs",
+      "bytes": 825,
+      "sha256": "fab414be96d196f7e26629ea01ea8169ce9e553ef5188291213a951f54d5fbd2"
+    },
+    {
+      "path": "ConcursaAI.Domain/Simulados/Simulado.cs",
+      "bytes": 1293,
+      "sha256": "e643a3d940cf6333d3d5f32fe45fd6ae5f44fae5e61de7a3b072f6e5c4ae3d79"
+    },
+    {
+      "path": "ConcursaAI.Domain/Simulados/TentativaSimulado.cs",
+      "bytes": 1731,
+      "sha256": "ef1930943106ce50e66aacae63b2386e250913949f975ecd38bca99e1a7ce887"
+    },
+    {
+      "path": "ConcursaAI.Domain/Suporte/ChamadoSuporte.cs",
+      "bytes": 1775,
+      "sha256": "ec736beddee82ee2e9dcf03674a9aab328941e4e293f5435fa7767ebc665b398"
+    },
+    {
+      "path": "ConcursaAI.Domain/Suporte/MensagemSuporte.cs",
+      "bytes": 1130,
+      "sha256": "8910bb2f8ecb6404135d8f5f047c3a0e35c3bee0f132aae812952bbc2d904759"
+    },
+    {
+      "path": "ConcursaAI.Domain/packages.lock.json",
+      "bytes": 61,
+      "sha256": "03eeadc5ef377c17f787ab65f41fb4c8a9c936bb7f7f4171111fdeec8a81cb46"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/AutenticacaoOptions.cs",
+      "bytes": 1186,
+      "sha256": "ee633f8cbef01037ed471789df91815bc8be9e69d96a357f68ad7ff49392bdc7"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/ContasPostgres.cs",
+      "bytes": 17205,
+      "sha256": "a8ea8346ce3edceed8a31efab3db47980726a61fbe564dc98f48fe9ffab1f947"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/EmailAutenticacao.cs",
+      "bytes": 3240,
+      "sha256": "43749e8becce89e2985e911aafe71f60652f7fa28b3a86767833b8d5c19571a2"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/EmissorTokens.cs",
+      "bytes": 1753,
+      "sha256": "0ca169b48f6ecfab42f85adf0ba8e3f0a993320d8ebb3c99ce9952b0c7921442"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/GoogleAutenticacaoClient.cs",
+      "bytes": 4976,
+      "sha256": "f6ad33c38d46d21f636d5bce57b2de87bf11a12d48ae0533402444969f08c609"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/IContasAutenticacao.cs",
+      "bytes": 2808,
+      "sha256": "efe21c64ee457487a021557f107dd9ae8fd9541f5be3d3cda5dc6a20b1f72613"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/SenhasAutenticacao.cs",
+      "bytes": 1417,
+      "sha256": "08ee9c22cab9da3f8c5df0a6a5922d199f09672db55e306eb4e42731936ccade"
+    },
+    {
+      "path": "ConcursaAI.Infra/Autenticacao/SessaoAutenticadaInterceptor.cs",
+      "bytes": 1340,
+      "sha256": "4db16c0866412762307a306219e1a03c88b27755e2c7a9f8f81c7c1df38d3a19"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/AssinaturaResendWebhook.cs",
+      "bytes": 1684,
+      "sha256": "adf7fa459682c85357aab2ab037685b87bb1aa9b97b49a310285ebe9cdfa7fc4"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/EmailOptions.cs",
+      "bytes": 3303,
+      "sha256": "c6d13c78ced8151ac4932083f4512a95739ba20f1d9ddae37e10bd2d33316cea"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/FilaEmailsPostgres.cs",
+      "bytes": 21341,
+      "sha256": "e3711e3c6f4a7c17ffa894be0d4944a90dc292b8fd19f7096d8e0de6b2d14cb2"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/FluxosEmailPostgres.cs",
+      "bytes": 2741,
+      "sha256": "1d956c822734b611e01af982e4682122172741bb207159e4d8d7d6639c031842"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/IPreferenciaComunicacaoRepositorio.cs",
+      "bytes": 280,
+      "sha256": "e4335bfd46f05d460c3f480d86598e35798c45feb588c5f550f0a90d597da885"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/PreferenciaComunicacaoPostgres.cs",
+      "bytes": 2101,
+      "sha256": "a6ab8bbe9019662bd5e627d1575d3aafdfe52bedb88da972c76ad0180e334355"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/ResendEmailClient.cs",
+      "bytes": 2647,
+      "sha256": "e061462c19708176921fb38456a93506660f5e9a4f6a515e3e531c30d0f30c69"
+    },
+    {
+      "path": "ConcursaAI.Infra/Comunicacao/TemplateEmail.cs",
+      "bytes": 4544,
+      "sha256": "6b7e89074db41b64d03045c0ed1ca0087398888f718e701d64feccda72527f9a"
+    },
+    {
+      "path": "ConcursaAI.Infra/ConcursaAI.Infra.csproj",
+      "bytes": 1174,
+      "sha256": "8de2f4ae59d0c7bfa32fc771ae3f04fbdef4f6dd6513adb5e5a3bdb4845ddb63"
+    },
+    {
+      "path": "ConcursaAI.Infra/Configuracao/ConfiguracaoAppsettings.cs",
+      "bytes": 724,
+      "sha256": "f93bb096d4044b89d79f3ea606e78a19512c481d5e93f886585cff78223aa3b5"
+    },
+    {
+      "path": "ConcursaAI.Infra/DBContext/Context.Funcoes.cs",
+      "bytes": 2198,
+      "sha256": "68c24bdcb16b064eab097aee90dce9c2e15c1123517585bce273875a812e0dc9"
+    },
+    {
+      "path": "ConcursaAI.Infra/DBContext/Context.cs",
+      "bytes": 2721,
+      "sha256": "a00d3e9efb19927a1b47ada3b06e6df58a38d191a75a570e1e889d41730d9b68"
+    },
+    {
+      "path": "ConcursaAI.Infra/DBContext/ContextFactory.cs",
+      "bytes": 1483,
+      "sha256": "8206a3426e7d891939a410edc84a522cd2f0e9cfb7540cfa6f930fef8bcb847c"
+    },
+    {
+      "path": "ConcursaAI.Infra/DBContext/JsonBanco.cs",
+      "bytes": 1511,
+      "sha256": "8dab293eaaa109343b4dabf71a9a5f7d5b2810cb420551ef76a7363d3dbe0548"
+    },
+    {
+      "path": "ConcursaAI.Infra/Integracoes/ViaCepOptions.cs",
+      "bytes": 135,
+      "sha256": "93bab6cd2a7198fdeed1c604bd7992bc728f997071751cafe0742e32fac7f4f6"
+    },
+    {
+      "path": "ConcursaAI.Infra/InteligenciaArtificial/OpenAIAnaliseClient.cs",
+      "bytes": 5588,
+      "sha256": "1c39599797aff4f1048b13e45bd012f35223d0ee5b1a948961b49601bc66c990"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Cadastro/AssuntoMap.cs",
+      "bytes": 2199,
+      "sha256": "bb65c8b85725b0b0e9a0296b67535696797eee9e0a5500248b960fb4b7450677"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Cadastro/BancaMap.cs",
+      "bytes": 1085,
+      "sha256": "91d54e1f4ddf43b2c2cfabe222025605ca7f96068ac8410679712c95202973c5"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Cadastro/ConcursoMap.cs",
+      "bytes": 2584,
+      "sha256": "1326ec88c054a2a786cc95f4881af24cbcb7028107446149c16666473e16b68d"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Cadastro/DisciplinaMap.cs",
+      "bytes": 1367,
+      "sha256": "e5d9a14a85f19a614be15a8f6c319d3371ce990a22e7c98b5adb16d90ea2a4dd"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Cadastro/TemaMap.cs",
+      "bytes": 754,
+      "sha256": "8bc49a8bad18f4253b2b6ac506d3c2f07032c59d752725e9b8df5fb10483d780"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Comunicacao/EmailTransacionalMap.cs",
+      "bytes": 4409,
+      "sha256": "f08dcf535ab3e295909f9cf843679aae7d97c5c200a1694912569f83403194ad"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Comunicacao/EventoResendMap.cs",
+      "bytes": 1185,
+      "sha256": "7214049d3dc35462afe788c0130bb5d5e1989216b5cb88a8929828f731aad6bb"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Comunicacao/FluxoEmailMap.cs",
+      "bytes": 987,
+      "sha256": "1764b309b4c1c37f9ec26bed2e6bbc3e8c699cd64745db16e566e29200576dbd"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Comunicacao/PreferenciaComunicacaoMap.cs",
+      "bytes": 1120,
+      "sha256": "60c9cb200b0c204f2c74da2ef343edaa3f162d08856d451f990ad549f883fb08"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Estudo/MetaSemanalEstudoMap.cs",
+      "bytes": 1270,
+      "sha256": "7beff9d1cf33d06c55f4e6f91768d17450dece89bdb11a1566375b9c380f9806"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Identidade/EstudanteMap.cs",
+      "bytes": 932,
+      "sha256": "875517b3207bd7aedd931a625c67131212854d6d5e67276270c64399a3e76b68"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Identidade/PessoaMap.cs",
+      "bytes": 2520,
+      "sha256": "dbc35b8770fa98487fc0ab884d9266ddca8cdb71e3fa3a86ed4a433f6e6042ba"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Identidade/UsuarioMap.cs",
+      "bytes": 2560,
+      "sha256": "97a75ee2e08d82c22f101fa98664f37f95709e0bafb9dad1c59f1859775b9ca0"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/InteligenciaArtificial/AnaliseQuestaoMap.cs",
+      "bytes": 2512,
+      "sha256": "14ae146b5f68a55b014c194a2cad9cb2b83918ad983b31b412ec1a1e00ef07e8"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/InteligenciaArtificial/LimiteDiarioAnaliseQuestaoMap.cs",
+      "bytes": 1327,
+      "sha256": "d9472b35fbf33012d1d253b81507809ae3ea62760ae74f4df8d8db3e4d83078c"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Questoes/AlternativaQuestaoMap.cs",
+      "bytes": 2121,
+      "sha256": "b4a0d96d6c2558ef393b78c94306a5a31b12c1d2daf0ccbb7493eaa9fefc93df"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Questoes/GabaritoQuestaoMap.cs",
+      "bytes": 2123,
+      "sha256": "b9be12a664a78638a5bdd8b4492d37ada87dbaac7700e43a33dfb445f0c1cd58"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Questoes/QuestaoMap.cs",
+      "bytes": 5218,
+      "sha256": "d67cea0d950c6bc7d67d22fec2d12955fcf068f4a88e70fd06693892f5dc2508"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Simulados/QuestaoSimuladoMap.cs",
+      "bytes": 2238,
+      "sha256": "bc5ca3ffff8c48809b31ff7016909947ccec2ae02a0abd42f7d06b04f2369f98"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Simulados/RespostaTentativaSimuladoMap.cs",
+      "bytes": 2096,
+      "sha256": "c58e3c889ada987b28dac69d1dc2cbd1d83e1b22f90dfdfd383d776242e6d870"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Simulados/SimuladoMap.cs",
+      "bytes": 2708,
+      "sha256": "057c713e1473bb182c2527c07299d868ece9afe23415eaa86278e876c63c9945"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Simulados/TentativaSimuladoMap.cs",
+      "bytes": 3516,
+      "sha256": "3673005b5e77d93691681e7679b18b426a76688f0231fc87759997107d029b93"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Suporte/ChamadoSuporteMap.cs",
+      "bytes": 4254,
+      "sha256": "8721c4028e4de2d58a085814c8f0e722a4b4aead4764203594482988393e330d"
+    },
+    {
+      "path": "ConcursaAI.Infra/Mapping/Suporte/MensagemSuporteMap.cs",
+      "bytes": 2776,
+      "sha256": "3501432be9d735972477d1d7925e75d4ae96ada38f01191ddfbab6da6bb0bf96"
+    },
+    {
+      "path": "ConcursaAI.Infra/Migrations/20261020192228_BaselineSupabaseExistente.Designer.cs",
+      "bytes": 61747,
+      "sha256": "069aadad45ee7d6488e12a48d6f8c9236bc54629daf92d6ebf581dbcc9bf7570"
+    },
+    {
+      "path": "ConcursaAI.Infra/Migrations/20261020192228_BaselineSupabaseExistente.cs",
+      "bytes": 518,
+      "sha256": "e180bb4db26aa2a7e15d87c269fb6c7646f2811548a1014cbe77838001b73315"
+    },
+    {
+      "path": "ConcursaAI.Infra/Migrations/20261022131243_ComunicacaoEmailsTransacionais.Designer.cs",
+      "bytes": 76280,
+      "sha256": "e5601424b7fe396c0536b85957dedffff14991fa91d1966ef8613463950b38c3"
+    },
+    {
+      "path": "ConcursaAI.Infra/Migrations/20261022131243_ComunicacaoEmailsTransacionais.cs",
+      "bytes": 552,
+      "sha256": "591a8467cd8fbf7dc50e5b4139b88492280a0329252d163eb3b12e12cc3211bd"
+    },
+    {
+      "path": "ConcursaAI.Infra/Migrations/ContextModelSnapshot.cs",
+      "bytes": 76140,
+      "sha256": "8786dfd4af495deb129857789e175caf2d02ab4e8443811e0cb76c862bf70950"
+    },
+    {
+      "path": "ConcursaAI.Infra/Models/ExecutarFuncaoBancoRequest.cs",
+      "bytes": 193,
+      "sha256": "9f891e92186937790176767dd93b6608a01d9046ca26fac11b5c9e433c9a38b6"
+    },
+    {
+      "path": "ConcursaAI.Infra/Postgres/BancoPostgres.cs",
+      "bytes": 2526,
+      "sha256": "fc78f9ba04e0f1d99486817277965d705b1da8a945b6f589c6ed0b165a240961"
+    },
+    {
+      "path": "ConcursaAI.Infra/Postgres/RepositorioPostgres.cs",
+      "bytes": 9600,
+      "sha256": "764a41cecef97debb9c7e6bac0ea6e79c159741b914f9f5f3ae60e45cd369d54"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/ConsultaSupabaseRequestModel.cs",
+      "bytes": 453,
+      "sha256": "d73a3fbbc69aa0ffc0d6de5cfc5c98508a1966dde06bea4b2bb73873e305ab8d"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/ConsultaSupabaseResponseModel.cs",
+      "bytes": 134,
+      "sha256": "1307dbd36da2114a341ef667d85214356003c0762ed7554dc6cc390a066504f7"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/FiltroSupabaseRequestModel.cs",
+      "bytes": 1030,
+      "sha256": "d2eb0a53693c6ebb64a6dbefc1747be9e059e9f60f8dc24485550408f1f3e3e8"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/IRepositorioSupabase.cs",
+      "bytes": 520,
+      "sha256": "41258ad1231da4008b4cbb4c2e6984b5279426f4ff459c47d00c887c4b318c04"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/ModelosSupabase.cs",
+      "bytes": 4025,
+      "sha256": "ff817b00bb10251f45c20c9b9a3798e50cb2adac1e6003c07b8d0064728786a3"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/AlternativaQuestaoRegistroSupabase.cs",
+      "bytes": 935,
+      "sha256": "7cd67a973bfdeed749910a372a33bcc3b1e018ccbd49ec589f58267cc8899b06"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/AnaliseQuestaoRegistroSupabase.cs",
+      "bytes": 1312,
+      "sha256": "7f8a0cc4829c4c9acf4d986b85a1cb26f4d7097ae11ea36bb135864a57326a66"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/AssuntoRegistroSupabase.cs",
+      "bytes": 934,
+      "sha256": "6784a56853323561f1eb61bf81b6737126f1d4aaa5a5de2b42908ac931bedf12"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/BancaRegistroSupabase.cs",
+      "bytes": 702,
+      "sha256": "f4dc15988fa5955ff1315db0d8f1c705a0743cc0e619938319d2d65751f924ba"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/ChamadoSuporteRegistroSupabase.cs",
+      "bytes": 1774,
+      "sha256": "0ccbb0581003c07af025fe547265442d614b124b93c39bbcd2a19380b730a20a"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/ConcursoRegistroSupabase.cs",
+      "bytes": 1498,
+      "sha256": "5f67a68e0bc75a321aef80cc5fe699bcb1e3e5a0c496e14ba6668f669c7f7a8b"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/DisciplinaRegistroSupabase.cs",
+      "bytes": 921,
+      "sha256": "4fe8e39637c06c6bdc17ca4a3d54317b7c5adcfad8a4d78399332e10e9133b3d"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/EstudanteRegistroSupabase.cs",
+      "bytes": 507,
+      "sha256": "740bba4fd449d8164925ffc683dcc54070217379e8953ae08655a148ff60bff9"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/GabaritoQuestaoRegistroSupabase.cs",
+      "bytes": 1010,
+      "sha256": "681c6ea4e3732012b1064038ca6a3b12389e66734e418c5a8a8c5dbcfa965012"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/LimiteDiarioAnaliseQuestaoRegistroSupabase.cs",
+      "bytes": 607,
+      "sha256": "ad2bfd05b18dcda4d63e021bac75a1ae11b4e63e7fa2562efd53ecf34ba4aac2"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/MensagemSuporteRegistroSupabase.cs",
+      "bytes": 1214,
+      "sha256": "590dc6312515071d01672f1186511d502b094288cf0edf05b7ad8b945f6efd41"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/MetaSemanalEstudoRegistroSupabase.cs",
+      "bytes": 647,
+      "sha256": "a2070ee61e0e64b5d1b4dc587ecd885b9fec4d2965332c5aaaadc898ed5deb83"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/PessoaRegistroSupabase.cs",
+      "bytes": 1653,
+      "sha256": "81565d1b3fbb8ea803ef3ad3f9282b61f2e413214a98d80474637f62ed86d505"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/ProvaRegistroSupabase.cs",
+      "bytes": 1125,
+      "sha256": "dc2164c4da36e966bb83282ceaac56d26947c9580c1229553b1dc2c7faeb9af0"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/QuestaoRegistroSupabase.cs",
+      "bytes": 2257,
+      "sha256": "46d51fd3df0575b73951b32a5367fbe55029ede36280034f5339fb0f9f93a3ac"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/QuestaoSimuladoRegistroSupabase.cs",
+      "bytes": 928,
+      "sha256": "32200129b45bdf66cabadc828998ab586207e556770781f3ad9b638611c3fce8"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/RespostaTentativaSimuladoRegistroSupabase.cs",
+      "bytes": 898,
+      "sha256": "afdfd180ef65d8f751379d394959982f36fd6fe1ff9082e57ef1867c5cc84316"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/SimuladoRegistroSupabase.cs",
+      "bytes": 1396,
+      "sha256": "e51a0db824918a601925cdbce9e4878bbc3c514fbad317054bf1f47d1f4ec3e8"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/TemaRegistroSupabase.cs",
+      "bytes": 444,
+      "sha256": "2ee6f6dad58f503304abd8961550f7250ff292b8fa181ac73eb20d02adba1e16"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/TentativaSimuladoRegistroSupabase.cs",
+      "bytes": 1938,
+      "sha256": "7e47e6f6f03aba4258767a0ae8af87da2acbb55a13d66d0af9953c7a72f48095"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/Models/UsuarioRegistroSupabase.cs",
+      "bytes": 1586,
+      "sha256": "9e16c47f19af130b4c9066d92292c416f5bf8728cd0c1c51a8d109ed6573917d"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/MutacaoSupabaseRequestModel.cs",
+      "bytes": 212,
+      "sha256": "da1bbfaa876654924ddfedf5c3db9834e26e5018381f25d6792409ad1fe5f47e"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/MutacaoSupabaseResponseModel.cs",
+      "bytes": 109,
+      "sha256": "60560e50e9124f3c561b73251766f649e831a217021cbc863f362923e7a6f652"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/OperacaoMutacaoSupabase.cs",
+      "bytes": 112,
+      "sha256": "01aacd47526508a0bd0c10d07df31f1231c6b70971df7d3be27aadbe89ff2267"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/OperadorSupabase.cs",
+      "bytes": 121,
+      "sha256": "4a137cd0b13e59849c170e64aefc9e4c2ec07c67218b634b83ecc914ab1effae"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/OrdenacaoSupabaseRequestModel.cs",
+      "bytes": 137,
+      "sha256": "9bacb244d94fb7a0571c2c30527a6f84da40a233eee12b262725d6b6d8e1cccf"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/RepositorioSupabase.Dispatch.cs",
+      "bytes": 3789,
+      "sha256": "0a413d70cf8d66fc7e48a04e667f242a0c3f16f969ef3e6111617cb6cb326b91"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/RepositorioSupabase.cs",
+      "bytes": 10570,
+      "sha256": "1e3852c6d989094cf2bf4f546b33de6a2b93742911807f5694b964710c4f627d"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/Dados/TabelaSupabase.cs",
+      "bytes": 453,
+      "sha256": "4a64b077897ba5c4eaa0ae02f84edac95cee709dd5ddf8c65bfa34433389a9da"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/RequisicaoSupabaseRequest.cs",
+      "bytes": 204,
+      "sha256": "c03ec328bd6cfadb0a68e6432945c6db58d36725a8ca33b991d3dee9e1981cf8"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/SupabaseGatewayClient.cs",
+      "bytes": 4884,
+      "sha256": "33e62fc3250e8095a8cd24c8adb17139976bcc972f692511c55eb2a9a679e8c7"
+    },
+    {
+      "path": "ConcursaAI.Infra/Supabase/SupabaseOptions.cs",
+      "bytes": 396,
+      "sha256": "67d1e4692481876520beb78b944520b38b6d9f4d365dd3a5db10ed3beba8b78f"
+    },
+    {
+      "path": "ConcursaAI.Infra/packages.lock.json",
+      "bytes": 25958,
+      "sha256": "99bb5d7cbdf3b1447903c5716df008973e6e94ba1bf677044b6ba88cae4aca1f"
+    },
+    {
+      "path": "ConcursaAI.sln",
+      "bytes": 6495,
+      "sha256": "87b5dfc55a3f9a5f9e8490896402ceb2c13dc17b442a409ecfb84018c5f7133b"
+    },
+    {
+      "path": "Directory.Build.props",
+      "bytes": 381,
+      "sha256": "9df12490f1307a1e1d100e8f5fcc3a4f2fa8b3e6671ea352f10dadc316793d80"
+    },
+    {
+      "path": "Directory.Packages.props",
+      "bytes": 1818,
+      "sha256": "cb97cbdf165cc31971c2de7b094c4d4919a14679612d18b3cdc99ee92d9d4269"
+    },
+    {
+      "path": "Dockerfile",
+      "bytes": 405,
+      "sha256": "614eb1b2cae074c5fd20567f216dda82487b981a46029f9eb3d29b13e245173b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2828,
+      "sha256": "893e9029c0cec142b0b67888c2264898ac404d8f3dd2ec25c281263ebf9e9aef"
+    },
+    {
+      "path": "appsettings.Local.json",
+      "bytes": 883,
+      "sha256": "44c75f518ed3def8a5c5b5f9a61907a7494e4d711bf6ae3c1b9e3f22b5b9ac11"
+    },
+    {
+      "path": "database/baseline-supabase.sql",
+      "bytes": 771,
+      "sha256": "f69b3e1aacee377e4caff53d708a025e232f589f3c6e3ccba9c23f0d040694f4"
+    },
+    {
+      "path": "database/diagnostico_estudo.sql",
+      "bytes": 1471,
+      "sha256": "e5598e6062a85734082292d766e437a4daa13df28d3016e23c3eab2f52ac2319"
+    },
+    {
+      "path": "database/diagnostico_simulados.sql",
+      "bytes": 1945,
+      "sha256": "81902b61ddc1d411ae3ee6c98b663881b71298f842a94f2da93c0fd1a67d8cd8"
+    },
+    {
+      "path": "database/diagnostico_suporte.sql",
+      "bytes": 1319,
+      "sha256": "416a09bb9dbc54ebd36c0f5a4e47c40d31b4cad2a90c74a45f11cf04eb13fdb1"
+    },
+    {
+      "path": "database/diagnostico_usuarios.sql",
+      "bytes": 1957,
+      "sha256": "1ef09ae7788d2424f2389497bac84dcfa26451f99c162630e3fce81b3b942a6d"
+    },
+    {
+      "path": "database/migrations/20261016002632_estrutura_inicial.sql",
+      "bytes": 24222,
+      "sha256": "a07ce9d73ec4c4337283c763d9dde6d108990b7443a198acff717f7caabfcf17"
+    },
+    {
+      "path": "database/migrations/20261016003715_corrigir_funcao_salvar_questao.sql",
+      "bytes": 3206,
+      "sha256": "37fe4acc5cbd85126c9ea65ed34a9efb2c06ee0163d7f405b34247663d5f775e"
+    },
+    {
+      "path": "database/migrations/20261016004659_identificadores_e_pessoas.sql",
+      "bytes": 22914,
+      "sha256": "a99651e6ad2be8180c8d5ca4d2f76e24cf669e83ea26a968e6d8ffc52e1290df"
+    },
+    {
+      "path": "database/migrations/20261016005418_corrigir_alertas_funcoes.sql",
+      "bytes": 4225,
+      "sha256": "62e04d017d3a609dc39ab7bc3c98f668948bb2e6cafb2236e8c820f54d0a110f"
+    },
+    {
+      "path": "database/migrations/20261016010800_importar_apostila_odontologia_ppgo_ufu_2023.sql",
+      "bytes": 465963,
+      "sha256": "bbe6f9081c2e453ceb5877fead0c95d4a5f09e2a67d85443797f798411d3c4d2"
+    },
+    {
+      "path": "database/migrations/20261016011100_dificuldade_nao_informada_apostila.sql",
+      "bytes": 455,
+      "sha256": "ce9be52827293a53768b0c57f8398c0f69529e180c402a706f22bd4f10d88a29"
+    },
+    {
+      "path": "database/migrations/20261016120000_simulados_pessoais_odontologia.sql",
+      "bytes": 5482,
+      "sha256": "fbb4c5a582330a957b27cd0356ea860053dfab04f69d5e7e40a6f5f1d20fef05"
+    },
+    {
+      "path": "database/migrations/20261016150000_categorias_distribuicao_metricas.sql",
+      "bytes": 9063,
+      "sha256": "df9b8882bb5e965529a59624a2c6fa944f0081bf900e51212fbffc9084a7f759"
+    },
+    {
+      "path": "database/migrations/20261017193000_tipar_arrays_sorteio.sql",
+      "bytes": 4474,
+      "sha256": "7cbd9e0565cc7cf0b966f8b4186e62c307c086504e896c107f99685f65cea86a"
+    },
+    {
+      "path": "database/migrations/20261018120000_revisao_recomendacao_metas.sql",
+      "bytes": 7954,
+      "sha256": "fd48e27e39eb24e6a58e91f92296bb10b184642b1b1a83517bee7706e153b0e5"
+    },
+    {
+      "path": "database/migrations/20261019162901_suporte_acesso_administrativo.sql",
+      "bytes": 14094,
+      "sha256": "326833d10bac47a789b3299767332197d8187710a4215ed54f61a84b24377f78"
+    },
+    {
+      "path": "database/migrations/20261019170737_renomear_perfis_usuarios.sql",
+      "bytes": 17320,
+      "sha256": "984e166cd872b381d418c53b433755e2e23b84bd07ae77cc7de568c3d0b9b4c6"
+    },
+    {
+      "path": "database/migrations/20261019180016_renomear_tipo_usuario.sql",
+      "bytes": 8736,
+      "sha256": "55af665f89f36700a25d9d408f45cc3d82b1b147895306b44b7cb6bec4b6f7df"
+    },
+    {
+      "path": "database/migrations/20261020143752_analises_ia_questoes.sql",
+      "bytes": 8575,
+      "sha256": "1737e0e1ca440abe205ce866c7bb5f43776d2f731561fe0e08f5ce8d7393c885"
+    },
+    {
+      "path": "database/migrations/20261021224526_provas_temas_tentativas.sql",
+      "bytes": 44615,
+      "sha256": "99b444ba10234a083f76f7800c2b75905f28846db382e0b39dab6a38ee35978b"
+    },
+    {
+      "path": "database/migrations/20261021235611_limpar_acervo_para_reimportacao.sql",
+      "bytes": 1892,
+      "sha256": "e3236398291913fbd2ccadd1e470f8790dfca6b93f944cb009e98469fd9d1f91"
+    },
+    {
+      "path": "database/migrations/20261022000420_concluir_fluxos_provas.sql",
+      "bytes": 8746,
+      "sha256": "1a92a79b3c98127127f444ad5dc9d9696a2a8386885c62106aa091a3aaf32d03"
+    },
+    {
+      "path": "database/migrations/20261022003257_cotas_temas_simulados.sql",
+      "bytes": 7155,
+      "sha256": "743e69c36ea26a3df7a1693d187416ae939f166a9e6618ae1d212dc3257fbd5f"
+    },
+    {
+      "path": "database/migrations/20261022010640_autenticacao_nativa_backend.sql",
+      "bytes": 11341,
+      "sha256": "d31a9e48222b873bd0a629505d7f66f59445fd74ba980a68a161b1c33bf8904e"
+    },
+    {
+      "path": "database/migrations/20261022015536_analises_backend_nativo.sql",
+      "bytes": 2846,
+      "sha256": "9eb80952069162dcd1230b70245256fd2b06b755c42e2a9a4034d61223ab8a75"
+    },
+    {
+      "path": "database/migrations/20261022130214_emails_transacionais.sql",
+      "bytes": 4921,
+      "sha256": "8826f435796774887c2762cb752db4a77cb643a3eae16463d5c4d8e994c16b4b"
+    },
+    {
+      "path": "database/schema-supabase.json",
+      "bytes": 87986,
+      "sha256": "8e2d8109330da622b38c896d505b20e98cda1120b5253075e190cea2e518c45f"
+    },
+    {
+      "path": "database/seed.sql",
+      "bytes": 1200,
+      "sha256": "08aee6fca79308baf05ed93e698e7e5e9b1f2bbe5ee79d200f9ee3405b55d263"
+    },
+    {
+      "path": "database/tests/acompanhamento_estudo.sql",
+      "bytes": 8287,
+      "sha256": "156a56bdf7eb5ae39f0a5488aa9f87671b7a82bbb96f0aca6d18603fc1f8481b"
+    },
+    {
+      "path": "database/tests/analises_questoes.sql",
+      "bytes": 8569,
+      "sha256": "2358c2d65bf6fa278ad4ef9e45bab04cae183253a61d5efd4515212c3d48f8c5"
+    },
+    {
+      "path": "database/tests/cotas_temas_simulados.sql",
+      "bytes": 7738,
+      "sha256": "1810aa2c4bd1009ca0c40355aaabc9c39662470eb71a608be0dafd9d2fa3a86e"
+    },
+    {
+      "path": "database/tests/fixtures/acervo.sql",
+      "bytes": 1172,
+      "sha256": "951706537db99ecf2a67ef807f97126eb1bec7357c381c14eb19da1f4e9b40ee"
+    },
+    {
+      "path": "database/tests/fixtures/identidade_nativa.sql",
+      "bytes": 839,
+      "sha256": "9a53fe6ff9b7b3e0855f7e93341a11c8769daf2260530f9fd699a06c0a985ada"
+    },
+    {
+      "path": "database/tests/provas_temas_tentativas.sql",
+      "bytes": 12718,
+      "sha256": "8469c885c7b8aec79d3278d756ba866339f86a0ff28be3d65d4ebf5d4fa4cb90"
+    },
+    {
+      "path": "database/tests/simulados_odontologia.sql",
+      "bytes": 114,
+      "sha256": "fb41ec8ddabf38f18f0b71454596e313de380dc5a51938ba4610d854bbf6cb8c"
+    },
+    {
+      "path": "database/tests/suporte_administracao.sql",
+      "bytes": 10590,
+      "sha256": "6900c4109678cba4dbbcc51df819a3371bd3669577cbbaded7e8fac0ae12434b"
+    },
+    {
+      "path": "database/tests/usuarios_identidade.sql",
+      "bytes": 5740,
+      "sha256": "7ddab533f8c3f321121ece831d2633c13ca7f9d07bd4c2deb2297fd5d07bf844"
+    },
+    {
+      "path": "docs/AUTENTICACAO_E_IA.md",
+      "bytes": 9830,
+      "sha256": "3b696d8ea5668b0c27c5c869483e7f60db363a76d12d5f6f7d510743275878c2"
+    },
+    {
+      "path": "docs/BANCO_E_MIGRATIONS.md",
+      "bytes": 3984,
+      "sha256": "d6c4f6260c5664013a5410c1e594d6e3dfe58590181c5683d5b87932b7759240"
+    },
+    {
+      "path": "docs/EMAILS_TRANSACIONAIS.md",
+      "bytes": 5052,
+      "sha256": "5e1ae9f3b95cb8ee188714060bc8402a7c0241ae7542b1f58ada8f52609433cf"
+    },
+    {
+      "path": "docs/PADRAO_ARQUITETURAL.md",
+      "bytes": 8251,
+      "sha256": "55a19369054ff5b8b32eac412b47853f1eb3b149ffb075ee7010135c720896d1"
+    },
+    {
+      "path": "docs/PROXIMOS_PASSOS.md",
+      "bytes": 980,
+      "sha256": "203b8f11d539e064ada3c6cffcab9f15992cb975467a54ebadb21c4de6d72d27"
+    },
+    {
+      "path": "docs/PUBLICACAO_RENDER.md",
+      "bytes": 4186,
+      "sha256": "cb9dea5b67320da080aecbdfeb2debe06e5f967f605bb053a2b122f2a035b80d"
+    },
+    {
+      "path": "docs/ROTAS_API.md",
+      "bytes": 12243,
+      "sha256": "4e6a49dd3122a8ad2c77fd25f26226a77108d03e3a5b72b66d14cc1ec2364a34"
+    },
+    {
+      "path": "dotnet-tools.json",
+      "bytes": 183,
+      "sha256": "ee734eba2084039156471163f732c7704ce84f4f764d7037749dc01be8ece65b"
+    },
+    {
+      "path": "global.json",
+      "bytes": 97,
+      "sha256": "1c6737f7e65b0108778ab30ace593c3ec63382090718c2cbc3d6752486178a35"
+    },
+    {
+      "path": "render.yaml",
+      "bytes": 485,
+      "sha256": "59f7797942a5d4d03db26b402c11249043b73303841c7aa9296b14f451fef0f4"
+    },
+    {
+      "path": "skills-lock.json",
+      "bytes": 549,
+      "sha256": "49de692c6cba1170d70315ab5d9e3038ff1253f419cb1bae723cbde4cbbc523b"
+    },
+    {
+      "path": "supabase/.temp/cli-latest",
+      "bytes": 8,
+      "sha256": "268f7ae709209256d49c0d4c3e21b95ef2b87de338c074932e790effc7a728c0"
+    },
+    {
+      "path": "supabase/.temp/linked-project.json",
+      "bytes": 134,
+      "sha256": "8ec2cca2fcd40f1c75bbd2ec597d64ea6a0b7839c02a284699486bf1e410fa3b"
+    },
+    {
+      "path": "tests/ConcursaAI.PostgresChecks/ConcursaAI.PostgresChecks.csproj",
+      "bytes": 318,
+      "sha256": "40636c5143b50f41040e7362343048dbd5e18ffe50713968433958aa9598ff2d"
+    },
+    {
+      "path": "tests/ConcursaAI.PostgresChecks/Program.cs",
+      "bytes": 7683,
+      "sha256": "24c848a10c9a633dcd1fb676df27c189353f746fac2b191b1afae491634678f5"
+    },
+    {
+      "path": "tests/ConcursaAI.PostgresChecks/packages.lock.json",
+      "bytes": 19494,
+      "sha256": "4a24321a40b27d4cda93bce28a73f1068024aefad13db2d9b3fd2c91391bb84c"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Api/ApiFactory.cs",
+      "bytes": 3622,
+      "sha256": "23aabe7065ff27f5f302e4e5c860d8ae48fa4046cec072b1ca2a626ed9dc31d5"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Api/EndpointsTests.cs",
+      "bytes": 4840,
+      "sha256": "4f745c35e987dfbcbef5159362ee592c2d5edf40c74eb040a5662e5b117acaad"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Api/PadraoArquiteturalTests.cs",
+      "bytes": 5842,
+      "sha256": "bb5ed3dddfa4b5c71eeb1c9c7b6b42dcb4d8d9803137077ec2feb4a8889f6e71"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Api/SegurancaContratosTests.cs",
+      "bytes": 4682,
+      "sha256": "58f0eb8f7a1571aa1b6df6e2ee3ec3a080fbfcf783a234dde8105350c953f080"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Api/SessaoNavegadorTests.cs",
+      "bytes": 11106,
+      "sha256": "cfdef749be1fe1b2c6d1884b908c982ac059e939ff0cbd73affc0eb72d853a45"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Apoio/CenarioService.cs",
+      "bytes": 1377,
+      "sha256": "e56d860b53a0fd6043ae6c6c69bbfd9ad37836edb337cc7ab3dd687e3bf5122a"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Apoio/ContasMemoria.cs",
+      "bytes": 7614,
+      "sha256": "e674d871ea3819e2a1a99d1fbf1f80250826b3dc6d129468f5cd368723af785f"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Apoio/RepositorioIsoladoTests.cs",
+      "bytes": 4703,
+      "sha256": "ee83e55f7abeee32154fe44d912931d803869c7ffc93e8878ac374cb8c8ce3e9"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/ConcursaAI.Tests.csproj",
+      "bytes": 1148,
+      "sha256": "c4cff8909bd44be7914dd2ce4ccaab87b790c0e38ec473c42c9c7b0ebb08d288"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/CepServiceTests.cs",
+      "bytes": 1870,
+      "sha256": "c88c00a2ee10456a4bfa66d285487c45c38be4f635f66d5ee45e1d6f05752f61"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/CompatibilidadeSchemaTests.cs",
+      "bytes": 4484,
+      "sha256": "2e916f8e6bda2d284301b4845753db6eb8451e21ac9be732e90cc95b01b1abb9"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/ConfiguracaoAppsettingsTests.cs",
+      "bytes": 2251,
+      "sha256": "5aa2bea5ed71c0aa30ecb2ed204bde692e87f059a4788d888e95b4dccdf367b0"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/ContratosSupabaseTests.cs",
+      "bytes": 7201,
+      "sha256": "4bfffdb41ffe9d854e5a52448b2de23cdb098b6e586a84eb85de7cc6072ba0e1"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/DataApiSupabaseTests.cs",
+      "bytes": 11683,
+      "sha256": "c720ae9ec7ff0b171eada66cdd242c06078f270815dc98533121bc97f9b1f63a"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/EmailsTransacionaisTests.cs",
+      "bytes": 5466,
+      "sha256": "c46f596547888ac51b2c1f3a93178803f04ce6d54582a8d1d6c5f0da025e3d19"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/GoogleIdentidadeTests.cs",
+      "bytes": 3306,
+      "sha256": "1f4a3017a291286839b762b18dfb4c1c1fd44c3b76f65fb1f412e77308dbddc8"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/IndicesLegadosTests.cs",
+      "bytes": 1883,
+      "sha256": "78da29a4d6ab2590c3dd84bc3ce49dacb8f0451d479299a66be1d57ce990f1c1"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Infra/OpenAIAnaliseTests.cs",
+      "bytes": 3051,
+      "sha256": "aff8a4813822ea0f3543cf7029c8c8ec173f94e9ed88f7c1e66d045af8caa0f9"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Services/AutenticacaoIntegracaoTests.cs",
+      "bytes": 7474,
+      "sha256": "c550cd70317c422efe10676dadf1df5d93f370dc2ec02c3e0d8c430812a2fc88"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Services/CadastroPessoaTests.cs",
+      "bytes": 1528,
+      "sha256": "911164312a1dd9878da0b5f4efc3c3e491214b334a05dfc807ee44ae857692f9"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Services/GoogleAutenticacaoTests.cs",
+      "bytes": 3474,
+      "sha256": "8b6062b5712fb04586c4d15a3109f71ec7a09f81f7de7eea1f49fbc2f95203fa"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Services/RegrasAcessoTests.cs",
+      "bytes": 9334,
+      "sha256": "1d951014628efa663c24bd8c477117604bbfecf5b42a312cfce6cd414f9f69dd"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Simulados/CotasTemasTests.cs",
+      "bytes": 2364,
+      "sha256": "25bbd72bc815c1342e8e9eece1894330a5143bf5881dbd023348cf6f8276760c"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/Simulados/DistribuicaoQuestoesTests.cs",
+      "bytes": 2814,
+      "sha256": "c7fe00db25605424bb732fd75fa0a0b69eb55fe61046963d6f837399c488eee5"
+    },
+    {
+      "path": "tests/ConcursaAI.Tests/packages.lock.json",
+      "bytes": 33369,
+      "sha256": "e361f28600d68145b9c46e11d965289096e303a1872ed08afdf6bece145cf464"
+    },
+    {
+      "path": "tools/importacao/imports/apostila-odontologia-ppgo-ufu-2023.json",
+      "bytes": 582160,
+      "sha256": "2908618ddbd05ebf27ed396e69e6e55aa92a5e47279f593d215d9976c928f780"
+    },
+    {
+      "path": "tools/importacao/scripts/importar-apostila-odontologia.mjs",
+      "bytes": 368,
+      "sha256": "9021decaf55ef2ff55d9805fd2a26ba65a2b24041b2b1cfcdf03f103cdedd378"
+    },
+    {
+      "path": "tools/importacao/scripts/importar-prova.mjs",
+      "bytes": 6565,
+      "sha256": "42b052008d11b514b02405e990a6948f3f5173a96e0d1fe6da13ffce70e33e8f"
+    },
+    {
+      "path": "tools/importacao/scripts/importar-prova.test.mjs",
+      "bytes": 2015,
+      "sha256": "63f83558b2000621ea78612ec07e66e7333e02d138146457f65bc9b720b1d04c"
+    }
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/Administracao/obter-metricas-sistema",
+      "action": "obterMetricasSistema",
+      "request": "ObterMetricasSistemaRequestModel",
+      "response": "MetricasSistemaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Administracao",
+      "source": "ConcursaAI.Api/Controllers/AdministracaoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/AnaliseQuestao/consultar-analise-questao",
+      "action": "consultarAnaliseQuestao",
+      "request": "ConsultarAnaliseQuestaoRequestModel",
+      "response": "ConsultarAnaliseQuestaoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "AnaliseQuestao",
+      "source": "ConcursaAI.Api/Controllers/AnaliseQuestaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/AnaliseQuestao/solicitar-analise-questao",
+      "action": "solicitarAnaliseQuestao",
+      "request": "SolicitarAnaliseQuestaoRequestModel",
+      "response": "AnaliseQuestaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "AnaliseQuestao",
+      "source": "ConcursaAI.Api/Controllers/AnaliseQuestaoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Assunto/listar-assuntos",
+      "action": "listarAssuntos",
+      "request": "ListarAssuntosRequestModel",
+      "response": "ListarAssuntosResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Assunto",
+      "source": "ConcursaAI.Api/Controllers/AssuntoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Assunto/obter-assunto",
+      "action": "obterAssunto",
+      "request": "ObterAssuntoRequestModel",
+      "response": "AssuntoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Assunto",
+      "source": "ConcursaAI.Api/Controllers/AssuntoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Assunto/criar-assunto",
+      "action": "criarAssunto",
+      "request": "CriarAssuntoRequestModel",
+      "response": "AssuntoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Assunto",
+      "source": "ConcursaAI.Api/Controllers/AssuntoController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Assunto/atualizar-assunto",
+      "action": "atualizarAssunto",
+      "request": "AtualizarAssuntoRequestModel",
+      "response": "AssuntoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Assunto",
+      "source": "ConcursaAI.Api/Controllers/AssuntoController.cs"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/Assunto/excluir-assunto",
+      "action": "excluirAssunto",
+      "request": "ExcluirAssuntoRequestModel",
+      "response": "AssuntoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Assunto",
+      "source": "ConcursaAI.Api/Controllers/AssuntoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/confirmar-email",
+      "action": "confirmarEmail",
+      "request": "ConfirmarEmailAutenticacaoRequestModel",
+      "response": "MensagemAutenticacaoResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/redefinir-senha",
+      "action": "redefinirSenha",
+      "request": "RedefinirSenhaRequestModel",
+      "response": "MensagemAutenticacaoResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/entrar-estudante",
+      "action": "entrarEstudante",
+      "request": "EntrarEstudanteRequestModel",
+      "response": "SessaoResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/entrar-administrador",
+      "action": "entrarAdministrador",
+      "request": "EntrarAdministradorRequestModel",
+      "response": "SessaoResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/cadastrar-estudante",
+      "action": "cadastrarEstudante",
+      "request": "CadastrarEstudanteRequestModel",
+      "response": "CadastroEstudanteResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/renovar-sessao",
+      "action": "renovarSessao",
+      "request": "RenovarSessaoRequestModel",
+      "response": "SessaoResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/solicitar-recuperacao-senha",
+      "action": "solicitarRecuperacaoSenha",
+      "request": "SolicitarRecuperacaoSenhaRequestModel",
+      "response": "MensagemAutenticacaoResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/reenviar-confirmacao",
+      "action": "reenviarConfirmacao",
+      "request": "ReenviarConfirmacaoRequestModel",
+      "response": "MensagemAutenticacaoResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Autenticacao/sair-sessao",
+      "action": "sairSessao",
+      "request": "SairSessaoRequestModel",
+      "response": "MensagemAutenticacaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Autenticacao/atualizar-senha",
+      "action": "atualizarSenha",
+      "request": "AtualizarSenhaRequestModel",
+      "response": "MensagemAutenticacaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Autenticacao",
+      "source": "ConcursaAI.Api/Controllers/AutenticacaoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Banca/listar-bancas",
+      "action": "listarBancas",
+      "request": "ListarBancasRequestModel",
+      "response": "ListarBancasResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Banca",
+      "source": "ConcursaAI.Api/Controllers/BancaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Banca/obter-banca",
+      "action": "obterBanca",
+      "request": "ObterBancaRequestModel",
+      "response": "BancaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Banca",
+      "source": "ConcursaAI.Api/Controllers/BancaController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Banca/criar-banca",
+      "action": "criarBanca",
+      "request": "CriarBancaRequestModel",
+      "response": "BancaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Banca",
+      "source": "ConcursaAI.Api/Controllers/BancaController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Banca/atualizar-banca",
+      "action": "atualizarBanca",
+      "request": "AtualizarBancaRequestModel",
+      "response": "BancaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Banca",
+      "source": "ConcursaAI.Api/Controllers/BancaController.cs"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/Banca/excluir-banca",
+      "action": "excluirBanca",
+      "request": "ExcluirBancaRequestModel",
+      "response": "BancaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Banca",
+      "source": "ConcursaAI.Api/Controllers/BancaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Cep/consultar-cep",
+      "action": "consultarCep",
+      "request": "ConsultarCepRequestModel",
+      "response": "ConsultarCepResponseModel",
+      "binding": "query",
+      "anonymous": true,
+      "controller": "Cep",
+      "source": "ConcursaAI.Api/Controllers/CepController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Concurso/listar-concursos",
+      "action": "listarConcursos",
+      "request": "ListarConcursosRequestModel",
+      "response": "ListarConcursosResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Concurso",
+      "source": "ConcursaAI.Api/Controllers/ConcursoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Concurso/obter-concurso",
+      "action": "obterConcurso",
+      "request": "ObterConcursoRequestModel",
+      "response": "ConcursoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Concurso",
+      "source": "ConcursaAI.Api/Controllers/ConcursoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Concurso/criar-concurso",
+      "action": "criarConcurso",
+      "request": "CriarConcursoRequestModel",
+      "response": "ConcursoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Concurso",
+      "source": "ConcursaAI.Api/Controllers/ConcursoController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Concurso/atualizar-concurso",
+      "action": "atualizarConcurso",
+      "request": "AtualizarConcursoRequestModel",
+      "response": "ConcursoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Concurso",
+      "source": "ConcursaAI.Api/Controllers/ConcursoController.cs"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/Concurso/excluir-concurso",
+      "action": "excluirConcurso",
+      "request": "ExcluirConcursoRequestModel",
+      "response": "ConcursoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Concurso",
+      "source": "ConcursaAI.Api/Controllers/ConcursoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Conta/obter-minha-conta",
+      "action": "obterMinhaConta",
+      "request": "ObterMinhaContaRequestModel",
+      "response": "MinhaContaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Conta",
+      "source": "ConcursaAI.Api/Controllers/ContaController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Conta/atualizar-minha-conta",
+      "action": "atualizarMinhaConta",
+      "request": "AtualizarMinhaContaRequestModel",
+      "response": "MinhaContaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Conta",
+      "source": "ConcursaAI.Api/Controllers/ContaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Disciplina/listar-disciplinas",
+      "action": "listarDisciplinas",
+      "request": "ListarDisciplinasRequestModel",
+      "response": "ListarDisciplinasResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Disciplina",
+      "source": "ConcursaAI.Api/Controllers/DisciplinaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Disciplina/obter-disciplina",
+      "action": "obterDisciplina",
+      "request": "ObterDisciplinaRequestModel",
+      "response": "DisciplinaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Disciplina",
+      "source": "ConcursaAI.Api/Controllers/DisciplinaController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Disciplina/criar-disciplina",
+      "action": "criarDisciplina",
+      "request": "CriarDisciplinaRequestModel",
+      "response": "DisciplinaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Disciplina",
+      "source": "ConcursaAI.Api/Controllers/DisciplinaController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Disciplina/atualizar-disciplina",
+      "action": "atualizarDisciplina",
+      "request": "AtualizarDisciplinaRequestModel",
+      "response": "DisciplinaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Disciplina",
+      "source": "ConcursaAI.Api/Controllers/DisciplinaController.cs"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/Disciplina/desativar-disciplina",
+      "action": "desativarDisciplina",
+      "request": "DesativarDisciplinaRequestModel",
+      "response": "DisciplinaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Disciplina",
+      "source": "ConcursaAI.Api/Controllers/DisciplinaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/EmailsTransacionais/listar-historico",
+      "action": "listarHistorico",
+      "request": "ListarEmailsTransacionaisRequestModel",
+      "response": "ListarEmailsTransacionaisResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "EmailsTransacionais",
+      "source": "ConcursaAI.Api/Controllers/EmailsTransacionaisController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/EmailsTransacionais/obter-metricas",
+      "action": "obterMetricas",
+      "request": "ObterMetricasEmailsRequestModel",
+      "response": "MetricasEmailsResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "EmailsTransacionais",
+      "source": "ConcursaAI.Api/Controllers/EmailsTransacionaisController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/EmailsTransacionais/reprocessar-falha",
+      "action": "reprocessarFalha",
+      "request": "ReprocessarEmailRequestModel",
+      "response": "ReprocessarEmailResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "EmailsTransacionais",
+      "source": "ConcursaAI.Api/Controllers/EmailsTransacionaisController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/EmailsTransacionais/listar-fluxos",
+      "action": "listarFluxos",
+      "request": "ListarFluxosEmailRequestModel",
+      "response": "ListarFluxosEmailResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "EmailsTransacionais",
+      "source": "ConcursaAI.Api/Controllers/EmailsTransacionaisController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/EmailsTransacionais/atualizar-fluxo",
+      "action": "atualizarFluxo",
+      "request": "AtualizarFluxoEmailRequestModel",
+      "response": "FluxoEmailResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "EmailsTransacionais",
+      "source": "ConcursaAI.Api/Controllers/EmailsTransacionaisController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Estudo/obter-resumo-revisao",
+      "action": "obterResumoRevisao",
+      "request": "ObterResumoRevisaoRequestModel",
+      "response": "ResumoRevisaoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Estudo",
+      "source": "ConcursaAI.Api/Controllers/EstudoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Estudo/listar-questoes-revisao",
+      "action": "listarQuestoesRevisao",
+      "request": "ListarQuestoesRevisaoRequestModel",
+      "response": "ListarQuestoesRevisaoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Estudo",
+      "source": "ConcursaAI.Api/Controllers/EstudoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Estudo/gerar-treino-revisao",
+      "action": "gerarTreinoRevisao",
+      "request": "GerarTreinoRevisaoRequestModel",
+      "response": "GerarSimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Estudo",
+      "source": "ConcursaAI.Api/Controllers/EstudoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Estudo/gerar-treino-recomendado",
+      "action": "gerarTreinoRecomendado",
+      "request": "GerarTreinoRecomendadoRequestModel",
+      "response": "GerarSimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Estudo",
+      "source": "ConcursaAI.Api/Controllers/EstudoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Estudo/obter-estatisticas-assuntos",
+      "action": "obterEstatisticasAssuntos",
+      "request": "ObterEstatisticasAssuntosRequestModel",
+      "response": "EstatisticasAssuntosResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Estudo",
+      "source": "ConcursaAI.Api/Controllers/EstudoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Estudo/obter-meta-semanal",
+      "action": "obterMetaSemanal",
+      "request": "ObterMetaSemanalRequestModel",
+      "response": "MetaSemanalResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Estudo",
+      "source": "ConcursaAI.Api/Controllers/EstudoController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Estudo/salvar-meta-semanal",
+      "action": "salvarMetaSemanal",
+      "request": "SalvarMetaSemanalRequestModel",
+      "response": "MetaSemanalResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Estudo",
+      "source": "ConcursaAI.Api/Controllers/EstudoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Navegador/obter-configuracao-acesso",
+      "action": "obterConfiguracaoAcesso",
+      "request": "ObterConfiguracaoAcessoRequestModel",
+      "response": "ConfiguracaoAcessoResponseModel",
+      "binding": "query",
+      "anonymous": true,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Navegador/obter-vinculo-google",
+      "action": "obterVinculoGoogle",
+      "request": "ObterVinculoGoogleRequestModel",
+      "response": "VinculoGoogleResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/iniciar-vinculo-google",
+      "action": "iniciarVinculoGoogle",
+      "request": "IniciarVinculoGoogleRequestModel",
+      "response": "UrlGoogleResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/iniciar-google",
+      "action": "iniciarGoogle",
+      "request": "IniciarGoogleRequestModel",
+      "response": "UrlGoogleResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/concluir-google",
+      "action": "concluirGoogle",
+      "request": "ConcluirGoogleRequestModel",
+      "response": "SessaoNavegadorResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/entrar-estudante",
+      "action": "entrarEstudante",
+      "request": "EntrarEstudanteRequestModel",
+      "response": "SessaoNavegadorResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/entrar-administrador",
+      "action": "entrarAdministrador",
+      "request": "EntrarAdministradorRequestModel",
+      "response": "SessaoNavegadorResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/renovar-sessao",
+      "action": "renovarSessao",
+      "request": "RenovarSessaoNavegadorRequestModel",
+      "response": "SessaoNavegadorResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/confirmar-sessao",
+      "action": "confirmarSessao",
+      "request": "RenovarSessaoRequestModel",
+      "response": "SessaoNavegadorResponseModel",
+      "binding": "body",
+      "anonymous": true,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Navegador/sair-sessao",
+      "action": "sairSessao",
+      "request": "SairSessaoRequestModel",
+      "response": "MensagemAutenticacaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Navegador",
+      "source": "ConcursaAI.Api/Controllers/NavegadorController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/PreferenciaComunicacao/obter-minha-preferencia",
+      "action": "obterMinhaPreferencia",
+      "request": "ObterPreferenciaComunicacaoRequestModel",
+      "response": "PreferenciaComunicacaoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "PreferenciaComunicacao",
+      "source": "ConcursaAI.Api/Controllers/PreferenciaComunicacaoController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/PreferenciaComunicacao/atualizar-minha-preferencia",
+      "action": "atualizarMinhaPreferencia",
+      "request": "PreferenciaComunicacaoRequestModel",
+      "response": "PreferenciaComunicacaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "PreferenciaComunicacao",
+      "source": "ConcursaAI.Api/Controllers/PreferenciaComunicacaoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Prova/listar-provas",
+      "action": "listarProvas",
+      "request": "ListarProvasRequestModel",
+      "response": "ListarProvasResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Prova",
+      "source": "ConcursaAI.Api/Controllers/ProvaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Prova/obter-prova",
+      "action": "obterProva",
+      "request": "ObterProvaRequestModel",
+      "response": "ProvaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Prova",
+      "source": "ConcursaAI.Api/Controllers/ProvaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Prova/listar-temas",
+      "action": "listarTemas",
+      "request": "ListarTemasRequestModel",
+      "response": "ListarTemasResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Prova",
+      "source": "ConcursaAI.Api/Controllers/ProvaController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Prova/criar-prova",
+      "action": "criarProva",
+      "request": "CriarProvaRequestModel",
+      "response": "ProvaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Prova",
+      "source": "ConcursaAI.Api/Controllers/ProvaController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Prova/atualizar-prova",
+      "action": "atualizarProva",
+      "request": "AtualizarProvaRequestModel",
+      "response": "ProvaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Prova",
+      "source": "ConcursaAI.Api/Controllers/ProvaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Prova/listar-pendencias-provas",
+      "action": "listarPendenciasProvas",
+      "request": "ListarPendenciasProvasRequestModel",
+      "response": "ListarPendenciasProvasResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Prova",
+      "source": "ConcursaAI.Api/Controllers/ProvaController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Prova/iniciar-prova",
+      "action": "iniciarProva",
+      "request": "IniciarProvaRequestModel",
+      "response": "TentativaSimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Prova",
+      "source": "ConcursaAI.Api/Controllers/ProvaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Questao/listar-questoes",
+      "action": "listarQuestoes",
+      "request": "ListarQuestoesRequestModel",
+      "response": "ListarQuestoesResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Questao",
+      "source": "ConcursaAI.Api/Controllers/QuestaoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Questao/obter-questao",
+      "action": "obterQuestao",
+      "request": "ObterQuestaoRequestModel",
+      "response": "QuestaoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Questao",
+      "source": "ConcursaAI.Api/Controllers/QuestaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Questao/criar-questao",
+      "action": "criarQuestao",
+      "request": "CriarQuestaoRequestModel",
+      "response": "QuestaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Questao",
+      "source": "ConcursaAI.Api/Controllers/QuestaoController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Questao/atualizar-questao",
+      "action": "atualizarQuestao",
+      "request": "AtualizarQuestaoRequestModel",
+      "response": "QuestaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Questao",
+      "source": "ConcursaAI.Api/Controllers/QuestaoController.cs"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/Questao/arquivar-questao",
+      "action": "arquivarQuestao",
+      "request": "ArquivarQuestaoRequestModel",
+      "response": "QuestaoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Questao",
+      "source": "ConcursaAI.Api/Controllers/QuestaoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/ResendWebhook/registrar-evento-entrega",
+      "action": "registrarEventoEntrega",
+      "request": "RegistrarEventoEntregaRequestModel",
+      "response": "RegistrarEventoEntregaResponseModel",
+      "binding": "query",
+      "anonymous": true,
+      "controller": "ResendWebhook",
+      "source": "ConcursaAI.Api/Controllers/ResendWebhookController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Simulado/criar-simulado-filtrado",
+      "action": "criarSimuladoFiltrado",
+      "request": "CriarSimuladoFiltradoRequestModel",
+      "response": "GerarSimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Simulado",
+      "source": "ConcursaAI.Api/Controllers/SimuladoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Simulado/listar-simulados",
+      "action": "listarSimulados",
+      "request": "ListarSimuladosRequestModel",
+      "response": "ListarSimuladosResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Simulado",
+      "source": "ConcursaAI.Api/Controllers/SimuladoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Simulado/obter-simulado",
+      "action": "obterSimulado",
+      "request": "ObterSimuladoRequestModel",
+      "response": "SimuladoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Simulado",
+      "source": "ConcursaAI.Api/Controllers/SimuladoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Simulado/criar-simulado",
+      "action": "criarSimulado",
+      "request": "CriarSimuladoRequestModel",
+      "response": "SimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Simulado",
+      "source": "ConcursaAI.Api/Controllers/SimuladoController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Simulado/atualizar-simulado",
+      "action": "atualizarSimulado",
+      "request": "AtualizarSimuladoRequestModel",
+      "response": "SimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Simulado",
+      "source": "ConcursaAI.Api/Controllers/SimuladoController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Simulado/gerar-simulado-personalizado",
+      "action": "gerarSimuladoPersonalizado",
+      "request": "GerarSimuladoPersonalizadoRequestModel",
+      "response": "GerarSimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Simulado",
+      "source": "ConcursaAI.Api/Controllers/SimuladoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Simulado/obter-disponibilidade-assuntos",
+      "action": "obterDisponibilidadeAssuntos",
+      "request": "ObterDisponibilidadeAssuntosRequestModel",
+      "response": "DisponibilidadeAssuntosResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Simulado",
+      "source": "ConcursaAI.Api/Controllers/SimuladoController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Sistema/verificar-sistema",
+      "action": "verificarSistema",
+      "request": "VerificarSistemaRequestModel",
+      "response": "VerificarSistemaResponseModel",
+      "binding": "query",
+      "anonymous": true,
+      "controller": "Sistema",
+      "source": "ConcursaAI.Api/Controllers/SistemaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Suporte/listar-chamados",
+      "action": "listarChamados",
+      "request": "ListarChamadosRequestModel",
+      "response": "ListarChamadosResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Suporte",
+      "source": "ConcursaAI.Api/Controllers/SuporteController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Suporte/obter-chamado",
+      "action": "obterChamado",
+      "request": "ObterChamadoRequestModel",
+      "response": "ChamadoSuporteResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Suporte",
+      "source": "ConcursaAI.Api/Controllers/SuporteController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Suporte/abrir-chamado",
+      "action": "abrirChamado",
+      "request": "AbrirChamadoRequestModel",
+      "response": "ChamadoSuporteResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Suporte",
+      "source": "ConcursaAI.Api/Controllers/SuporteController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Suporte/responder-chamado",
+      "action": "responderChamado",
+      "request": "ResponderChamadoRequestModel",
+      "response": "ChamadoSuporteResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Suporte",
+      "source": "ConcursaAI.Api/Controllers/SuporteController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Suporte/finalizar-chamado",
+      "action": "finalizarChamado",
+      "request": "FinalizarChamadoRequestModel",
+      "response": "ChamadoSuporteResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Suporte",
+      "source": "ConcursaAI.Api/Controllers/SuporteController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Tentativa/iniciar-tentativa-simulado",
+      "action": "iniciarTentativaSimulado",
+      "request": "IniciarTentativaSimuladoRequestModel",
+      "response": "TentativaSimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Tentativa",
+      "source": "ConcursaAI.Api/Controllers/TentativaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Tentativa/obter-tentativa-simulado",
+      "action": "obterTentativaSimulado",
+      "request": "ObterTentativaSimuladoRequestModel",
+      "response": "TentativaSimuladoResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Tentativa",
+      "source": "ConcursaAI.Api/Controllers/TentativaController.cs"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/Tentativa/responder-questao-simulado",
+      "action": "responderQuestaoSimulado",
+      "request": "ResponderQuestaoSimuladoRequestModel",
+      "response": "TentativaSimuladoResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Tentativa",
+      "source": "ConcursaAI.Api/Controllers/TentativaController.cs"
+    },
+    {
+      "method": "POST",
+      "path": "/api/Tentativa/finalizar-tentativa-simulado",
+      "action": "finalizarTentativaSimulado",
+      "request": "FinalizarTentativaSimuladoRequestModel",
+      "response": "ResultadoTentativaResponseModel",
+      "binding": "body",
+      "anonymous": false,
+      "controller": "Tentativa",
+      "source": "ConcursaAI.Api/Controllers/TentativaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Tentativa/obter-resultado-tentativa",
+      "action": "obterResultadoTentativa",
+      "request": "ObterResultadoTentativaRequestModel",
+      "response": "ResultadoTentativaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Tentativa",
+      "source": "ConcursaAI.Api/Controllers/TentativaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Tentativa/listar-minhas-tentativas",
+      "action": "listarMinhasTentativas",
+      "request": "ListarMinhasTentativasRequestModel",
+      "response": "ListarTentativasResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Tentativa",
+      "source": "ConcursaAI.Api/Controllers/TentativaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Tentativa/obter-questoes-tentativa",
+      "action": "obterQuestoesTentativa",
+      "request": "ObterQuestoesTentativaRequestModel",
+      "response": "QuestoesTentativaResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Tentativa",
+      "source": "ConcursaAI.Api/Controllers/TentativaController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Usuario/obter-meu-usuario",
+      "action": "obterMeuUsuario",
+      "request": "ObterMeuUsuarioRequestModel",
+      "response": "UsuarioResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Usuario",
+      "source": "ConcursaAI.Api/Controllers/UsuarioController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Usuario/listar-usuarios",
+      "action": "listarUsuarios",
+      "request": "ListarUsuariosRequestModel",
+      "response": "ListarUsuariosResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Usuario",
+      "source": "ConcursaAI.Api/Controllers/UsuarioController.cs"
+    },
+    {
+      "method": "GET",
+      "path": "/api/Usuario/obter-usuario",
+      "action": "obterUsuario",
+      "request": "ObterUsuarioRequestModel",
+      "response": "UsuarioResponseModel",
+      "binding": "query",
+      "anonymous": false,
+      "controller": "Usuario",
+      "source": "ConcursaAI.Api/Controllers/UsuarioController.cs"
+    }
+  ],
+  "models": [
+    "MetricasSistemaResponseModel",
+    "ObterMetricasSistemaRequestModel",
+    "AtualizarSenhaRequestModel",
+    "CadastrarEstudanteRequestModel",
+    "CadastroEstudanteResponseModel",
+    "ConcluirGoogleRequestModel",
+    "ConfiguracaoAcessoResponseModel",
+    "ConfirmarEmailAutenticacaoRequestModel",
+    "EntrarAdministradorRequestModel",
+    "EntrarContaRequestModel",
+    "EntrarEstudanteRequestModel",
+    "FluxoGoogleResponseModel",
+    "IniciarGoogleRequestModel",
+    "IniciarVinculoGoogleRequestModel",
+    "MensagemAutenticacaoResponseModel",
+    "ObterConfiguracaoAcessoRequestModel",
+    "ObterVinculoGoogleRequestModel",
+    "RedefinirSenhaRequestModel",
+    "ReenviarConfirmacaoRequestModel",
+    "RenovarSessaoNavegadorRequestModel",
+    "RenovarSessaoRequestModel",
+    "SairSessaoRequestModel",
+    "SessaoNavegadorResponseModel",
+    "SessaoResponseModel",
+    "SolicitarRecuperacaoSenhaRequestModel",
+    "TrocarCodigoGoogleRequestModel",
+    "UrlGoogleResponseModel",
+    "VinculoGoogleResponseModel",
+    "AssuntoResponseModel",
+    "AtualizarAssuntoRequestModel",
+    "CriarAssuntoRequestModel",
+    "ExcluirAssuntoRequestModel",
+    "ListarAssuntosRequestModel",
+    "ListarAssuntosResponseModel",
+    "ObterAssuntoRequestModel",
+    "AtualizarBancaRequestModel",
+    "BancaResponseModel",
+    "CriarBancaRequestModel",
+    "ExcluirBancaRequestModel",
+    "ListarBancasRequestModel",
+    "ListarBancasResponseModel",
+    "ObterBancaRequestModel",
+    "AtualizarConcursoRequestModel",
+    "ConcursoResponseModel",
+    "CriarConcursoRequestModel",
+    "ExcluirConcursoRequestModel",
+    "ListarConcursosRequestModel",
+    "ListarConcursosResponseModel",
+    "ObterConcursoRequestModel",
+    "AtualizarDisciplinaRequestModel",
+    "CriarDisciplinaRequestModel",
+    "DesativarDisciplinaRequestModel",
+    "DisciplinaResponseModel",
+    "ListarDisciplinasRequestModel",
+    "ListarDisciplinasResponseModel",
+    "ObterDisciplinaRequestModel",
+    "AtualizarFluxoEmailRequestModel",
+    "EmailTransacionalResponseModel",
+    "FluxoEmailResponseModel",
+    "ListarEmailsTransacionaisRequestModel",
+    "ListarEmailsTransacionaisResponseModel",
+    "ListarFluxosEmailRequestModel",
+    "ListarFluxosEmailResponseModel",
+    "MetricasEmailsResponseModel",
+    "ObterMetricasEmailsRequestModel",
+    "ObterPreferenciaComunicacaoRequestModel",
+    "PreferenciaComunicacaoRequestModel",
+    "PreferenciaComunicacaoResponseModel",
+    "RegistrarEventoEntregaRequestModel",
+    "RegistrarEventoEntregaResponseModel",
+    "ReprocessarEmailRequestModel",
+    "ReprocessarEmailResponseModel",
+    "EstatisticaAssuntoResponseModel",
+    "EstatisticasAssuntosResponseModel",
+    "GerarTreinoRecomendadoRequestModel",
+    "GerarTreinoRevisaoRequestModel",
+    "ListarQuestoesRevisaoRequestModel",
+    "ListarQuestoesRevisaoResponseModel",
+    "MetaSemanalResponseModel",
+    "ObterEstatisticasAssuntosRequestModel",
+    "ObterMetaSemanalRequestModel",
+    "ObterResumoRevisaoRequestModel",
+    "PrepararTreinoRequestModel",
+    "ProgressoDiaResponseModel",
+    "QuestaoRevisaoResponseModel",
+    "ResumoRevisaoResponseModel",
+    "SalvarMetaSemanalRequestModel",
+    "AtualizarMinhaContaRequestModel",
+    "DadosPessoaRequestModel",
+    "ListarUsuariosRequestModel",
+    "ListarUsuariosResponseModel",
+    "MinhaContaResponseModel",
+    "ObterMeuUsuarioRequestModel",
+    "ObterMinhaContaRequestModel",
+    "ObterUsuarioRequestModel",
+    "PessoaResponseModel",
+    "UsuarioResponseModel",
+    "ConsultarCepRequestModel",
+    "ConsultarCepResponseModel",
+    "AnaliseQuestaoResponseModel",
+    "ConsultarAnaliseQuestaoRequestModel",
+    "ConsultarAnaliseQuestaoResponseModel",
+    "ConteudoAnaliseQuestaoResponseModel",
+    "JustificativaAlternativaResponseModel",
+    "SolicitarAnaliseQuestaoRequestModel",
+    "ValidarAnaliseQuestaoRequestModel",
+    "AtualizarProvaRequestModel",
+    "CriarProvaRequestModel",
+    "IniciarProvaRequestModel",
+    "ListarPendenciasProvasRequestModel",
+    "ListarPendenciasProvasResponseModel",
+    "ListarProvasRequestModel",
+    "ListarProvasResponseModel",
+    "ListarTemasRequestModel",
+    "ListarTemasResponseModel",
+    "ObterProvaRequestModel",
+    "PendenciaProvaResponseModel",
+    "ProvaResponseModel",
+    "TemaResponseModel",
+    "AlternativaQuestaoRequestModel",
+    "AlternativaQuestaoResponseModel",
+    "AlternativaVinculadaResponseModel",
+    "ArquivarQuestaoRequestModel",
+    "AtualizarQuestaoRequestModel",
+    "CriarQuestaoRequestModel",
+    "GabaritoQuestaoResponseModel",
+    "ListarQuestoesRequestModel",
+    "ListarQuestoesResponseModel",
+    "ObterQuestaoRequestModel",
+    "QuestaoPublicaResponseModel",
+    "QuestaoResponseModel",
+    "AtualizarSimuladoRequestModel",
+    "ComposicaoSimuladoResponseModel",
+    "CorrecaoBancoResponseModel",
+    "CotaAssuntoRequestModel",
+    "CotaTemaRequestModel",
+    "CriarSimuladoFiltradoRequestModel",
+    "CriarSimuladoRequestModel",
+    "DisponibilidadeAssuntoResponseModel",
+    "DisponibilidadeAssuntosResponseModel",
+    "FinalizarTentativaSimuladoRequestModel",
+    "GerarSimuladoPersonalizadoRequestModel",
+    "GerarSimuladoResponseModel",
+    "IniciarTentativaSimuladoRequestModel",
+    "ItemCorrecaoBancoResponseModel",
+    "ItemResultadoTentativaResponseModel",
+    "ListarMinhasTentativasRequestModel",
+    "ListarSimuladosRequestModel",
+    "ListarSimuladosResponseModel",
+    "ListarTentativasResponseModel",
+    "ObterDisponibilidadeAssuntosRequestModel",
+    "ObterQuestoesTentativaRequestModel",
+    "ObterResultadoTentativaRequestModel",
+    "ObterSimuladoRequestModel",
+    "ObterTentativaSimuladoRequestModel",
+    "QuestoesTentativaResponseModel",
+    "ResponderQuestaoSimuladoRequestModel",
+    "RespostaTentativaResponseModel",
+    "RespostaTentativaVinculadaResponseModel",
+    "ResultadoTentativaResponseModel",
+    "SimuladoResponseModel",
+    "TentativaSimuladoResponseModel",
+    "VerificarSistemaRequestModel",
+    "VerificarSistemaResponseModel",
+    "AbrirChamadoRequestModel",
+    "ChamadoSuporteResponseModel",
+    "FinalizarChamadoRequestModel",
+    "ListarChamadosRequestModel",
+    "ListarChamadosResponseModel",
+    "MensagemChamadoResponseModel",
+    "ObterChamadoRequestModel",
+    "ResponderChamadoRequestModel"
+  ]
+}

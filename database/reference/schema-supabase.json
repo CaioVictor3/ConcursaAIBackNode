@@ -1,0 +1,2931 @@
+{
+  "colunas": [
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idAlternativa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "alternativas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idQuestao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "alternativas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "letra",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "alternativas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "texto",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "alternativas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "ordem",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 5,
+      "table_name": "alternativas",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criada_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "alternativas",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idUsuario",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "analises_questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idQuestao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "analises_questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "contexto_hash",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "analises_questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "status",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "analises_questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idSolicitacao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "analises_questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "conteudo",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "analises_questoes",
+      "udt_name": "jsonb"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "modelo",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "analises_questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "iniciada_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "analises_questoes",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "gerada_em",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 9,
+      "table_name": "analises_questoes",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idAssunto",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "assuntos",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idDisciplina",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "assuntos",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idAssuntoPai",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "assuntos",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "assuntos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "descricao",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "assuntos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "assuntos",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idBanca",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "bancas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "bancas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "sigla",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "bancas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "bancas",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idChamado",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "chamados_suporte",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "chamados_suporte",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome_estudante",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "chamados_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "assunto",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "chamados_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "categoria",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "chamados_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'aberto'::text",
+      "column_name": "status",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "chamados_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idAdministradorResponsavel",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "chamados_suporte",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idAdministradorFinalizador",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "chamados_suporte",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 9,
+      "table_name": "chamados_suporte",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "atualizado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 10,
+      "table_name": "chamados_suporte",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "finalizado_em",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 11,
+      "table_name": "chamados_suporte",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "resolucao",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 12,
+      "table_name": "chamados_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idConcurso",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "concursos",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "concursos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "orgao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "concursos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "cargo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "concursos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "estado",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "concursos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "ano",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 6,
+      "table_name": "concursos",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "descricao",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "concursos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'ativo'::text",
+      "column_name": "status",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "concursos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 9,
+      "table_name": "concursos",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idOrganizadora",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 10,
+      "table_name": "concursos",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "false",
+      "column_name": "composicao_confirmada",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 11,
+      "table_name": "concursos",
+      "udt_name": "bool"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idDisciplina",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "disciplinas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "disciplinas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "descricao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "disciplinas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "true",
+      "column_name": "ativa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "disciplinas",
+      "udt_name": "bool"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "disciplinas",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "area",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "disciplinas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idEstudante",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "estudantes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "estudantes",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idQuestao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "gabaritos",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idAlternativaCorreta",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "gabaritos",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'definitivo'::text",
+      "column_name": "status",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "gabaritos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "explicacao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "gabaritos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "fonte_gabarito",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "gabaritos",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "atualizado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "gabaritos",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idUsuario",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "limites_analises_ia",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "((now() AT TIME ZONE 'America/Sao_Paulo'::text))::date",
+      "column_name": "dia",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "limites_analises_ia",
+      "udt_name": "date"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "0",
+      "column_name": "solicitacoes",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 3,
+      "table_name": "limites_analises_ia",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idMensagem",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "mensagens_suporte",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idChamado",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "mensagens_suporte",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoaAutor",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "mensagens_suporte",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome_autor",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "mensagens_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "papel_autor",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "mensagens_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "conteudo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "mensagens_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'mensagem'::text",
+      "column_name": "tipo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "mensagens_suporte",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "clock_timestamp()",
+      "column_name": "criada_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "mensagens_suporte",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "metas_estudo",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "quantidade_semanal",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 2,
+      "table_name": "metas_estudo",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "atualizada_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "metas_estudo",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "pessoas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome_completo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "data_nascimento",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "pessoas",
+      "udt_name": "date"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "cpf",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "cep",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "logradouro",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "numero",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "complemento",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "bairro",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 9,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "cidade",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 10,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "uf",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 11,
+      "table_name": "pessoas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 12,
+      "table_name": "pessoas",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "atualizado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 13,
+      "table_name": "pessoas",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idQuestao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idConcurso",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idBanca",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idDisciplina",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idAssunto",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "enunciado",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'multipla_escolha'::text",
+      "column_name": "tipo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'media'::text",
+      "column_name": "dificuldade",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "ano",
+      "is_nullable": "YES",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 9,
+      "table_name": "questoes",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "fonte",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 10,
+      "table_name": "questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "imagem_url",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 11,
+      "table_name": "questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "explicacao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 12,
+      "table_name": "questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'rascunho'::text",
+      "column_name": "status",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 13,
+      "table_name": "questoes",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoaCriadora",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 14,
+      "table_name": "questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criada_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 15,
+      "table_name": "questoes",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "atualizada_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 16,
+      "table_name": "questoes",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idTema",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 17,
+      "table_name": "questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "numero",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 18,
+      "table_name": "questoes",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idResposta",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "respostas_simulado",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idTentativa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "respostas_simulado",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idQuestao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "respostas_simulado",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idAlternativaSelecionada",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "respostas_simulado",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "respondida_em",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "respostas_simulado",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idSimuladoQuestao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "simulado_questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idSimulado",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "simulado_questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idQuestao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "simulado_questoes",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "ordem",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 4,
+      "table_name": "simulado_questoes",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "1",
+      "column_name": "peso",
+      "is_nullable": "NO",
+      "numeric_precision": 10,
+      "numeric_scale": 2,
+      "ordinal_position": 5,
+      "table_name": "simulado_questoes",
+      "udt_name": "numeric"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "simulado_questoes",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idSimulado",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "simulados",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "simulados",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "descricao",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "simulados",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idConcurso",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "simulados",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "duracao_minutos",
+      "is_nullable": "YES",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 5,
+      "table_name": "simulados",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'padrao'::text",
+      "column_name": "tipo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "simulados",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "true",
+      "column_name": "publico",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "simulados",
+      "udt_name": "bool"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoaCriadora",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "simulados",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'rascunho'::text",
+      "column_name": "status",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 9,
+      "table_name": "simulados",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 10,
+      "table_name": "simulados",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idTema",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "temas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "nome",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "temas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "gen_random_uuid()",
+      "column_name": "idTentativa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "tentativas_simulado",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idSimulado",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "tentativas_simulado",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "tentativas_simulado",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'em_andamento'::text",
+      "column_name": "status",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "tentativas_simulado",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "iniciada_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "tentativas_simulado",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "finalizada_em",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "tentativas_simulado",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "pontuacao",
+      "is_nullable": "YES",
+      "numeric_precision": 5,
+      "numeric_scale": 1,
+      "ordinal_position": 7,
+      "table_name": "tentativas_simulado",
+      "udt_name": "numeric"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "0",
+      "column_name": "total_acertos",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 8,
+      "table_name": "tentativas_simulado",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "0",
+      "column_name": "total_erros",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 9,
+      "table_name": "tentativas_simulado",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "0",
+      "column_name": "total_nao_respondidas",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 10,
+      "table_name": "tentativas_simulado",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "0",
+      "column_name": "tempo_gasto_segundos",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 11,
+      "table_name": "tentativas_simulado",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "correcao_json",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 12,
+      "table_name": "tentativas_simulado",
+      "udt_name": "jsonb"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "0",
+      "column_name": "total_anuladas",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 13,
+      "table_name": "tentativas_simulado",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "0",
+      "column_name": "total_sem_gabarito",
+      "is_nullable": "NO",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 14,
+      "table_name": "tentativas_simulado",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idPessoa",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "usuarios",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "nome_completo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 2,
+      "table_name": "usuarios",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "''::text",
+      "column_name": "email",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "usuarios",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "avatar_url",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "usuarios",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'estudante'::text",
+      "column_name": "tipo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "usuarios",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "'verificacao_pendente'::text",
+      "column_name": "estado_cadastro",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "usuarios",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "ultimo_acesso_em",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "usuarios",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "criado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "usuarios",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "now()",
+      "column_name": "atualizado_em",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 9,
+      "table_name": "usuarios",
+      "udt_name": "timestamptz"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": "false",
+      "column_name": "cadastro_completo",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 10,
+      "table_name": "usuarios",
+      "udt_name": "bool"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idUsuario",
+      "is_nullable": "NO",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 11,
+      "table_name": "usuarios",
+      "udt_name": "uuid"
+    }
+  ],
+  "funcoes": [
+    {
+      "argumentos": "p_assunto text, p_categoria text, p_mensagem text",
+      "nome": "abrir_chamado_suporte",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "p_idtentativa uuid, p_idquestao uuid",
+      "nome": "consultar_analise_questao",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_idtentativa uuid, p_idquestao uuid",
+      "nome": "contexto_analise_questao",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_cpf text",
+      "nome": "cpf_valido",
+      "retorno": "boolean"
+    },
+    {
+      "argumentos": "p_nome text, p_quantidade integer, p_idtema uuid DEFAULT NULL::uuid, p_ano integer DEFAULT NULL::integer, p_orgao text DEFAULT NULL::text, p_organizadora text DEFAULT NULL::text, p_cargo text DEFAULT NULL::text",
+      "nome": "criar_simulado_filtrado",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "",
+      "nome": "disponibilidade_assuntos_odonto",
+      "retorno": "TABLE(\"idAssunto\" uuid, assunto text, \"idDisciplina\" uuid, disciplina text, quantidade integer)"
+    },
+    {
+      "argumentos": "",
+      "nome": "eh_administrador",
+      "retorno": "boolean"
+    },
+    {
+      "argumentos": "",
+      "nome": "estatisticas_assuntos",
+      "retorno": "TABLE(\"idAssunto\" uuid, assunto text, \"idDisciplina\" uuid, disciplina text, avaliadas integer, acertos integer, erros integer, em_branco integer)"
+    },
+    {
+      "argumentos": "p_idchamado uuid, p_resolucao text",
+      "nome": "finalizar_chamado_suporte",
+      "retorno": "void"
+    },
+    {
+      "argumentos": "p_idtentativa uuid",
+      "nome": "finalizar_tentativa",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_quantidade integer, p_assuntos jsonb DEFAULT '[]'::jsonb",
+      "nome": "gerar_simulado_odonto",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "p_quantidade integer, p_modo text",
+      "nome": "gerar_treino_odonto",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "p_idprova uuid",
+      "nome": "iniciar_prova",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "p_idsimulado uuid",
+      "nome": "iniciar_tentativa",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "p_pagina integer, p_quantidade integer",
+      "nome": "listar_pendencias_provas",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_pagina integer DEFAULT 1",
+      "nome": "listar_questoes_revisao",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "",
+      "nome": "metricas_sistema",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_idquestao uuid",
+      "nome": "obter_explicacao_questao",
+      "retorno": "text"
+    },
+    {
+      "argumentos": "",
+      "nome": "obter_minha_pessoa",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_idtentativa uuid",
+      "nome": "obter_resultado_tentativa",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "",
+      "nome": "progresso_meta_semanal",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "",
+      "nome": "quantidade_questoes_odonto",
+      "retorno": "integer"
+    },
+    {
+      "argumentos": "",
+      "nome": "questoes_elegiveis_odonto",
+      "retorno": "TABLE(\"idQuestao\" uuid, \"idAssunto\" uuid, \"idDisciplina\" uuid)"
+    },
+    {
+      "argumentos": "p_idusuario uuid, p_idquestao uuid, p_hash text",
+      "nome": "reservar_analise_questao",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_idchamado uuid, p_mensagem text",
+      "nome": "responder_chamado_suporte",
+      "retorno": "void"
+    },
+    {
+      "argumentos": "p_idtentativa uuid, p_idquestao uuid, p_idalternativa uuid",
+      "nome": "responder_questao",
+      "retorno": "void"
+    },
+    {
+      "argumentos": "",
+      "nome": "resumo_revisao_odonto",
+      "retorno": "jsonb"
+    },
+    {
+      "argumentos": "p_quantidade integer",
+      "nome": "salvar_meta_semanal",
+      "retorno": "void"
+    },
+    {
+      "argumentos": "p_pessoa jsonb",
+      "nome": "salvar_minha_pessoa",
+      "retorno": "void"
+    },
+    {
+      "argumentos": "p_idprova uuid, p_ano integer, p_orgao text, p_idorganizadora uuid, p_cargo text, p_composicao_confirmada boolean",
+      "nome": "salvar_prova",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "p_questao jsonb, p_alternativas jsonb, p_gabarito jsonb, p_idquestao uuid DEFAULT NULL::uuid",
+      "nome": "salvar_questao",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "p_simulado jsonb, p_idsquestoes uuid[], p_idsimulado uuid DEFAULT NULL::uuid",
+      "nome": "salvar_simulado",
+      "retorno": "uuid"
+    },
+    {
+      "argumentos": "",
+      "nome": "sincronizar_perfil_autenticacao",
+      "retorno": "trigger"
+    },
+    {
+      "argumentos": "",
+      "nome": "sincronizar_perfil_senha",
+      "retorno": "trigger"
+    },
+    {
+      "argumentos": "",
+      "nome": "sincronizar_tipo_estudante",
+      "retorno": "trigger"
+    },
+    {
+      "argumentos": "",
+      "nome": "ultimas_correcoes_odonto",
+      "retorno": "TABLE(\"idQuestao\" uuid, pendente boolean, recuperada boolean)"
+    }
+  ],
+  "restricoes": [
+    {
+      "definicao": "CHECK ((length(btrim(letra)) > 0))",
+      "nome": "alternativas_letra_check",
+      "tabela": "alternativas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((ordem > 0))",
+      "nome": "alternativas_ordem_check",
+      "tabela": "alternativas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idAlternativa\")",
+      "nome": "alternativas_pkey",
+      "tabela": "alternativas",
+      "tipo": "p"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idQuestao\") REFERENCES questoes(\"idQuestao\") ON DELETE CASCADE",
+      "nome": "alternativas_questao_id_fkey",
+      "tabela": "alternativas",
+      "tipo": "f"
+    },
+    {
+      "definicao": "UNIQUE (\"idQuestao\", \"idAlternativa\")",
+      "nome": "alternativas_questao_id_id_key",
+      "tabela": "alternativas",
+      "tipo": "u"
+    },
+    {
+      "definicao": "UNIQUE (\"idQuestao\", letra)",
+      "nome": "alternativas_questao_id_letra_key",
+      "tabela": "alternativas",
+      "tipo": "u"
+    },
+    {
+      "definicao": "UNIQUE (\"idQuestao\", ordem)",
+      "nome": "alternativas_questao_id_ordem_key",
+      "tabela": "alternativas",
+      "tipo": "u"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(texto)) > 0))",
+      "nome": "alternativas_texto_check",
+      "tabela": "alternativas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((status <> 'concluida'::text) OR ((conteudo IS NOT NULL) AND (jsonb_typeof(conteudo) = 'object'::text) AND (modelo IS NOT NULL) AND (gerada_em IS NOT NULL))))",
+      "nome": "analises_questoes_check",
+      "tabela": "analises_questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idQuestao\") REFERENCES questoes(\"idQuestao\") ON DELETE CASCADE",
+      "nome": "analises_questoes_idQuestao_fkey",
+      "tabela": "analises_questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idUsuario\") REFERENCES usuarios(\"idUsuario\") ON DELETE CASCADE",
+      "nome": "analises_questoes_idUsuario_fkey",
+      "tabela": "analises_questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idUsuario\", \"idQuestao\")",
+      "nome": "analises_questoes_pkey",
+      "tabela": "analises_questoes",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((status = ANY (ARRAY['processando'::text, 'concluida'::text, 'falha'::text])))",
+      "nome": "analises_questoes_status_check",
+      "tabela": "analises_questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idAssuntoPai\", \"idDisciplina\") REFERENCES assuntos(\"idAssunto\", \"idDisciplina\")",
+      "nome": "assuntos_assunto_pai_id_disciplina_id_fkey",
+      "tabela": "assuntos",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idAssuntoPai\") REFERENCES assuntos(\"idAssunto\") ON DELETE RESTRICT",
+      "nome": "assuntos_assunto_pai_id_fkey",
+      "tabela": "assuntos",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((\"idAssunto\" IS DISTINCT FROM \"idAssuntoPai\"))",
+      "nome": "assuntos_check",
+      "tabela": "assuntos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idDisciplina\") REFERENCES disciplinas(\"idDisciplina\") ON DELETE RESTRICT",
+      "nome": "assuntos_disciplina_id_fkey",
+      "tabela": "assuntos",
+      "tipo": "f"
+    },
+    {
+      "definicao": "UNIQUE (\"idAssunto\", \"idDisciplina\")",
+      "nome": "assuntos_id_disciplina_id_key",
+      "tabela": "assuntos",
+      "tipo": "u"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(nome)) > 0))",
+      "nome": "assuntos_nome_check",
+      "tabela": "assuntos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idAssunto\")",
+      "nome": "assuntos_pkey",
+      "tabela": "assuntos",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(nome)) > 0))",
+      "nome": "bancas_nome_check",
+      "tabela": "bancas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idBanca\")",
+      "nome": "bancas_pkey",
+      "tabela": "bancas",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((((status = 'finalizado'::text) AND (finalizado_em IS NOT NULL) AND (\"idAdministradorFinalizador\" IS NOT NULL) AND (resolucao IS NOT NULL) AND ((char_length(btrim(resolucao)) >= 10) AND (char_length(btrim(resolucao)) <= 4000))) OR ((status <> 'finalizado'::text) AND (finalizado_em IS NULL) AND (\"idAdministradorFinalizador\" IS NULL) AND (resolucao IS NULL))))",
+      "nome": "chamado_encerramento_coerente",
+      "tabela": "chamados_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((char_length(btrim(assunto)) >= 5) AND (char_length(btrim(assunto)) <= 120)))",
+      "nome": "chamados_suporte_assunto_check",
+      "tabela": "chamados_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((categoria = ANY (ARRAY['acesso'::text, 'simulados'::text, 'desempenho'::text, 'outro'::text])))",
+      "nome": "chamados_suporte_categoria_check",
+      "tabela": "chamados_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idAdministradorFinalizador\") REFERENCES pessoas(\"idPessoa\")",
+      "nome": "chamados_suporte_idAdministradorFinalizador_fkey",
+      "tabela": "chamados_suporte",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idAdministradorResponsavel\") REFERENCES pessoas(\"idPessoa\")",
+      "nome": "chamados_suporte_idAdministradorResponsavel_fkey",
+      "tabela": "chamados_suporte",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoa\") REFERENCES pessoas(\"idPessoa\")",
+      "nome": "chamados_suporte_idPessoa_fkey",
+      "tabela": "chamados_suporte",
+      "tipo": "f"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idChamado\")",
+      "nome": "chamados_suporte_pkey",
+      "tabela": "chamados_suporte",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((status = ANY (ARRAY['aberto'::text, 'aguardando_aluno'::text, 'aguardando_suporte'::text, 'finalizado'::text])))",
+      "nome": "chamados_suporte_status_check",
+      "tabela": "chamados_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((ano >= 1000) AND (ano <= 9999)))",
+      "nome": "concursos_ano_check",
+      "tabela": "concursos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idOrganizadora\") REFERENCES bancas(\"idBanca\") ON DELETE RESTRICT",
+      "nome": "concursos_idOrganizadora_fkey",
+      "tabela": "concursos",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(nome)) > 0))",
+      "nome": "concursos_nome_check",
+      "tabela": "concursos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idConcurso\")",
+      "nome": "concursos_pkey",
+      "tabela": "concursos",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((status = ANY (ARRAY['ativo'::text, 'arquivado'::text])))",
+      "nome": "concursos_status_check",
+      "tabela": "concursos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((((length(btrim(orgao)) >= 1) AND (length(btrim(orgao)) <= 200)) AND (length(btrim(cargo)) <= 200)))",
+      "nome": "provas_textos_check",
+      "tabela": "concursos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(nome)) > 0))",
+      "nome": "disciplinas_nome_check",
+      "tabela": "disciplinas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idDisciplina\")",
+      "nome": "disciplinas_pkey",
+      "tabela": "disciplinas",
+      "tipo": "p"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idEstudante\") REFERENCES pessoas(\"idPessoa\") ON DELETE CASCADE",
+      "nome": "estudantes_idEstudante_fkey",
+      "tabela": "estudantes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idEstudante\")",
+      "nome": "estudantes_pkey",
+      "tabela": "estudantes",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((((status = 'anulada'::text) AND (\"idAlternativaCorreta\" IS NULL)) OR ((status <> 'anulada'::text) AND (\"idAlternativaCorreta\" IS NOT NULL))))",
+      "nome": "gabaritos_check",
+      "tabela": "gabaritos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idQuestao\")",
+      "nome": "gabaritos_pkey",
+      "tabela": "gabaritos",
+      "tipo": "p"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idQuestao\", \"idAlternativaCorreta\") REFERENCES alternativas(\"idQuestao\", \"idAlternativa\") DEFERRABLE INITIALLY DEFERRED",
+      "nome": "gabaritos_questao_id_alternativa_correta_id_fkey",
+      "tabela": "gabaritos",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idQuestao\") REFERENCES questoes(\"idQuestao\") ON DELETE CASCADE",
+      "nome": "gabaritos_questao_id_fkey",
+      "tabela": "gabaritos",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((status = ANY (ARRAY['provisorio'::text, 'definitivo'::text, 'anulada'::text])))",
+      "nome": "gabaritos_status_check",
+      "tabela": "gabaritos",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idUsuario\") REFERENCES usuarios(\"idUsuario\") ON DELETE CASCADE",
+      "nome": "limites_analises_ia_idUsuario_fkey",
+      "tabela": "limites_analises_ia",
+      "tipo": "f"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idUsuario\")",
+      "nome": "limites_analises_ia_pkey",
+      "tabela": "limites_analises_ia",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((solicitacoes >= 0))",
+      "nome": "limites_analises_ia_solicitacoes_check",
+      "tabela": "limites_analises_ia",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((tipo <> 'encerramento'::text) OR (papel_autor = 'administrador'::text)))",
+      "nome": "encerramento_por_admin",
+      "tabela": "mensagens_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((char_length(btrim(conteudo)) >= 1) AND (char_length(btrim(conteudo)) <= 4000)))",
+      "nome": "mensagens_suporte_conteudo_check",
+      "tabela": "mensagens_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idChamado\") REFERENCES chamados_suporte(\"idChamado\")",
+      "nome": "mensagens_suporte_idChamado_fkey",
+      "tabela": "mensagens_suporte",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoaAutor\") REFERENCES pessoas(\"idPessoa\")",
+      "nome": "mensagens_suporte_idPessoaAutor_fkey",
+      "tabela": "mensagens_suporte",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((papel_autor = ANY (ARRAY['administrador'::text, 'estudante'::text])))",
+      "nome": "mensagens_suporte_papel_autor_check",
+      "tabela": "mensagens_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idMensagem\")",
+      "nome": "mensagens_suporte_pkey",
+      "tabela": "mensagens_suporte",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((tipo = ANY (ARRAY['mensagem'::text, 'encerramento'::text])))",
+      "nome": "mensagens_suporte_tipo_check",
+      "tabela": "mensagens_suporte",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoa\") REFERENCES estudantes(\"idEstudante\") ON DELETE CASCADE",
+      "nome": "metas_estudo_idPessoa_fkey",
+      "tabela": "metas_estudo",
+      "tipo": "f"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idPessoa\")",
+      "nome": "metas_estudo_pkey",
+      "tabela": "metas_estudo",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK (((quantidade_semanal >= 1) AND (quantidade_semanal <= 2000)))",
+      "nome": "metas_estudo_quantidade_semanal_check",
+      "tabela": "metas_estudo",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((cep IS NULL) OR (cep ~ '^[0-9]{8}$'::text)))",
+      "nome": "pessoas_cep_check",
+      "tabela": "pessoas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((cpf IS NULL) OR cpf_valido(cpf)))",
+      "nome": "pessoas_cpf_check",
+      "tabela": "pessoas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "UNIQUE (cpf)",
+      "nome": "pessoas_cpf_key",
+      "tabela": "pessoas",
+      "tipo": "u"
+    },
+    {
+      "definicao": "CHECK ((data_nascimento >= '1900-01-01'::date))",
+      "nome": "pessoas_data_nascimento_check",
+      "tabela": "pessoas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoa\") REFERENCES auth.users(id) ON DELETE CASCADE",
+      "nome": "pessoas_idPessoa_fkey",
+      "tabela": "pessoas",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(nome_completo)) >= 3))",
+      "nome": "pessoas_nome_completo_check",
+      "tabela": "pessoas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idPessoa\")",
+      "nome": "pessoas_pkey",
+      "tabela": "pessoas",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK (((uf IS NULL) OR (uf ~ '^[A-Z]{2}$'::text)))",
+      "nome": "pessoas_uf_check",
+      "tabela": "pessoas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((ano >= 1900) AND (ano <= 2100)))",
+      "nome": "questoes_ano_check",
+      "tabela": "questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idAssunto\", \"idDisciplina\") REFERENCES assuntos(\"idAssunto\", \"idDisciplina\")",
+      "nome": "questoes_assunto_id_disciplina_id_fkey",
+      "tabela": "questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idBanca\") REFERENCES bancas(\"idBanca\") ON DELETE RESTRICT",
+      "nome": "questoes_banca_id_fkey",
+      "tabela": "questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idConcurso\") REFERENCES concursos(\"idConcurso\") ON DELETE RESTRICT",
+      "nome": "questoes_concurso_id_fkey",
+      "tabela": "questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoaCriadora\") REFERENCES auth.users(id) ON DELETE SET NULL",
+      "nome": "questoes_criada_por_fkey",
+      "tabela": "questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((dificuldade = ANY (ARRAY['facil'::text, 'media'::text, 'dificil'::text, 'nao_informada'::text])))",
+      "nome": "questoes_dificuldade_check",
+      "tabela": "questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idDisciplina\") REFERENCES disciplinas(\"idDisciplina\") ON DELETE RESTRICT",
+      "nome": "questoes_disciplina_id_fkey",
+      "tabela": "questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(enunciado)) > 0))",
+      "nome": "questoes_enunciado_check",
+      "tabela": "questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idTema\") REFERENCES temas(\"idTema\") ON DELETE RESTRICT",
+      "nome": "questoes_idTema_fkey",
+      "tabela": "questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((numero > 0))",
+      "nome": "questoes_numero_check",
+      "tabela": "questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idQuestao\")",
+      "nome": "questoes_pkey",
+      "tabela": "questoes",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((status = ANY (ARRAY['rascunho'::text, 'publicada'::text, 'arquivada'::text])))",
+      "nome": "questoes_status_check",
+      "tabela": "questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((tipo = 'multipla_escolha'::text))",
+      "nome": "questoes_tipo_check",
+      "tabela": "questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idResposta\")",
+      "nome": "respostas_simulado_pkey",
+      "tabela": "respostas_simulado",
+      "tipo": "p"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idQuestao\", \"idAlternativaSelecionada\") REFERENCES alternativas(\"idQuestao\", \"idAlternativa\")",
+      "nome": "respostas_simulado_questao_id_alternativa_selecionada_id_fkey",
+      "tabela": "respostas_simulado",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idQuestao\") REFERENCES questoes(\"idQuestao\") ON DELETE RESTRICT",
+      "nome": "respostas_simulado_questao_id_fkey",
+      "tabela": "respostas_simulado",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idTentativa\") REFERENCES tentativas_simulado(\"idTentativa\") ON DELETE CASCADE",
+      "nome": "respostas_simulado_tentativa_id_fkey",
+      "tabela": "respostas_simulado",
+      "tipo": "f"
+    },
+    {
+      "definicao": "UNIQUE (\"idTentativa\", \"idQuestao\")",
+      "nome": "respostas_simulado_tentativa_id_questao_id_key",
+      "tabela": "respostas_simulado",
+      "tipo": "u"
+    },
+    {
+      "definicao": "CHECK ((ordem > 0))",
+      "nome": "simulado_questoes_ordem_check",
+      "tabela": "simulado_questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((peso > (0)::numeric))",
+      "nome": "simulado_questoes_peso_check",
+      "tabela": "simulado_questoes",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idSimuladoQuestao\")",
+      "nome": "simulado_questoes_pkey",
+      "tabela": "simulado_questoes",
+      "tipo": "p"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idQuestao\") REFERENCES questoes(\"idQuestao\") ON DELETE RESTRICT",
+      "nome": "simulado_questoes_questao_id_fkey",
+      "tabela": "simulado_questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idSimulado\") REFERENCES simulados(\"idSimulado\") ON DELETE CASCADE",
+      "nome": "simulado_questoes_simulado_id_fkey",
+      "tabela": "simulado_questoes",
+      "tipo": "f"
+    },
+    {
+      "definicao": "UNIQUE (\"idSimulado\", ordem)",
+      "nome": "simulado_questoes_simulado_id_ordem_key",
+      "tabela": "simulado_questoes",
+      "tipo": "u"
+    },
+    {
+      "definicao": "UNIQUE (\"idSimulado\", \"idQuestao\")",
+      "nome": "simulado_questoes_simulado_id_questao_id_key",
+      "tabela": "simulado_questoes",
+      "tipo": "u"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idConcurso\") REFERENCES concursos(\"idConcurso\") ON DELETE RESTRICT",
+      "nome": "simulados_concurso_id_fkey",
+      "tabela": "simulados",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoaCriadora\") REFERENCES auth.users(id) ON DELETE SET NULL",
+      "nome": "simulados_criado_por_fkey",
+      "tabela": "simulados",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((duracao_minutos > 0))",
+      "nome": "simulados_duracao_minutos_check",
+      "tabela": "simulados",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((length(btrim(nome)) > 0))",
+      "nome": "simulados_nome_check",
+      "tabela": "simulados",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idSimulado\")",
+      "nome": "simulados_pkey",
+      "tabela": "simulados",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((status = ANY (ARRAY['rascunho'::text, 'publicado'::text, 'arquivado'::text])))",
+      "nome": "simulados_status_check",
+      "tabela": "simulados",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK ((tipo = ANY (ARRAY['padrao'::text, 'personalizado'::text, 'prova'::text])))",
+      "nome": "simulados_tipo_check",
+      "tabela": "simulados",
+      "tipo": "c"
+    },
+    {
+      "definicao": "CHECK (((nome = btrim(nome)) AND ((length(nome) >= 1) AND (length(nome) <= 200))))",
+      "nome": "temas_nome_check",
+      "tabela": "temas",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idTema\")",
+      "nome": "temas_pkey",
+      "tabela": "temas",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((((status = 'finalizada'::text) AND (finalizada_em IS NOT NULL) AND (correcao_json IS NOT NULL)) OR ((status <> 'finalizada'::text) AND (finalizada_em IS NULL) AND (correcao_json IS NULL))))",
+      "nome": "tentativas_simulado_check",
+      "tabela": "tentativas_simulado",
+      "tipo": "c"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idTentativa\")",
+      "nome": "tentativas_simulado_pkey",
+      "tabela": "tentativas_simulado",
+      "tipo": "p"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idSimulado\") REFERENCES simulados(\"idSimulado\") ON DELETE RESTRICT",
+      "nome": "tentativas_simulado_simulado_id_fkey",
+      "tabela": "tentativas_simulado",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((status = ANY (ARRAY['em_andamento'::text, 'finalizada'::text, 'cancelada'::text])))",
+      "nome": "tentativas_simulado_status_check",
+      "tabela": "tentativas_simulado",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoa\") REFERENCES auth.users(id) ON DELETE CASCADE",
+      "nome": "tentativas_simulado_usuario_id_fkey",
+      "tabela": "tentativas_simulado",
+      "tipo": "f"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idUsuario\") REFERENCES auth.users(id) ON DELETE CASCADE",
+      "nome": "usuarios_autenticacao_fk",
+      "tabela": "usuarios",
+      "tipo": "f"
+    },
+    {
+      "definicao": "CHECK ((estado_cadastro = ANY (ARRAY['ativo'::text, 'convite_pendente'::text, 'verificacao_pendente'::text])))",
+      "nome": "usuarios_estado_cadastro_check",
+      "tabela": "usuarios",
+      "tipo": "c"
+    },
+    {
+      "definicao": "FOREIGN KEY (\"idPessoa\") REFERENCES pessoas(\"idPessoa\") ON DELETE CASCADE",
+      "nome": "usuarios_pessoa_fk",
+      "tabela": "usuarios",
+      "tipo": "f"
+    },
+    {
+      "definicao": "UNIQUE (\"idPessoa\")",
+      "nome": "usuarios_pessoa_unica",
+      "tabela": "usuarios",
+      "tipo": "u"
+    },
+    {
+      "definicao": "PRIMARY KEY (\"idUsuario\")",
+      "nome": "usuarios_pkey",
+      "tabela": "usuarios",
+      "tipo": "p"
+    },
+    {
+      "definicao": "CHECK ((tipo = ANY (ARRAY['estudante'::text, 'administrador'::text])))",
+      "nome": "usuarios_tipo_check",
+      "tabela": "usuarios",
+      "tipo": "c"
+    }
+  ],
+  "indices": [
+    {
+      "indexdef": "CREATE UNIQUE INDEX alternativas_pkey ON public.alternativas USING btree (\"idAlternativa\")",
+      "indexname": "alternativas_pkey",
+      "tablename": "alternativas"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX alternativas_questao_id_id_key ON public.alternativas USING btree (\"idQuestao\", \"idAlternativa\")",
+      "indexname": "alternativas_questao_id_id_key",
+      "tablename": "alternativas"
+    },
+    {
+      "indexdef": "CREATE INDEX alternativas_questao_id_idx ON public.alternativas USING btree (\"idQuestao\")",
+      "indexname": "alternativas_questao_id_idx",
+      "tablename": "alternativas"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX alternativas_questao_id_letra_key ON public.alternativas USING btree (\"idQuestao\", letra)",
+      "indexname": "alternativas_questao_id_letra_key",
+      "tablename": "alternativas"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX alternativas_questao_id_ordem_key ON public.alternativas USING btree (\"idQuestao\", ordem)",
+      "indexname": "alternativas_questao_id_ordem_key",
+      "tablename": "alternativas"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX analises_questoes_pkey ON public.analises_questoes USING btree (\"idUsuario\", \"idQuestao\")",
+      "indexname": "analises_questoes_pkey",
+      "tablename": "analises_questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX analises_questoes_questao_idx ON public.analises_questoes USING btree (\"idQuestao\")",
+      "indexname": "analises_questoes_questao_idx",
+      "tablename": "analises_questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX assuntos_disciplina_id_idx ON public.assuntos USING btree (\"idDisciplina\")",
+      "indexname": "assuntos_disciplina_id_idx",
+      "tablename": "assuntos"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX assuntos_id_disciplina_id_key ON public.assuntos USING btree (\"idAssunto\", \"idDisciplina\")",
+      "indexname": "assuntos_id_disciplina_id_key",
+      "tablename": "assuntos"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX assuntos_pkey ON public.assuntos USING btree (\"idAssunto\")",
+      "indexname": "assuntos_pkey",
+      "tablename": "assuntos"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX bancas_pkey ON public.bancas USING btree (\"idBanca\")",
+      "indexname": "bancas_pkey",
+      "tablename": "bancas"
+    },
+    {
+      "indexdef": "CREATE INDEX chamados_suporte_finalizador ON public.chamados_suporte USING btree (\"idAdministradorFinalizador\")",
+      "indexname": "chamados_suporte_finalizador",
+      "tablename": "chamados_suporte"
+    },
+    {
+      "indexdef": "CREATE INDEX chamados_suporte_pessoa_atualizacao ON public.chamados_suporte USING btree (\"idPessoa\", atualizado_em DESC, \"idChamado\")",
+      "indexname": "chamados_suporte_pessoa_atualizacao",
+      "tablename": "chamados_suporte"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX chamados_suporte_pkey ON public.chamados_suporte USING btree (\"idChamado\")",
+      "indexname": "chamados_suporte_pkey",
+      "tablename": "chamados_suporte"
+    },
+    {
+      "indexdef": "CREATE INDEX chamados_suporte_responsavel ON public.chamados_suporte USING btree (\"idAdministradorResponsavel\")",
+      "indexname": "chamados_suporte_responsavel",
+      "tablename": "chamados_suporte"
+    },
+    {
+      "indexdef": "CREATE INDEX chamados_suporte_status_atualizacao ON public.chamados_suporte USING btree (status, atualizado_em DESC, \"idChamado\")",
+      "indexname": "chamados_suporte_status_atualizacao",
+      "tablename": "chamados_suporte"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX concursos_pkey ON public.concursos USING btree (\"idConcurso\")",
+      "indexname": "concursos_pkey",
+      "tablename": "concursos"
+    },
+    {
+      "indexdef": "CREATE INDEX provas_filtros_idx ON public.concursos USING btree (ano, \"idOrganizadora\")",
+      "indexname": "provas_filtros_idx",
+      "tablename": "concursos"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX disciplinas_pkey ON public.disciplinas USING btree (\"idDisciplina\")",
+      "indexname": "disciplinas_pkey",
+      "tablename": "disciplinas"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX estudantes_pkey ON public.estudantes USING btree (\"idEstudante\")",
+      "indexname": "estudantes_pkey",
+      "tablename": "estudantes"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX gabaritos_pkey ON public.gabaritos USING btree (\"idQuestao\")",
+      "indexname": "gabaritos_pkey",
+      "tablename": "gabaritos"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX limites_analises_ia_pkey ON public.limites_analises_ia USING btree (\"idUsuario\")",
+      "indexname": "limites_analises_ia_pkey",
+      "tablename": "limites_analises_ia"
+    },
+    {
+      "indexdef": "CREATE INDEX mensagens_suporte_autor ON public.mensagens_suporte USING btree (\"idPessoaAutor\")",
+      "indexname": "mensagens_suporte_autor",
+      "tablename": "mensagens_suporte"
+    },
+    {
+      "indexdef": "CREATE INDEX mensagens_suporte_chamado_data ON public.mensagens_suporte USING btree (\"idChamado\", criada_em, \"idMensagem\")",
+      "indexname": "mensagens_suporte_chamado_data",
+      "tablename": "mensagens_suporte"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX mensagens_suporte_pkey ON public.mensagens_suporte USING btree (\"idMensagem\")",
+      "indexname": "mensagens_suporte_pkey",
+      "tablename": "mensagens_suporte"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX metas_estudo_pkey ON public.metas_estudo USING btree (\"idPessoa\")",
+      "indexname": "metas_estudo_pkey",
+      "tablename": "metas_estudo"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX pessoas_cpf_key ON public.pessoas USING btree (cpf)",
+      "indexname": "pessoas_cpf_key",
+      "tablename": "pessoas"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX pessoas_pkey ON public.pessoas USING btree (\"idPessoa\")",
+      "indexname": "pessoas_pkey",
+      "tablename": "pessoas"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_ano_idx ON public.questoes USING btree (ano)",
+      "indexname": "questoes_ano_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_assunto_id_idx ON public.questoes USING btree (\"idAssunto\")",
+      "indexname": "questoes_assunto_id_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_assunto_status_idx ON public.questoes USING btree (\"idAssunto\", status)",
+      "indexname": "questoes_assunto_status_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_banca_id_idx ON public.questoes USING btree (\"idBanca\")",
+      "indexname": "questoes_banca_id_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_concurso_id_idx ON public.questoes USING btree (\"idConcurso\")",
+      "indexname": "questoes_concurso_id_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_disciplina_id_idx ON public.questoes USING btree (\"idDisciplina\")",
+      "indexname": "questoes_disciplina_id_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX questoes_pkey ON public.questoes USING btree (\"idQuestao\")",
+      "indexname": "questoes_pkey",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX questoes_prova_numero_idx ON public.questoes USING btree (\"idConcurso\", numero)",
+      "indexname": "questoes_prova_numero_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_status_idx ON public.questoes USING btree (status)",
+      "indexname": "questoes_status_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX questoes_tema_status_idx ON public.questoes USING btree (\"idTema\", status)",
+      "indexname": "questoes_tema_status_idx",
+      "tablename": "questoes"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX respostas_simulado_pkey ON public.respostas_simulado USING btree (\"idResposta\")",
+      "indexname": "respostas_simulado_pkey",
+      "tablename": "respostas_simulado"
+    },
+    {
+      "indexdef": "CREATE INDEX respostas_simulado_tentativa_id_idx ON public.respostas_simulado USING btree (\"idTentativa\")",
+      "indexname": "respostas_simulado_tentativa_id_idx",
+      "tablename": "respostas_simulado"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX respostas_simulado_tentativa_id_questao_id_key ON public.respostas_simulado USING btree (\"idTentativa\", \"idQuestao\")",
+      "indexname": "respostas_simulado_tentativa_id_questao_id_key",
+      "tablename": "respostas_simulado"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX simulado_questoes_pkey ON public.simulado_questoes USING btree (\"idSimuladoQuestao\")",
+      "indexname": "simulado_questoes_pkey",
+      "tablename": "simulado_questoes"
+    },
+    {
+      "indexdef": "CREATE INDEX simulado_questoes_questao_id_idx ON public.simulado_questoes USING btree (\"idQuestao\")",
+      "indexname": "simulado_questoes_questao_id_idx",
+      "tablename": "simulado_questoes"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX simulado_questoes_simulado_id_ordem_key ON public.simulado_questoes USING btree (\"idSimulado\", ordem)",
+      "indexname": "simulado_questoes_simulado_id_ordem_key",
+      "tablename": "simulado_questoes"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX simulado_questoes_simulado_id_questao_id_key ON public.simulado_questoes USING btree (\"idSimulado\", \"idQuestao\")",
+      "indexname": "simulado_questoes_simulado_id_questao_id_key",
+      "tablename": "simulado_questoes"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX simulado_prova_pessoa_idx ON public.simulados USING btree (\"idConcurso\", \"idPessoaCriadora\") WHERE (tipo = 'prova'::text)",
+      "indexname": "simulado_prova_pessoa_idx",
+      "tablename": "simulados"
+    },
+    {
+      "indexdef": "CREATE INDEX \"simulados_idPessoaCriadora_idx\" ON public.simulados USING btree (\"idPessoaCriadora\")",
+      "indexname": "simulados_idPessoaCriadora_idx",
+      "tablename": "simulados"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX simulados_pkey ON public.simulados USING btree (\"idSimulado\")",
+      "indexname": "simulados_pkey",
+      "tablename": "simulados"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX temas_nome_normalizado_idx ON public.temas USING btree (lower(btrim(nome)))",
+      "indexname": "temas_nome_normalizado_idx",
+      "tablename": "temas"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX temas_pkey ON public.temas USING btree (\"idTema\")",
+      "indexname": "temas_pkey",
+      "tablename": "temas"
+    },
+    {
+      "indexdef": "CREATE INDEX tentativas_estudo_semana_idx ON public.tentativas_simulado USING btree (\"idPessoa\", finalizada_em) WHERE (status = 'finalizada'::text)",
+      "indexname": "tentativas_estudo_semana_idx",
+      "tablename": "tentativas_simulado"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX tentativas_simulado_pkey ON public.tentativas_simulado USING btree (\"idTentativa\")",
+      "indexname": "tentativas_simulado_pkey",
+      "tablename": "tentativas_simulado"
+    },
+    {
+      "indexdef": "CREATE INDEX tentativas_simulado_usuario_id_iniciada_em_idx ON public.tentativas_simulado USING btree (\"idPessoa\", iniciada_em DESC)",
+      "indexname": "tentativas_simulado_usuario_id_iniciada_em_idx",
+      "tablename": "tentativas_simulado"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX tentativas_uma_em_andamento_idx ON public.tentativas_simulado USING btree (\"idSimulado\", \"idPessoa\") WHERE (status = 'em_andamento'::text)",
+      "indexname": "tentativas_uma_em_andamento_idx",
+      "tablename": "tentativas_simulado"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX usuarios_pessoa_unica ON public.usuarios USING btree (\"idPessoa\")",
+      "indexname": "usuarios_pessoa_unica",
+      "tablename": "usuarios"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX usuarios_pkey ON public.usuarios USING btree (\"idUsuario\")",
+      "indexname": "usuarios_pkey",
+      "tablename": "usuarios"
+    }
+  ],
+  "visoes": [
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idProva",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 1,
+      "table_name": "provas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "ano",
+      "is_nullable": "YES",
+      "numeric_precision": 32,
+      "numeric_scale": 0,
+      "ordinal_position": 2,
+      "table_name": "provas",
+      "udt_name": "int4"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "orgao",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 3,
+      "table_name": "provas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "idOrganizadora",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 4,
+      "table_name": "provas",
+      "udt_name": "uuid"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "organizadora",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 5,
+      "table_name": "provas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "cargo",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 6,
+      "table_name": "provas",
+      "udt_name": "text"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "composicao_confirmada",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 7,
+      "table_name": "provas",
+      "udt_name": "bool"
+    },
+    {
+      "character_maximum_length": null,
+      "column_default": null,
+      "column_name": "revisao_pendente",
+      "is_nullable": "YES",
+      "numeric_precision": null,
+      "numeric_scale": null,
+      "ordinal_position": 8,
+      "table_name": "provas",
+      "udt_name": "bool"
+    }
+  ]
+}
