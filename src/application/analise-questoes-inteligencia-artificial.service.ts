@@ -129,7 +129,10 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
     );
 
     if (analiseQuestao) {
-      await validarConteudoAnaliseQuestao(solicitacaoConsultarAnaliseQuestao.idQuestao, analiseQuestao);
+      await validarConteudoAnaliseQuestao(
+        solicitacaoConsultarAnaliseQuestao.idQuestao,
+        analiseQuestao,
+      );
     }
 
     return criarRespostaSucesso(
@@ -144,10 +147,15 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
     async solicitarAnaliseQuestao(
       solicitacaoSolicitarAnaliseQuestao: ContratosApi.SolicitarAnaliseQuestaoRequestModel,
     ) {
-      const analiseQuestaoSalva = (await consultarAnaliseQuestaoPersistida(solicitacaoSolicitarAnaliseQuestao)).data!.analise;
+      const analiseQuestaoSalva = (
+        await consultarAnaliseQuestaoPersistida(solicitacaoSolicitarAnaliseQuestao)
+      ).data!.analise;
 
       if (analiseQuestaoSalva) {
-        return criarRespostaSucesso(analiseQuestaoSalva, "Análise salva consultada, sem nova geração.");
+        return criarRespostaSucesso(
+          analiseQuestaoSalva,
+          "Análise salva consultada, sem nova geração.",
+        );
       }
 
       clienteOpenAI.exigirConfiguracaoOpenAI();
@@ -167,7 +175,10 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
           reservaGeracaoAnaliseQuestao.analise,
         );
 
-        await validarConteudoAnaliseQuestao(solicitacaoSolicitarAnaliseQuestao.idQuestao, analiseQuestao);
+        await validarConteudoAnaliseQuestao(
+          solicitacaoSolicitarAnaliseQuestao.idQuestao,
+          analiseQuestao,
+        );
 
         return criarRespostaSucesso(analiseQuestao, "Análise salva consultada.");
       }
@@ -206,7 +217,10 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
           demonstracao: false,
         });
 
-        await validarConteudoAnaliseQuestao(solicitacaoSolicitarAnaliseQuestao.idQuestao, analiseQuestao);
+        await validarConteudoAnaliseQuestao(
+          solicitacaoSolicitarAnaliseQuestao.idQuestao,
+          analiseQuestao,
+        );
 
         if (
           !(await registrarResultadoGeracaoAnalise(

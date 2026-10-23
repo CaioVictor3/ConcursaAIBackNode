@@ -1590,16 +1590,17 @@ test(
             await call("get", "honra/estudante/meu-progresso", {}, otherToken)
           ).data.pontosAcumulados;
 
-          const bonusDiarioConcedidoAnteriormente = Number(
-            (
-              await clusterPostgreSql.admin.query<{ total: string }>(
-                `select count(*)::text as total from public.honra_movimentacoes
+          const bonusDiarioConcedidoAnteriormente =
+            Number(
+              (
+                await clusterPostgreSql.admin.query<{ total: string }>(
+                  `select count(*)::text as total from public.honra_movimentacoes
                   where id_pessoa=$1 and codigo_regra='primeiro_estudo_diario'
                     and criado_em::date=current_date`,
-                [otherId],
-              )
-            ).rows[0]?.total ?? "0",
-          ) > 0;
+                  [otherId],
+                )
+              ).rows[0]?.total ?? "0",
+            ) > 0;
 
           const tentativaSequencia = await call(
             "post",
