@@ -86,7 +86,7 @@ test("OpenAI Responses envia modelo, prompt, schema estrito e não armazena", as
     http,
   ).gerarAnaliseQuestaoOpenAI(context);
 
-  assert.deepEqual(result, { resumo: "Resumo" });
+  assert.deepEqual(result, { conteudo: { resumo: "Resumo" }, usoTokens: null });
 
   assert.equal(payload.model, "gpt-4.1-mini");
 

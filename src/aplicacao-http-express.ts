@@ -25,6 +25,8 @@ import {
 } from "./http/cookies-sessao-navegador.js";
 import { criarDespachoOperacoesApi } from "./http/despacho-operacoes-rotas-api.js";
 import { gerarDocumentoOpenApi } from "./http/documentacao-openapi.js";
+import { criarRotasPerguntasContextuaisAnaliseIA } from "./http/rotas-perguntas-contextuais-analise-ia.js";
+import { criarRotasSistemaHonraAnotacoes } from "./http/rotas-sistema-honra-anotacoes.js";
 import { ClienteAnaliseQuestoesOpenAI } from "./infrastructure/cliente-analise-questoes-openai.js";
 import { ClienteAutenticacaoGoogle } from "./infrastructure/cliente-autenticacao-google.js";
 import {
@@ -365,6 +367,23 @@ export function criarAplicacaoHttpExpress(options: OpcoesInicializacaoAplicacao 
 
     aplicacaoExpress[method](route.path, run);
   }
+
+  aplicacaoExpress.use(
+    criarRotasSistemaHonraAnotacoes(
+      conexaoPostgreSql,
+      servicoAutenticacao,
+      gerenciadorCookiesNavegador,
+    ),
+  );
+
+  aplicacaoExpress.use(
+    criarRotasPerguntasContextuaisAnaliseIA(
+      conexaoPostgreSql,
+      servicoAutenticacao,
+      gerenciadorCookiesNavegador,
+      clienteOpenAI,
+    ),
+  );
 
   aplicacaoExpress.use((_req, respostaHttp) =>
     respostaHttp.status(404).json(criarRespostaErro(404, "Endpoint não encontrado.")),

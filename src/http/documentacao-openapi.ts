@@ -156,6 +156,226 @@ export function gerarDocumentoOpenApi() {
     },
   };
 
+  const respostaHonra = (descricao: string, schema: EsquemaOpenApi = { type: "object" }) => ({
+    200: {
+      description: descricao,
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            required: ["success", "message", "statusCode", "data"],
+            properties: {
+              success: { type: "boolean" },
+              message: { type: "string" },
+              statusCode: { type: "integer" },
+              data: schema,
+            },
+          },
+        },
+      },
+    },
+    400: { description: "Dados inválidos" },
+    401: { description: "Autenticação necessária" },
+    403: { description: "Acesso não autorizado" },
+  });
+
+  const segurancaHonra = [{ bearerAuth: [] }, { browserSession: [] }];
+  const parametroPessoa = {
+    in: "path",
+    name: "idPessoa",
+    required: true,
+    schema: { type: "string", format: "uuid" },
+  };
+  const parametroQuestao = {
+    in: "path",
+    name: "idQuestao",
+    required: true,
+    schema: { type: "string", format: "uuid" },
+  };
+  const parametrosPagina = [
+    { in: "query", name: "pagina", schema: { type: "integer", minimum: 1, default: 1 } },
+    {
+      in: "query",
+      name: "quantidadePorPagina",
+      schema: { type: "integer", minimum: 1, maximum: 50, default: 20 },
+    },
+  ];
+  const corpoJson = (properties: Record<string, EsquemaOpenApi>, required: string[]) => ({
+    required: true,
+    content: {
+      "application/json": {
+        schema: { type: "object", properties, required, additionalProperties: false },
+      },
+    },
+  });
+
+  paths["/api/honra/estudante/meu-progresso"] = {
+    get: {
+      operationId: "Honra_consultarMeuProgressoHonra",
+      tags: ["Sistema de Honra"],
+      security: segurancaHonra,
+      responses: respostaHonra("Título, saldo, jornada e indicadores do estudante"),
+    },
+  };
+
+  paths["/api/estudo/estudante/painel-desempenho"] = {
+    get: {
+      operationId: "Estudo_consultarPainelDesempenhoEstudante",
+      tags: ["Desempenho do estudante"],
+      security: segurancaHonra,
+      responses: respostaHonra("Métricas acadêmicas agregadas, evolução e PH separados"),
+    },
+  };
+
+  paths["/api/honra/estudante/historico-pontos"] = {
+    get: {
+      operationId: "Honra_consultarMeuHistoricoPontos",
+      tags: ["Sistema de Honra"],
+      security: segurancaHonra,
+      parameters: parametrosPagina,
+      responses: respostaHonra("Movimentações paginadas do estudante"),
+    },
+  };
+
+  paths["/api/honra/administracao/painel-sistema-honra"] = {
+    get: {
+      operationId: "Honra_consultarPainelAdministrativoHonra",
+      tags: ["Administração · Honra"],
+      security: segurancaHonra,
+      responses: respostaHonra("Títulos, regras, distribuição e movimentações recentes"),
+    },
+  };
+
+  paths["/api/honra/administracao/estudantes/{idPessoa}/historico-pontos"] = {
+    get: {
+      operationId: "Honra_consultarHistoricoAdministrativoEstudante",
+      tags: ["Administração · Honra"],
+      security: segurancaHonra,
+      parameters: [parametroPessoa, ...parametrosPagina],
+      responses: respostaHonra("Movimentações paginadas de um estudante"),
+    },
+  };
+
+  paths["/api/honra/administracao/titulos-honra"] = {
+    post: {
+      operationId: "Honra_salvarTituloHonra",
+      tags: ["Administração · Honra"],
+      security: segurancaHonra,
+      requestBody: corpoJson(
+        {
+          id: { type: "string", format: "uuid" },
+          nivel: { type: "integer", minimum: 1 },
+          nome: { type: "string" },
+          descricao: { type: "string" },
+          pontuacaoMinima: { type: "integer", minimum: 0 },
+          icone: { type: "string" },
+          cor: { type: "string", pattern: "^#[0-9A-Fa-f]{6}$" },
+          ativo: { type: "boolean" },
+        },
+        ["nivel", "nome", "pontuacaoMinima", "icone", "cor", "ativo"],
+      ),
+      responses: respostaHonra("Título criado ou atualizado"),
+    },
+  };
+
+  paths["/api/honra/administracao/regras-pontuacao/{codigoRegra}"] = {
+    put: {
+      operationId: "Honra_salvarRegraPontuacao",
+      tags: ["Administração · Honra"],
+      security: segurancaHonra,
+      parameters: [{ in: "path", name: "codigoRegra", required: true, schema: { type: "string" } }],
+      requestBody: corpoJson(
+        {
+          pontos: { type: "integer", minimum: 0 },
+          minimoQuestoes: { type: "integer", minimum: 0 },
+          minimoQuestoesIneditas: { type: "integer", minimum: 0 },
+          percentualMinimoRespostas: { type: "integer", minimum: 0, maximum: 100 },
+          limiteDiario: { type: "integer", minimum: 0 },
+          ativo: { type: "boolean" },
+        },
+        [
+          "pontos",
+          "minimoQuestoes",
+          "minimoQuestoesIneditas",
+          "percentualMinimoRespostas",
+          "limiteDiario",
+          "ativo",
+        ],
+      ),
+      responses: respostaHonra("Regra atualizada para futuras atividades"),
+    },
+  };
+
+  paths["/api/honra/administracao/estudantes/{idPessoa}/ajustes-pontos"] = {
+    post: {
+      operationId: "Honra_registrarAjusteAdministrativo",
+      tags: ["Administração · Honra"],
+      security: segurancaHonra,
+      parameters: [parametroPessoa],
+      requestBody: corpoJson(
+        {
+          pontos: { type: "integer", minimum: -10000, maximum: 10000 },
+          justificativa: { type: "string", minLength: 10 },
+        },
+        ["pontos", "justificativa"],
+      ),
+      responses: respostaHonra("Ajuste auditável registrado"),
+    },
+  };
+
+  paths["/api/estudo/questoes/{idQuestao}/anotacao-pessoal"] = {
+    get: {
+      operationId: "Estudo_consultarAnotacaoPessoalQuestao",
+      tags: ["Anotações pessoais"],
+      security: segurancaHonra,
+      parameters: [parametroQuestao],
+      responses: respostaHonra("Anotação privada associada à questão"),
+    },
+    put: {
+      operationId: "Estudo_salvarAnotacaoPessoalQuestao",
+      tags: ["Anotações pessoais"],
+      security: segurancaHonra,
+      parameters: [parametroQuestao],
+      requestBody: corpoJson({ conteudo: { type: "string", maxLength: 10000 } }, ["conteudo"]),
+      responses: respostaHonra("Anotação criada, alterada ou removida"),
+    },
+  };
+
+  paths["/api/ia/estudante/questoes/{idQuestao}/historico-perguntas"] = {
+    get: {
+      operationId: "InteligenciaArtificial_consultarHistoricoPerguntasContextuais",
+      tags: ["Inteligência artificial · Perguntas contextuais"],
+      security: segurancaHonra,
+      parameters: [
+        parametroQuestao,
+        {
+          name: "idTentativa",
+          in: "query",
+          required: true,
+          schema: { type: "string", format: "uuid" },
+        },
+      ],
+      responses: respostaHonra("Histórico privado de perguntas da questão"),
+    },
+  };
+
+  paths["/api/ia/estudante/questoes/{idQuestao}/perguntas-contextuais"] = {
+    post: {
+      operationId: "InteligenciaArtificial_responderPerguntaContextualQuestao",
+      tags: ["Inteligência artificial · Perguntas contextuais"],
+      security: segurancaHonra,
+      parameters: [parametroQuestao],
+      requestBody: corpoJson(
+        {
+          idTentativa: { type: "string", format: "uuid" },
+          pergunta: { type: "string", minLength: 5, maxLength: 1000 },
+        },
+        ["idTentativa", "pergunta"],
+      ),
+      responses: respostaHonra("Pergunta respondida e salva na conta do estudante"),
+    },
+  };
+
   return {
     openapi: "3.1.0",
     info: {

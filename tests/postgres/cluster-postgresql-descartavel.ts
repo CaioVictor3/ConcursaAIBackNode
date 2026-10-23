@@ -66,13 +66,17 @@ export async function cluster() {
       alter default privileges in schema public grant all on functions to authenticated,service_role;
     `);
 
-    const migrations = await readdir("database/reference/migrations");
+    for (const diretorioMigrations of ["database/reference/migrations", "database/migrations"]) {
+      const nomesArquivos = await readdir(diretorioMigrations);
 
-    for (const name of migrations.filter((nomeArquivo) => nomeArquivo.endsWith(".sql")).sort()) {
-      try {
-        await admin.query(await readFile(join("database/reference/migrations", name), "utf8"));
-      } catch (erroCapturado) {
-        throw new Error("Migration de teste falhou: " + name, { cause: erroCapturado });
+      for (const nomeArquivo of nomesArquivos
+        .filter((arquivo) => arquivo.endsWith(".sql"))
+        .sort()) {
+        try {
+          await admin.query(await readFile(join(diretorioMigrations, nomeArquivo), "utf8"));
+        } catch (erroCapturado) {
+          throw new Error("Migration de teste falhou: " + nomeArquivo, { cause: erroCapturado });
+        }
       }
     }
     // This role is made login-capable only inside the disposable test cluster.

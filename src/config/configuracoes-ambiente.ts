@@ -31,6 +31,22 @@ export function carregarConfiguracoesAmbiente(env: NodeJS.ProcessEnv = process.e
     return env[name] === "true";
   };
 
+  const obterPrecoTokensPorMilhao = (nome: string) => {
+    const textoPreco = env[nome];
+
+    if (textoPreco === undefined || textoPreco === "") {
+      return null;
+    }
+
+    const precoPorMilhao = Number(textoPreco);
+
+    if (!Number.isFinite(precoPorMilhao) || precoPorMilhao < 0 || precoPorMilhao > 1000) {
+      throw new Error(`Configuração inválida: ${nome}`);
+    }
+
+    return precoPorMilhao;
+  };
+
   const obterListaAmbiente = (name: string, fallback = "") =>
     obterTextoAmbiente(name, fallback)
       .split(",")
@@ -105,6 +121,8 @@ export function carregarConfiguracoesAmbiente(env: NodeJS.ProcessEnv = process.e
     openai: {
       key: obterTextoAmbiente("OPENAI_API_KEY"),
       model: obterTextoAmbiente("OPENAI_MODEL", "gpt-4.1-mini"),
+      precoEntradaPorMilhaoUsd: obterPrecoTokensPorMilhao("OPENAI_PRECO_ENTRADA_MILHAO_USD"),
+      precoSaidaPorMilhaoUsd: obterPrecoTokensPorMilhao("OPENAI_PRECO_SAIDA_MILHAO_USD"),
       responsesUrl: obterTextoAmbiente(
         "OPENAI_RESPONSES_URL",
         "https://api.openai.com/v1/responses",

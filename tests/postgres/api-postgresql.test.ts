@@ -51,6 +51,8 @@ test(
 
     let aiCalls = 0;
 
+    const contextosPerguntasIA: { historicoPerguntas?: unknown[] }[] = [];
+
     const http: HttpFetch = async (urlSolicitada, init) => {
       if (String(urlSolicitada).includes("openai")) {
         aiCalls++;
@@ -58,6 +60,29 @@ test(
         const body = JSON.parse(init!.body as string);
 
         const context = JSON.parse(body.input[0].content);
+
+        if (!body.text) {
+          contextosPerguntasIA.push(context);
+
+          return new Response(
+            JSON.stringify({
+              status: "completed",
+              usage: {
+                input_tokens: 90,
+                output_tokens: 30,
+                input_tokens_details: { cached_tokens: 0 },
+              },
+              output: [
+                {
+                  type: "message",
+                  content: [
+                    { type: "output_text", text: "A alternativa B não atende ao enunciado." },
+                  ],
+                },
+              ],
+            }),
+          );
+        }
 
         const content = {
           resumo: "Resumo didático",
@@ -76,6 +101,11 @@ test(
         return new Response(
           JSON.stringify({
             status: "completed",
+            usage: {
+              input_tokens: 128,
+              output_tokens: 64,
+              input_tokens_details: { cached_tokens: 0 },
+            },
             output: [
               {
                 type: "message",
@@ -537,6 +567,211 @@ test(
       );
 
       await contextoTeste.test(
+        "Sistema de Honra: primeira resposta, revisão, administração, gabarito e anotações",
+        async () => {
+          const progressoInicial = await call(
+            "get",
+            "honra/estudante/meu-progresso",
+            {},
+            studentToken,
+          );
+
+          assert.equal(progressoInicial.data.pontosAcumulados, 12);
+          assert.equal(progressoInicial.data.questoesIneditasPontuadas, 1);
+          assert.equal(progressoInicial.data.diasConsecutivos, 1);
+          assert.equal(progressoInicial.data.tituloAtual.nome, "Iniciante");
+
+          const historico = await call(
+            "get",
+            "honra/estudante/historico-pontos",
+            { pagina: 1, quantidadePorPagina: 20 },
+            studentToken,
+          );
+
+          assert.equal(historico.data.total, 2);
+
+          await call("get", "honra/administracao/painel-sistema-honra", {}, studentToken, 403);
+
+          const segundaTentativa = await call(
+            "post",
+            "Tentativa/iniciar-tentativa-simulado",
+            { idSimulado: simulationId },
+            studentToken,
+          );
+
+          await call(
+            "put",
+            "Tentativa/responder-questao-simulado",
+            {
+              idTentativa: segundaTentativa.data.idTentativa,
+              idQuestao: questionId,
+              idAlternativaSelecionada: altA,
+            },
+            studentToken,
+          );
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data
+              .pontosAcumulados,
+            12,
+          );
+
+          const painelDesempenho = await call(
+            "get",
+            "estudo/estudante/painel-desempenho",
+            {},
+            studentToken,
+          );
+
+          assert.equal(painelDesempenho.data.totalRespostas, 2);
+          assert.equal(painelDesempenho.data.questoesUnicasResolvidas, 1);
+          assert.equal(painelDesempenho.data.questoesRevisadas, 1);
+          assert.equal(painelDesempenho.data.simuladosConcluidos, 1);
+
+          await call(
+            "put",
+            `estudo/questoes/${questionId}/anotacao-pessoal`,
+            { conteudo: "Rever o conceito desta questão." },
+            studentToken,
+          );
+
+          const anotacao = await call(
+            "get",
+            `estudo/questoes/${questionId}/anotacao-pessoal`,
+            {},
+            studentToken,
+          );
+
+          assert.equal(anotacao.data.conteudo, "Rever o conceito desta questão.");
+          assert.deepEqual(
+            (await call("get", `estudo/questoes/${questionId}/anotacao-pessoal`, {}, otherToken))
+              .data,
+            { conteudo: "", atualizadaEm: null },
+          );
+
+          await clusterPostgreSql.admin.query(
+            'update public.gabaritos set "idAlternativaCorreta"=$1 where "idQuestao"=$2',
+            [altB, questionId],
+          );
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data
+              .pontosAcumulados,
+            13,
+          );
+
+          await clusterPostgreSql.admin.query(
+            'update public.gabaritos set status=$1, "idAlternativaCorreta"=null where "idQuestao"=$2',
+            ["anulada", questionId],
+          );
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data
+              .pontosAcumulados,
+            10,
+          );
+
+          await clusterPostgreSql.admin.query(
+            'update public.gabaritos set status=$1, "idAlternativaCorreta"=$2 where "idQuestao"=$3',
+            ["definitivo", altA, questionId],
+          );
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data
+              .pontosAcumulados,
+            12,
+          );
+
+          const painel = await call("get", "honra/administracao/painel-sistema-honra");
+
+          assert.equal(painel.data.titulos.length, 10);
+          assert.equal(painel.data.regras.length, 7);
+          assert.equal(painel.data.evolucaoParticipacao.length, 30);
+          assert.equal(painel.data.evolucaoParticipacao.at(-1).estudantesAtivos >= 1, true);
+
+          const tituloAprendiz = painel.data.titulos.find(
+            (titulo: { nome: string }) => titulo.nome === "Aprendiz",
+          );
+
+          await call("post", "honra/administracao/titulos-honra", {
+            ...tituloAprendiz,
+            pontuacaoMinima: 10,
+          });
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data.tituloAtual
+              .nome,
+            "Aprendiz",
+          );
+
+          await call("post", "honra/administracao/titulos-honra", tituloAprendiz);
+
+          await call("put", "honra/administracao/regras-pontuacao/primeira_resolucao", {
+            ...painel.data.regras.find(
+              (regra: { codigo: string }) => regra.codigo === "primeira_resolucao",
+            ),
+            pontos: 4,
+          });
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data
+              .pontosAcumulados,
+            12,
+          );
+
+          await call("post", `honra/administracao/estudantes/${studentId}/ajustes-pontos`, {
+            pontos: 5,
+            justificativa: "Correção administrativa validada em teste.",
+          });
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data
+              .pontosAcumulados,
+            17,
+          );
+
+          await call("post", `honra/administracao/estudantes/${studentId}/ajustes-pontos`, {
+            pontos: -16,
+            justificativa: "Teste de estorno antes de uma retificação de gabarito.",
+          });
+
+          await clusterPostgreSql.admin.query(
+            'update public.gabaritos set status=$1, "idAlternativaCorreta"=null where "idQuestao"=$2',
+            ["anulada", questionId],
+          );
+
+          const progressoAposEstorno = await call(
+            "get",
+            "honra/estudante/meu-progresso",
+            {},
+            studentToken,
+          );
+
+          assert.equal(progressoAposEstorno.data.pontosAcumulados, -1);
+          assert.equal(progressoAposEstorno.data.tituloAtual.nome, "Iniciante");
+          assert.equal(progressoAposEstorno.data.percentualProgressoTitulo, 0);
+
+          await clusterPostgreSql.admin.query(
+            'update public.gabaritos set status=$1, "idAlternativaCorreta"=$2 where "idQuestao"=$3',
+            ["definitivo", altA, questionId],
+          );
+
+          await call("post", `honra/administracao/estudantes/${studentId}/ajustes-pontos`, {
+            pontos: 16,
+            justificativa: "Reposição do estorno temporário do teste de retificação.",
+          });
+
+          await call(
+            "get",
+            `honra/administracao/estudantes/${studentId}/historico-pontos`,
+            {},
+            otherToken,
+            403,
+          );
+        },
+      );
+
+      await contextoTeste.test(
         "IA: autorização, reserva real, conteúdo, persistência e cache sem nova cobrança",
         async () => {
           await call(
@@ -558,6 +793,54 @@ test(
 
           assert.equal(aiCalls, 1);
 
+          await call(
+            "get",
+            `ia/estudante/questoes/${questionId}/historico-perguntas`,
+            { idTentativa: attemptId },
+            otherToken,
+            400,
+          );
+
+          const primeiraPergunta = await call(
+            "post",
+            `ia/estudante/questoes/${questionId}/perguntas-contextuais`,
+            { idTentativa: attemptId, pergunta: "Por que B está incorreta?" },
+            studentToken,
+          );
+
+          assert.match(primeiraPergunta.data.resposta, /alternativa B/);
+
+          const segundaPergunta = await call(
+            "post",
+            `ia/estudante/questoes/${questionId}/perguntas-contextuais`,
+            { idTentativa: attemptId, pergunta: "Pode explicar de outra forma?" },
+            studentToken,
+          );
+
+          assert.ok(segundaPergunta.data.idSolicitacao);
+          assert.equal(contextosPerguntasIA[1]?.historicoPerguntas?.length, 1);
+
+          const historicoPerguntas = await call(
+            "get",
+            `ia/estudante/questoes/${questionId}/historico-perguntas`,
+            { idTentativa: attemptId },
+            studentToken,
+          );
+
+          assert.equal(historicoPerguntas.data.length, 2);
+          assert.equal(aiCalls, 3);
+
+          const consumoAnalise = await clusterPostgreSql.admin.query<{
+            tokens_entrada: number;
+            tokens_saida: number;
+          }>(
+            "select tokens_entrada, tokens_saida from public.ia_consumo_analises where id_questao=$1",
+            [questionId],
+          );
+
+          assert.equal(consumoAnalise.rows[0]?.tokens_entrada, 128);
+          assert.equal(consumoAnalise.rows[0]?.tokens_saida, 64);
+
           const second = await call(
             "post",
             "AnaliseQuestao/solicitar-analise-questao",
@@ -567,7 +850,47 @@ test(
 
           assert.deepEqual(second.data.conteudo, first.data.conteudo);
 
-          assert.equal(aiCalls, 1);
+          assert.equal(aiCalls, 3);
+
+          const tentativaOutroEstudante = await call(
+            "post",
+            "Tentativa/iniciar-tentativa-simulado",
+            { idSimulado: simulationId },
+            otherToken,
+          );
+
+          await call(
+            "put",
+            "Tentativa/responder-questao-simulado",
+            {
+              idTentativa: tentativaOutroEstudante.data.idTentativa,
+              idQuestao: questionId,
+              idAlternativaSelecionada: altB,
+            },
+            otherToken,
+          );
+
+          await call(
+            "post",
+            "Tentativa/finalizar-tentativa-simulado",
+            { idTentativa: tentativaOutroEstudante.data.idTentativa },
+            otherToken,
+          );
+
+          const analiseReutilizada = await call(
+            "post",
+            "AnaliseQuestao/solicitar-analise-questao",
+            { idTentativa: tentativaOutroEstudante.data.idTentativa, idQuestao: questionId },
+            otherToken,
+          );
+
+          assert.deepEqual(analiseReutilizada.data.conteudo, first.data.conteudo);
+          assert.equal(aiCalls, 3);
+          assert.equal(
+            (await clusterPostgreSql.admin.query("select count(*) from public.ia_consumo_analises"))
+              .rows[0]?.count,
+            "1",
+          );
         },
       );
 
@@ -1125,6 +1448,235 @@ test(
           );
 
           await runtime.emails.atualizarFluxoEmail("USER_INACTIVE", false);
+        },
+      );
+
+      await contextoTeste.test(
+        "Honra: conclusão elegível, repetição sem bônus e sequência de sete dias",
+        async () => {
+          const tema = (await call("get", "Prova/listar-temas", {}, studentToken)).data.itens[0]
+            .idTema;
+          const novasQuestoes: { idQuestao: string; idAlternativaCorreta: string }[] = [];
+          const provaHonra = await call("post", "Prova/criar-prova", {
+            ano: 2026,
+            orgao: "Órgão Honra",
+            idOrganizadora: bankId,
+            cargo: "Dentista",
+            composicaoConfirmada: false,
+          });
+          const identificadorProvaHonra = provaHonra.data.idProva;
+
+          for (let numeroQuestao = 2; numeroQuestao <= 6; numeroQuestao++) {
+            const identificadorAlternativaCorreta = randomUUID();
+            const identificadorAlternativaIncorreta = randomUUID();
+            const questaoCriada = await call("post", "Questao/criar-questao", {
+              idProva: identificadorProvaHonra,
+              idTema: tema,
+              numero: numeroQuestao,
+              enunciado: `Questão inédita de Honra ${numeroQuestao}?`,
+              explicacao: "A primeira alternativa está correta.",
+              status: "publicada",
+              statusGabarito: "definitivo",
+              idAlternativaCorreta: identificadorAlternativaCorreta,
+              alternativas: [
+                { idAlternativa: identificadorAlternativaCorreta, letra: "A", texto: "Correta" },
+                {
+                  idAlternativa: identificadorAlternativaIncorreta,
+                  letra: "B",
+                  texto: "Incorreta",
+                },
+              ],
+            });
+
+            novasQuestoes.push({
+              idQuestao: questaoCriada.data.idQuestao,
+              idAlternativaCorreta: identificadorAlternativaCorreta,
+            });
+          }
+
+          const simuladoElegivel = await call("post", "Simulado/criar-simulado", {
+            nome: "Simulado elegível para Honra",
+            idsQuestoes: novasQuestoes.map((questao) => questao.idQuestao),
+            publico: true,
+            status: "publicado",
+            tipo: "padrao",
+          });
+
+          const tentativaElegivel = await call(
+            "post",
+            "Tentativa/iniciar-tentativa-simulado",
+            { idSimulado: simuladoElegivel.data.idSimulado },
+            studentToken,
+          );
+
+          for (const questao of novasQuestoes) {
+            const resposta = {
+              idTentativa: tentativaElegivel.data.idTentativa,
+              idQuestao: questao.idQuestao,
+              idAlternativaSelecionada: questao.idAlternativaCorreta,
+            };
+
+            await Promise.all([
+              call("put", "Tentativa/responder-questao-simulado", resposta, studentToken),
+              call("put", "Tentativa/responder-questao-simulado", resposta, studentToken),
+            ]);
+          }
+
+          await call(
+            "post",
+            "Tentativa/finalizar-tentativa-simulado",
+            { idTentativa: tentativaElegivel.data.idTentativa },
+            studentToken,
+          );
+
+          const progressoAposConclusao = await call(
+            "get",
+            "honra/estudante/meu-progresso",
+            {},
+            studentToken,
+          );
+
+          assert.equal(progressoAposConclusao.data.pontosAcumulados, 57);
+          assert.equal(progressoAposConclusao.data.questoesIneditasPontuadas, 6);
+
+          const tentativaRepetida = await call(
+            "post",
+            "Tentativa/iniciar-tentativa-simulado",
+            { idSimulado: simuladoElegivel.data.idSimulado },
+            studentToken,
+          );
+
+          for (const questao of novasQuestoes) {
+            await call(
+              "put",
+              "Tentativa/responder-questao-simulado",
+              {
+                idTentativa: tentativaRepetida.data.idTentativa,
+                idQuestao: questao.idQuestao,
+                idAlternativaSelecionada: questao.idAlternativaCorreta,
+              },
+              studentToken,
+            );
+          }
+
+          await call(
+            "post",
+            "Tentativa/finalizar-tentativa-simulado",
+            { idTentativa: tentativaRepetida.data.idTentativa },
+            studentToken,
+          );
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, studentToken)).data
+              .pontosAcumulados,
+            57,
+          );
+
+          for (let diasAtras = 6; diasAtras >= 1; diasAtras--) {
+            await clusterPostgreSql.admin.query(
+              `insert into public.honra_dias_estudo(id_pessoa, dia, dias_consecutivos)
+              values($1, (now() at time zone 'America/Sao_Paulo')::date - $2::integer, $3)`,
+              [otherId, diasAtras, 7 - diasAtras],
+            );
+          }
+
+          await clusterPostgreSql.admin.query(
+            `delete from public.honra_dias_estudo where id_pessoa=$1
+              and dia=(now() at time zone 'America/Sao_Paulo')::date`,
+            [otherId],
+          );
+
+          const pontosAntesSequencia = (
+            await call("get", "honra/estudante/meu-progresso", {}, otherToken)
+          ).data.pontosAcumulados;
+
+          const bonusDiarioConcedidoAnteriormente = Number(
+            (
+              await clusterPostgreSql.admin.query<{ total: string }>(
+                `select count(*)::text as total from public.honra_movimentacoes
+                  where id_pessoa=$1 and codigo_regra='primeiro_estudo_diario'
+                    and criado_em::date=current_date`,
+                [otherId],
+              )
+            ).rows[0]?.total ?? "0",
+          ) > 0;
+
+          const tentativaSequencia = await call(
+            "post",
+            "Tentativa/iniciar-tentativa-simulado",
+            { idSimulado: simuladoElegivel.data.idSimulado },
+            otherToken,
+          );
+
+          await call(
+            "put",
+            "Tentativa/responder-questao-simulado",
+            {
+              idTentativa: tentativaSequencia.data.idTentativa,
+              idQuestao: novasQuestoes[0]!.idQuestao,
+              idAlternativaSelecionada: novasQuestoes[0]!.idAlternativaCorreta,
+            },
+            otherToken,
+          );
+
+          const progressoSequencia = await call(
+            "get",
+            "honra/estudante/meu-progresso",
+            {},
+            otherToken,
+          );
+
+          assert.equal(progressoSequencia.data.diasConsecutivos, 7);
+          assert.equal(
+            progressoSequencia.data.pontosAcumulados - pontosAntesSequencia,
+            bonusDiarioConcedidoAnteriormente ? 55 : 65,
+          );
+
+          await call("put", "Prova/atualizar-prova", {
+            idProva: identificadorProvaHonra,
+            ano: 2026,
+            orgao: "Órgão Honra",
+            idOrganizadora: bankId,
+            cargo: "Dentista",
+            composicaoConfirmada: true,
+          });
+
+          const pontosAntesProva = progressoSequencia.data.pontosAcumulados;
+
+          const tentativaProva = await call(
+            "post",
+            "Prova/iniciar-prova",
+            { idProva: identificadorProvaHonra },
+            otherToken,
+          );
+
+          for (const questao of novasQuestoes.slice(1)) {
+            await call(
+              "put",
+              "Tentativa/responder-questao-simulado",
+              {
+                idTentativa: tentativaProva.data.idTentativa,
+                idQuestao: questao.idQuestao,
+                idAlternativaSelecionada: questao.idAlternativaCorreta,
+              },
+              otherToken,
+            );
+          }
+
+          await call(
+            "post",
+            "Tentativa/finalizar-tentativa-simulado",
+            {
+              idTentativa: tentativaProva.data.idTentativa,
+            },
+            otherToken,
+          );
+
+          assert.equal(
+            (await call("get", "honra/estudante/meu-progresso", {}, otherToken)).data
+              .pontosAcumulados - pontosAntesProva,
+            40,
+          );
         },
       );
 

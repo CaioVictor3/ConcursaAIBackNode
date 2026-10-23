@@ -13,12 +13,12 @@ import type { operacoesResolucaoCorrecaoTentativas } from "./resolucao-correcao-
 export function operacoesAnaliseQuestoesInteligenciaArtificial(
   contextoAutorizacao: ServicoAutorizacaoUsuarioAutenticado,
   operacoesTentativa: ReturnType<typeof operacoesResolucaoCorrecaoTentativas>,
-  provider: ClienteAnaliseQuestoesOpenAI,
+  clienteOpenAI: ClienteAnaliseQuestoesOpenAI,
   sinalCancelamento?: AbortSignal,
 ) {
   const repositorioNegocio = contextoAutorizacao.repo;
 
-  const validate = async (
+  const validarPermissaoEContextoAnaliseQuestao = async (
     solicitacaoConsultarAnaliseQuestao: ContratosApi.ConsultarAnaliseQuestaoRequestModel,
   ) => {
     await contextoAutorizacao.exigirEstudanteComCadastroCompleto();
@@ -61,7 +61,7 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
     }
   };
 
-  const content = async (
+  const validarConteudoAnaliseQuestao = async (
     identificadorRegistro: string,
     analiseQuestao: ContratosApi.AnaliseQuestaoResponseModel,
   ) => {
@@ -114,10 +114,10 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
     }
   };
 
-  const consult = async (
+  const consultarAnaliseQuestaoPersistida = async (
     solicitacaoConsultarAnaliseQuestao: ContratosApi.ConsultarAnaliseQuestaoRequestModel,
   ) => {
-    await validate(solicitacaoConsultarAnaliseQuestao);
+    await validarPermissaoEContextoAnaliseQuestao(solicitacaoConsultarAnaliseQuestao);
 
     const analiseQuestao = await repositorioNegocio.executarFuncaoPostgreSqlComContrato(
       "consultar_analise_questao",
@@ -129,7 +129,7 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
     );
 
     if (analiseQuestao) {
-      await content(solicitacaoConsultarAnaliseQuestao.idQuestao, analiseQuestao);
+      await validarConteudoAnaliseQuestao(solicitacaoConsultarAnaliseQuestao.idQuestao, analiseQuestao);
     }
 
     return criarRespostaSucesso(
@@ -139,20 +139,20 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
   };
 
   return {
-    consultarAnaliseQuestao: consult,
+    consultarAnaliseQuestao: consultarAnaliseQuestaoPersistida,
 
     async solicitarAnaliseQuestao(
       solicitacaoSolicitarAnaliseQuestao: ContratosApi.SolicitarAnaliseQuestaoRequestModel,
     ) {
-      const cached = (await consult(solicitacaoSolicitarAnaliseQuestao)).data!.analise;
+      const analiseQuestaoSalva = (await consultarAnaliseQuestaoPersistida(solicitacaoSolicitarAnaliseQuestao)).data!.analise;
 
-      if (cached) {
-        return criarRespostaSucesso(cached, "Análise salva consultada, sem nova geração.");
+      if (analiseQuestaoSalva) {
+        return criarRespostaSucesso(analiseQuestaoSalva, "Análise salva consultada, sem nova geração.");
       }
 
-      provider.exigirConfiguracaoOpenAI();
+      clienteOpenAI.exigirConfiguracaoOpenAI();
 
-      const reservation = await repositorioNegocio.executarFuncaoPostgreSql<{
+      const reservaGeracaoAnaliseQuestao = await repositorioNegocio.executarFuncaoPostgreSql<{
         analise?: unknown;
         idSolicitacao: string;
         contexto: Record<string, unknown>;
@@ -161,42 +161,60 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
         p_idquestao: solicitacaoSolicitarAnaliseQuestao.idQuestao,
       });
 
-      if (reservation.analise) {
+      if (reservaGeracaoAnaliseQuestao.analise) {
         const analiseQuestao = projetarRespostaPeloContrato(
           "AnaliseQuestaoResponseModel",
-          reservation.analise,
+          reservaGeracaoAnaliseQuestao.analise,
         );
 
-        await content(solicitacaoSolicitarAnaliseQuestao.idQuestao, analiseQuestao);
+        await validarConteudoAnaliseQuestao(solicitacaoSolicitarAnaliseQuestao.idQuestao, analiseQuestao);
 
         return criarRespostaSucesso(analiseQuestao, "Análise salva consultada.");
       }
 
-      const registrarResultadoGeracaoAnalise = (geracaoFalhou: boolean, conteudoAnalise: unknown) =>
-        repositorioNegocio.executarFuncaoPostgreSql<boolean>("salvar_analise_backend", {
+      const registrarResultadoGeracaoAnalise = (
+        geracaoFalhou: boolean,
+        conteudoAnalise: unknown,
+        usoTokens: {
+          tokensEntrada: number;
+          tokensSaida: number;
+          tokensEntradaCache: number;
+        } | null,
+      ) =>
+        repositorioNegocio.executarFuncaoPostgreSql<boolean>("salvar_analise_backend_com_consumo", {
           p_idquestao: solicitacaoSolicitarAnaliseQuestao.idQuestao,
-          p_idsolicitacao: reservation.idSolicitacao,
+          p_idsolicitacao: reservaGeracaoAnaliseQuestao.idSolicitacao,
           p_conteudo: conteudoAnalise,
-          p_modelo: provider.config.openai.model,
+          p_modelo: clienteOpenAI.config.openai.model,
           p_falhou: geracaoFalhou,
+          p_tokens_entrada: usoTokens?.tokensEntrada ?? null,
+          p_tokens_saida: usoTokens?.tokensSaida ?? null,
+          p_tokens_entrada_cache: usoTokens?.tokensEntradaCache ?? null,
+          p_custo_estimado_usd: clienteOpenAI.calcularCustoEstimadoUsd(usoTokens),
         });
 
       try {
-        const conteudoGeradoOpenAI = await provider.gerarAnaliseQuestaoOpenAI(
-          reservation.contexto,
+        const geracaoOpenAI = await clienteOpenAI.gerarAnaliseQuestaoOpenAI(
+          reservaGeracaoAnaliseQuestao.contexto,
           sinalCancelamento,
         );
 
         const analiseQuestao = projetarRespostaPeloContrato("AnaliseQuestaoResponseModel", {
-          conteudo: conteudoGeradoOpenAI,
-          modelo: provider.config.openai.model,
+          conteudo: geracaoOpenAI.conteudo,
+          modelo: clienteOpenAI.config.openai.model,
           geradaEm: new Date().toISOString(),
           demonstracao: false,
         });
 
-        await content(solicitacaoSolicitarAnaliseQuestao.idQuestao, analiseQuestao);
+        await validarConteudoAnaliseQuestao(solicitacaoSolicitarAnaliseQuestao.idQuestao, analiseQuestao);
 
-        if (!(await registrarResultadoGeracaoAnalise(false, conteudoGeradoOpenAI))) {
+        if (
+          !(await registrarResultadoGeracaoAnalise(
+            false,
+            geracaoOpenAI.conteudo,
+            geracaoOpenAI.usoTokens,
+          ))
+        ) {
           throw new ErroRegraNegocioHttp(
             "Não foi possível salvar a análise. Consulte novamente.",
             409,
@@ -205,7 +223,7 @@ export function operacoesAnaliseQuestoesInteligenciaArtificial(
 
         return criarRespostaSucesso(analiseQuestao, "Análise concluída e salva.");
       } catch (erroCapturado) {
-        await registrarResultadoGeracaoAnalise(true, null).catch(() => undefined);
+        await registrarResultadoGeracaoAnalise(true, null, null).catch(() => undefined);
 
         if (
           erroCapturado instanceof SyntaxError ||
