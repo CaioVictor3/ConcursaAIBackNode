@@ -46,6 +46,7 @@ export function classificarErroAplicacao(error: unknown): {
   };
 
   const messages: Record<string, [number, string]> = {
+    P0429: [429, "Muitas solicitações financeiras. Aguarde um minuto."],
     "23505": [409, "Já existe um registro com esses dados."],
     "23503": [409, "O registro possui vínculos ou uma referência informada não existe."],
     "42501": [403, "Você não possui permissão para esta operação."],

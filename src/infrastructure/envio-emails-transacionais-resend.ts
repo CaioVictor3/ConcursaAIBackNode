@@ -38,6 +38,7 @@ export const tiposEventoEmailTransacional = [
   "WELCOME_EMAIL",
   "PASSWORD_RESET",
   "USER_INACTIVE",
+  "SUBSCRIPTION_EXPIRING",
 ] as const;
 
 type TipoEventoEmailTransacional = (typeof tiposEventoEmailTransacional)[number];
@@ -495,6 +496,11 @@ export class ServicoEnvioEmailsTransacionaisResend {
         "Que tal retomar seus simulados e acompanhar sua evolução?",
         "Voltar a estudar",
       ],
+      SUBSCRIPTION_EXPIRING: [
+        "Acompanhe a vigência do seu Premium",
+        "Sua assinatura está próxima do vencimento ou acabou de vencer. Consulte Minha Assinatura para conferir a data e renovar, se desejar. O pagamento é antecipado e não há renovação automática.",
+        "Minha Assinatura",
+      ],
     };
 
     const action = actions[email.tipo_evento];
@@ -508,7 +514,11 @@ export class ServicoEnvioEmailsTransacionaisResend {
     const link = email.link_protegido
       ? descriptografarConteudoAutenticado(email.link_protegido, this.config.auth.key)
       : this.config.auth.clientUrl.replace(/\/+$/, "") +
-        (email.tipo_evento === "USER_INACTIVE" ? "/minha-conta" : "/entrar");
+        (email.tipo_evento === "SUBSCRIPTION_EXPIRING"
+          ? "/estudante/minha-assinatura"
+          : email.tipo_evento === "USER_INACTIVE"
+            ? "/minha-conta"
+            : "/entrar");
 
     const destination = new URL(link);
 

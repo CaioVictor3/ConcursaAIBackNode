@@ -385,6 +385,80 @@ export function gerarDocumentoOpenApi() {
     },
   };
 
+  const uuidFinanceiro = { type: "string", format: "uuid" };
+  for (const [rota, metodo, descricao] of [
+    ["planos", "get", "Catálogo de planos ativos; valores definidos pelo banco"],
+    ["acesso", "get", "Verificação centralizada de acesso Premium vigente"],
+    [
+      "minha-assinatura",
+      "get",
+      "Acesso, períodos contratados, pedidos, pagamentos, histórico e avisos",
+    ],
+    ["pedido", "get", "Consultar pedido pertencente ao estudante autenticado"],
+    ["checkout", "post", "Criar ou reutilizar checkout avulso Orders API; nunca recorrente"],
+    [
+      "sincronizar",
+      "post",
+      "Consultar estado da order no provedor sem confiar no redirecionamento",
+    ],
+    [
+      "cancelamento",
+      "post",
+      "Registrar solicitação de cancelamento para análise preservando o período pago",
+    ],
+    [
+      "admin/painel",
+      "get",
+      "Planos, pagamentos, assinaturas e indicadores; exige administrador ativo",
+    ],
+    ["admin/planos", "post", "Criar plano; exige administrador e registra auditoria"],
+    ["admin/planos", "put", "Editar plano sem modificar condições contratadas"],
+    ["admin/sincronizar", "post", "Conciliação administrativa auditada"],
+    ["admin/reprocessar", "post", "Recolocar webhooks com falha na fila; exige administrador"],
+    [
+      "admin/operacao",
+      "post",
+      "Estorno total ou cancelamento; exige administrador, justificativa e habilitação operacional",
+    ],
+    ["webhook", "post", "Receber notificação assinada de order e persistir na fila"],
+    [
+      "tarefas",
+      "post",
+      "Expiração, avisos, reprocessamento e conciliação; exige Bearer MP_WORKER_SECRET",
+    ],
+  ] as const) {
+    const operacao: Record<string, unknown> = {
+      operationId: "Financeiro_" + rota.replaceAll("/", "_") + "_" + metodo,
+      tags: ["Financeiro"],
+      description: descricao,
+      security: rota === "planos" || rota === "webhook" ? [] : [{ bearerAuth: [] }],
+      responses: respostaHonra(descricao),
+    };
+    if (rota === "checkout") {
+      operacao.requestBody = corpoJson({ idPlano: uuidFinanceiro }, ["idPlano"]);
+      operacao.parameters = [
+        { in: "header", name: "X-Idempotency-Key", required: true, schema: uuidFinanceiro },
+      ];
+    } else if (rota === "pedido")
+      operacao.parameters = [{ in: "query", name: "id", required: true, schema: uuidFinanceiro }];
+    else if (rota === "webhook")
+      operacao.parameters = [
+        { in: "query", name: "data.id", required: true, schema: { type: "string" } },
+        ...["x-signature", "x-request-id"].map((name) => ({
+          in: "header",
+          name,
+          required: true,
+          schema: { type: "string" },
+        })),
+      ];
+    else if (metodo !== "get")
+      operacao.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object" } } },
+      };
+    (paths["/api/financeiro/" + rota] ??= {})[metodo] = operacao;
+  }
+
   return {
     openapi: "3.1.0",
     info: {

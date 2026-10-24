@@ -9,6 +9,6 @@
     "outDir": "dist-worker",
     "plugins": []
   },
-  "include": ["src/worker-emails-supabase.ts"],
+  "include": ["src/worker-emails-supabase.ts", "src/worker-pagamentos-supabase.ts"],
   "exclude": ["node_modules", ".next"]
 }

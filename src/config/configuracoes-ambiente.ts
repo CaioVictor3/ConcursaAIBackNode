@@ -160,6 +160,7 @@ export function carregarConfiguracoesAmbiente(
         WELCOME_EMAIL: obterBooleanoAmbiente("EMAIL_WELCOME_ENABLED", true),
         PASSWORD_RESET: obterBooleanoAmbiente("EMAIL_PASSWORD_RESET_ENABLED", true),
         USER_INACTIVE: obterBooleanoAmbiente("EMAIL_INACTIVE_ENABLED", false),
+        SUBSCRIPTION_EXPIRING: obterBooleanoAmbiente("EMAIL_SUBSCRIPTION_EXPIRING_ENABLED", true),
       },
     },
   };

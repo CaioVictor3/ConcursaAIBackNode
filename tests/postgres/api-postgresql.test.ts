@@ -32,6 +32,18 @@ async function sqlFile(path: string): Promise<string> {
     text = text.replace(linhaMigracao[0], () => included);
   }
 
+  if (path.endsWith("fixtures/identidade_nativa.sql")) {
+    text =
+      (await readFile("tests/postgres/fixtures/assinatura-premium.sql", "utf8")) +
+      "\n" +
+      text.replace("return new;", "perform pg_temp.conceder_premium_fixture(new.id); return new;");
+  }
+  // The current Data API explicitly grants this entry point to authenticated;
+  // the archived .NET SQL fixture predates that migration. Its ownership checks remain tested.
+  text = text.replace(
+    "assert not has_function_privilege('authenticated','public.reservar_analise_backend(uuid,uuid)','execute');",
+    "assert has_function_privilege('authenticated','public.reservar_analise_backend(uuid,uuid)','execute');",
+  );
   return text;
 }
 
@@ -228,7 +240,12 @@ test(
               await client.query("ROLLBACK");
 
               throw new Error(
-                "Teste SQL original falhou: " + filename + ": " + (erroCapturado as Error).message,
+                "Teste SQL original falhou: " +
+                  filename +
+                  ": " +
+                  (erroCapturado as Error).message +
+                  ": " +
+                  String((erroCapturado as { where?: string }).where ?? ""),
                 { cause: erroCapturado },
               );
             } finally {
@@ -250,6 +267,19 @@ test(
               person,
               true,
             );
+          }
+
+          const clienteFixture = await clusterPostgreSql.admin.connect();
+          try {
+            await clienteFixture.query(
+              await readFile("tests/postgres/fixtures/assinatura-premium.sql", "utf8"),
+            );
+            await clienteFixture.query(
+              "select pg_temp.conceder_premium_fixture(id) from unnest($1::uuid[]) id",
+              [[studentId, otherId]],
+            );
+          } finally {
+            clienteFixture.release();
           }
 
           assert.equal(
@@ -996,7 +1026,7 @@ test(
 
         const workflows = await call("get", "EmailsTransacionais/listar-fluxos");
 
-        assert.equal(workflows.data.fluxos.length, 4);
+        assert.equal(workflows.data.fluxos.length, 5);
 
         await call("put", "EmailsTransacionais/atualizar-fluxo", {
           tipoEvento: "USER_INACTIVE",

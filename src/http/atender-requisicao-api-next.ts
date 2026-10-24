@@ -334,6 +334,20 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       throw new ErroRegraNegocioHttp("Entre na sua conta para continuar.", 401);
     }
     const repositorioSupabase = new RepositorioConsultasNegocioSupabase(supabase, usuario);
+    if (
+      rotaAdicional ||
+      ["Questao", "Prova", "Simulado", "Tentativa", "Estudo", "AnaliseQuestao"].includes(
+        rota?.controller ?? "",
+      )
+    ) {
+      const { data: premium, error } = await supabase.rpc("tem_acesso_premium");
+      if (error) throw error;
+      if (premium !== true)
+        throw new ErroRegraNegocioHttp(
+          "Escolha um plano Premium para acessar os recursos de estudo.",
+          403,
+        );
+    }
 
     const enderecoCliente = identificarEnderecoCliente(requisicao);
     if (rota?.controller === "Autenticacao" || rota?.controller === "Navegador") {
