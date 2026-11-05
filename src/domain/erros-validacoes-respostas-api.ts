@@ -29,6 +29,18 @@ export const criarRespostaErro = (
   data: null,
 });
 
+export function obterCodigoErroAplicacao(erro: unknown): string | undefined {
+  if (typeof erro !== "object" || erro === null || !("code" in erro)) return undefined;
+  return typeof erro.code === "string" && /^[A-Za-z0-9_]{1,40}$/.test(erro.code)
+    ? erro.code
+    : undefined;
+}
+
+export function estruturaBancoAusente(erro: unknown): boolean {
+  const codigo = obterCodigoErroAplicacao(erro);
+  return codigo === "PGRST202" || codigo === "PGRST205" || codigo === "42883" || codigo === "42P01";
+}
+
 export function classificarErroAplicacao(error: unknown): {
   status: number;
   message: string;
@@ -37,7 +49,14 @@ export function classificarErroAplicacao(error: unknown): {
     return { status: error.status, message: error.message };
   }
 
-  const erroCapturado = error as {
+  if (estruturaBancoAusente(error)) {
+    return {
+      status: 503,
+      message: "Esta área está indisponível enquanto o banco recebe as atualizações necessárias.",
+    };
+  }
+
+  const erroCapturado = (error ?? {}) as {
     code?: string;
     message?: string;
     name?: string;

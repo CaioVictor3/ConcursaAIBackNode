@@ -3,11 +3,11 @@ import { obterConfiguracaoPublicaSupabase } from "./config.js";
 import { ErroRegraNegocioHttp } from "../../domain/erros-validacoes-respostas-api.js";
 
 export function criarClienteSupabaseAdministrativo() {
-  const { url } = obterConfiguracaoPublicaSupabase();
-  const chave = process.env.SUPABASE_SERVER_SECRET_API_KEY;
-  if (!chave)
+  const { url, chave: chavePublicavel } = obterConfiguracaoPublicaSupabase();
+  const chave = process.env.SUPABASE_SERVER_SECRET_API_KEY?.trim();
+  if (!chave || chave === chavePublicavel || chave.startsWith("sb_publishable_"))
     throw new ErroRegraNegocioHttp(
-      "A integração administrativa com o banco precisa ser configurada no servidor.",
+      "A integração administrativa precisa da chave privada do Supabase no servidor.",
       503,
     );
   return createClient(url, chave, {

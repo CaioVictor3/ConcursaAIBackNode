@@ -12,6 +12,7 @@ import {
   criarRespostaErro,
   criarRespostaSucesso,
   ErroRegraNegocioHttp,
+  obterCodigoErroAplicacao,
 } from "../domain/erros-validacoes-respostas-api.js";
 import { decimalMonetario } from "../domain/pagamentos-assinaturas.js";
 import {
@@ -317,6 +318,7 @@ export async function atenderFinanceiro(req: NextRequest) {
         requestId,
         path: caminho,
         status: resultado.status,
+        errorCode: obterCodigoErroAplicacao(erro),
         errorType: erro instanceof Error ? erro.name : "DatabaseError",
       },
       "Operação financeira recusada",

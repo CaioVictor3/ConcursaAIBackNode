@@ -48,7 +48,7 @@ Cancelamento solicitado pelo estudante é registrado para análise e aparece na 
 
 ## Persistência e segurança
 
-Migration: `database/migrations/20261024040828_pagamentos_mercado_pago.sql`. Aplicar após as migrations já existentes, pelo processo de deployment do projeto. Não executa migrations no runtime. O nome foi criado com a CLI Supabase e movido para a pasta de migrations adotada pelo repositório.
+O arquivo `database/migrations/20261105232541_pagamentos_mercado_pago.sql` tem a mesma versão registrada no Supabase conectado. Para novos ambientes, aplique pelo processo de deployment após as migrations anteriores.
 
 - `planos_comerciais`: seed idempotente de mensal (19,90 / 1 mês), semestral (101,40 / 6 meses), anual (166,80 / 12 meses). Preços não ficam no código de produção.
 - `pedidos_pagamento`: intenção de compra, condições imutáveis, referência externa, chave, payload, checkout e versão da order.
@@ -143,7 +143,7 @@ Cobertura: dinheiro/estados; assinatura e replay; moeda/valor/vendedor/aplicaç�
 
 A página de planos e seu modal foram conferidos no navegador em desktop e 390×844, com catálogo vindo do PostgreSQL descartável.
 
-**Pendente externamente:** as variáveis MP não estavam configuradas no ambiente local; não foi possível efetuar homologação contra o gateway. A migration foi validada localmente e não aplicada a um Supabase remoto. Ainda é preciso configurar credenciais de teste, application/seller IDs, webhook/retorno HTTPS e scheduler; depois executar a homologação no painel. Nenhuma credencial de produção ou transação financeira real foi utilizada. O deploy comercial ainda depende dessa homologação e da ativação autorizada de produção.
+A migração foi aplicada ao Supabase conectado com o ambiente financeiro em `teste`. Para homologar o gateway, configure as credenciais de teste, IDs de aplicação e vendedor, webhook, URL de retorno HTTPS e agendador. A publicação comercial depende dessa homologação e da ativação autorizada do ambiente de produção.
 
 Limitações deliberadas: checkout hospedado; estorno administrativo integral (parciais recebidos são conciliados); sem rateio de vigência; evidências e resolução operacional de contestações continuam no Mercado Pago; suspensão não é removida automaticamente por eventos antigos ou por um simples redirect. A cobrança é sempre avulsa e não existe agendamento de débito nem `/preapproval`.
 

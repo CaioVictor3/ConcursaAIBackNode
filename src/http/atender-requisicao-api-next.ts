@@ -10,6 +10,8 @@ import {
   criarRespostaErro,
   criarRespostaSucesso,
   ErroRegraNegocioHttp,
+  estruturaBancoAusente,
+  obterCodigoErroAplicacao,
 } from "../domain/erros-validacoes-respostas-api.js";
 import { criarDespachoOperacoesApi } from "./despacho-operacoes-rotas-api.js";
 import {
@@ -341,13 +343,19 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
         rota?.controller ?? "",
       )
     ) {
-      const { data: premium, error } = await supabase.rpc("tem_acesso_premium");
-      if (error) throw error;
-      if (premium !== true)
+      const acesso = await supabase.rpc("tem_acesso_premium");
+      if (acesso.error) {
+        if (!estruturaBancoAusente(acesso.error) || !usuario.id) throw acesso.error;
+        // O catálogo administrativo pode ser usado antes da instalação dos pagamentos.
+        const administrador = await supabase.rpc("eh_administrador");
+        if (administrador.error) throw administrador.error;
+        if (administrador.data !== true) throw acesso.error;
+      } else if (acesso.data !== true) {
         throw new ErroRegraNegocioHttp(
           "Escolha um plano Premium para acessar os recursos de estudo.",
           403,
         );
+      }
     }
 
     const enderecoCliente = identificarEnderecoCliente(requisicao);
@@ -410,6 +418,7 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       {
         requestId: identificador,
         status,
+        errorCode: obterCodigoErroAplicacao(erro),
         errorType: erro instanceof Error ? erro.name : "Unknown",
       },
       "Requisição recusada",
