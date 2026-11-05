@@ -9,11 +9,11 @@ Em desenvolvimento, configure `.env` na raiz de `ConcursaIA.BackNode` usando `.e
 | `SUPABASE_PUBLISHABLE_API_KEY` | Chave usada pelo servidor para autenticação e consultas com a sessão do usuário. |
 | `SUPABASE_SERVER_SECRET_API_KEY` | Chave privada para operações administrativas, workers e verificação de prontidão. |
 
-O frontend chama a API pela origem de `VITE_BACKEND_API_BASE_URL`, configurada no build da interface. Para desenvolvimento, use `http://localhost:3000` na API e abra `http://localhost:5173` na interface. Use o mesmo nome de host nos dois endereços para que o navegador envie os cookies da sessão local.
+O frontend chama a API pela origem de `BACKEND_API_BASE_URL`, configurada no build da interface. Para desenvolvimento, use `http://localhost:3000` na API e abra `http://localhost:5173` na interface. Use o mesmo nome de host nos dois endereços para que o navegador envie os cookies da sessão local.
 
 ## Produção
 
-1. Configure as chaves do Supabase e das integrações no Web Service do Render. O serviço fornece uma URL HTTPS em `onrender.com`. Use essa URL em `VITE_BACKEND_API_BASE_URL` e na configuração dos webhooks.
+1. Configure as chaves do Supabase e das integrações no Web Service do Render. O serviço fornece uma URL HTTPS em `onrender.com`. Use essa URL em `BACKEND_API_BASE_URL` e na configuração dos webhooks.
 2. Cadastre a origem HTTPS da interface em `FRONTEND_APPLICATION_URL`. Se usar `BACKEND_CORS_ALLOWED_ORIGINS`, inclua a origem da interface na lista.
 3. No Supabase Auth, configure o Site URL do frontend e adicione as rotas `/autenticacao/google`, `/autenticacao/confirmar-email` e `/autenticacao/redefinir-senha` com a URL pública completa da interface. Configure o SMTP do Supabase Auth para confirmar contas e recuperar senhas. [URLs de retorno](https://supabase.com/docs/guides/auth/redirect-urls) e [SMTP do Supabase](https://supabase.com/docs/guides/auth/auth-smtp).
 4. Para receber pagamentos reais, use as credenciais de produção, configure `MERCADO_PAGO_ENVIRONMENT=producao` e `MERCADO_PAGO_PRODUCTION_ENABLED=true`. O webhook aponta para `/api/financeiro/webhook` na API. `MERCADO_PAGO_CHECKOUT_RETURN_URL` aponta para `/pagamento/retorno` na interface.

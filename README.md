@@ -19,7 +19,7 @@ Depois de preencher o arquivo, inicie a API.
 npm run dev
 ```
 
-A API utiliza a porta 3000 por padrão e pode ser iniciada sozinha. Para usar a interface local, configure `VITE_BACKEND_API_BASE_URL=http://localhost:3000` no frontend e `FRONTEND_APPLICATION_URL=http://localhost:5173` no backend. Se trocar a porta da API, ajuste a URL do frontend.
+A API utiliza a porta 3000 por padrão e pode ser iniciada sozinha. Para usar a interface local, configure `BACKEND_API_BASE_URL=http://localhost:3000` no frontend e `FRONTEND_APPLICATION_URL=http://localhost:5173` no backend. Se trocar a porta da API, ajuste a URL do frontend.
 
 ## Verificação
 
@@ -58,7 +58,7 @@ Os testes de unidade usam provedores controlados. O teste de integração usa o 
 
 ## Publicação no Render
 
-Crie um **Web Service** com runtime Docker neste repositório. O Dockerfile executa o servidor Next.js em `0.0.0.0` e lê a porta do ambiente. Cadastre as credenciais no painel do serviço e use `/api/health` como health check. Depois do deploy, copie a URL HTTPS do serviço para `VITE_BACKEND_API_BASE_URL` no build do frontend. Use `/api/health/ready` para verificar o Supabase. [Web Services no Render](https://render.com/docs/web-services)
+Crie um **Web Service** com runtime Docker neste repositório. O Dockerfile executa o servidor Next.js em `0.0.0.0` e lê a porta do ambiente. Cadastre as credenciais no painel do serviço e use `/api/health` como health check. Depois do deploy, copie a URL HTTPS do serviço para `BACKEND_API_BASE_URL` no build do frontend. Use `/api/health/ready` para verificar o Supabase. [Web Services no Render](https://render.com/docs/web-services)
 
 O worker de e-mails funciona em processo separado com `npm run worker:email`, após o build. No Render, use `node dist-worker/worker-emails-supabase.js` em um Background Worker com as mesmas variáveis privadas, além de `RESEND_API_KEY`, `RESEND_SENDER_EMAIL_ADDRESS` e `FRONTEND_APPLICATION_URL`. `npm run check:worker` valida a conexão sem enviar mensagens. A reserva e a confirmação dos envios usam RPCs transacionais acessíveis somente à credencial do servidor.
 
