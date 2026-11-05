@@ -79,10 +79,11 @@ export function gerarDocumentoOpenApi() {
       ]),
     );
 
+    const rotaNavegador = rotaApi.controller === "Navegador";
     const op: Record<string, unknown> = {
       operationId: rotaApi.controller + "_" + rotaApi.action,
       tags: [rotaApi.controller],
-      security: rotaApi.anonymous ? [] : [{ bearerAuth: [] }],
+      security: rotaApi.anonymous || rotaNavegador ? [] : [{ bearerAuth: [] }],
       responses,
     };
 
@@ -90,7 +91,7 @@ export function gerarDocumentoOpenApi() {
       op.parameters = obterCamposContrato(rotaApi.request).map((campoContrato) => ({
         in: "query",
         name: campoContrato.name,
-        required: false,
+        required: campoContrato.required,
         schema: schemaFor(campoContrato.type, campoContrato.nullable),
       }));
     } else {
@@ -100,16 +101,16 @@ export function gerarDocumentoOpenApi() {
       };
     }
 
-    if (rotaApi.controller === "Navegador") {
+    if (rotaNavegador) {
       op.description =
-        "Rota de sessão HttpOnly utilizada pelo frontend. Para testá-la, abra /api/docs pela origem do frontend, cadastrada em CORS_ORIGINS. O navegador envia Origin automaticamente. Para autenticar no Swagger da API, prefira as rotas Autenticacao e o botão Authorize.";
+        "Usa a sessão HttpOnly. Para testar no Swagger, inclua a origem da API em BACKEND_CORS_ALLOWED_ORIGINS e inicie a sessão em uma rota Navegador/entrar.";
       op.parameters = [
         ...((op.parameters as unknown[]) ?? []),
         {
           in: "header",
           name: "X-Concursa-Client",
           required: rotaApi.method !== "GET",
-          schema: { type: "string", enum: ["web"] },
+          schema: { type: "string", enum: ["web"], default: "web" },
         },
       ];
     }
@@ -385,15 +386,150 @@ export function gerarDocumentoOpenApi() {
     },
   };
 
+  const uuidFinanceiro = { type: "string", format: "uuid" };
+  const justificativaFinanceira = { type: "string", minLength: 10, maxLength: 2000 };
+  const camposPlano = {
+    codigo: { type: "string", minLength: 1, maxLength: 60 },
+    nome: { type: "string", minLength: 1, maxLength: 100 },
+    valor: { type: "string", pattern: "^\\d{1,10}(\\.\\d{1,2})?$", examples: ["29.90"] },
+    duracao_meses: { type: "integer", minimum: 1, maximum: 120 },
+    ordem: { type: "integer", minimum: 0, maximum: 1000 },
+    ativo: { type: "boolean" },
+    destaque: { type: "boolean" },
+    beneficios: {
+      type: "array",
+      maxItems: 30,
+      items: { type: "string", minLength: 1, maxLength: 250 },
+    },
+  };
+  const filtroData = { type: "string", format: "date" };
+  for (const [rota, metodo, descricao] of [
+    ["planos", "get", "Catálogo de planos ativos; valores definidos pelo banco"],
+    ["acesso", "get", "Verificação centralizada de acesso Premium vigente"],
+    [
+      "minha-assinatura",
+      "get",
+      "Acesso, períodos contratados, pedidos, pagamentos, histórico e avisos",
+    ],
+    ["pedido", "get", "Consultar pedido pertencente ao estudante autenticado"],
+    ["checkout", "post", "Criar ou reutilizar checkout avulso Orders API; nunca recorrente"],
+    [
+      "sincronizar",
+      "post",
+      "Consultar estado da order no provedor sem confiar no redirecionamento",
+    ],
+    [
+      "cancelamento",
+      "post",
+      "Registrar solicitação de cancelamento para análise preservando o período pago",
+    ],
+    [
+      "admin/painel",
+      "get",
+      "Planos, pagamentos, assinaturas e indicadores; exige administrador ativo",
+    ],
+    ["admin/planos", "post", "Criar plano; exige administrador e registra auditoria"],
+    ["admin/planos", "put", "Editar plano sem modificar condições contratadas"],
+    ["admin/sincronizar", "post", "Conciliação administrativa auditada"],
+    ["admin/reprocessar", "post", "Recolocar webhooks com falha na fila; exige administrador"],
+    [
+      "admin/operacao",
+      "post",
+      "Estorno total ou cancelamento; exige administrador, justificativa e habilitação operacional",
+    ],
+    ["webhook", "post", "Receber notificação assinada de order e persistir na fila"],
+    ["tarefas", "get", "Executar manutenção com a credencial do agendador"],
+    [
+      "tarefas",
+      "post",
+      "Expiração, avisos, reprocessamento e conciliação; exige Bearer MERCADO_PAGO_MAINTENANCE_AUTHORIZATION_SECRET",
+    ],
+  ] as const) {
+    const operacao: Record<string, unknown> = {
+      operationId: "Financeiro_" + rota.replaceAll("/", "_") + "_" + metodo,
+      tags: ["Financeiro"],
+      description: descricao,
+      security:
+        rota === "planos" || rota === "webhook"
+          ? []
+          : rota === "tarefas"
+            ? [{ agendadorBearerAuth: [] }]
+            : [{ bearerAuth: [] }],
+      responses: respostaHonra(descricao),
+    };
+    if (rota === "checkout") {
+      operacao.requestBody = corpoJson({ idPlano: uuidFinanceiro }, ["idPlano"]);
+      operacao.parameters = [
+        { in: "header", name: "X-Idempotency-Key", required: true, schema: uuidFinanceiro },
+      ];
+    } else if (rota === "pedido") {
+      operacao.parameters = [{ in: "query", name: "id", required: true, schema: uuidFinanceiro }];
+    } else if (rota === "admin/painel") {
+      operacao.parameters = Object.entries({
+        pagina: { type: "integer", minimum: 1, maximum: 100000, default: 1 },
+        pessoa: uuidFinanceiro,
+        plano: uuidFinanceiro,
+        status: { type: "string" },
+        de: filtroData,
+        ate: filtroData,
+        vencimento: filtroData,
+      }).map(([name, schema]) => ({ in: "query", name, schema }));
+    } else if (rota === "sincronizar" || rota === "admin/sincronizar") {
+      operacao.requestBody = corpoJson({ id: uuidFinanceiro }, ["id"]);
+    } else if (rota === "cancelamento") {
+      operacao.requestBody = corpoJson(
+        { id: uuidFinanceiro, justificativa: justificativaFinanceira },
+        ["id", "justificativa"],
+      );
+    } else if (rota === "admin/planos") {
+      operacao.requestBody = corpoJson(
+        {
+          id: uuidFinanceiro,
+          descricao: { type: "string", maxLength: 2000 },
+          ...camposPlano,
+        },
+        metodo === "put" ? ["id", ...Object.keys(camposPlano)] : Object.keys(camposPlano),
+      );
+    } else if (rota === "admin/operacao") {
+      operacao.requestBody = corpoJson(
+        {
+          id: uuidFinanceiro,
+          acao: { type: "string", enum: ["cancelar", "estornar"] },
+          justificativa: justificativaFinanceira,
+        },
+        ["id", "acao", "justificativa"],
+      );
+    } else if (rota === "webhook") {
+      operacao.parameters = [
+        { in: "query", name: "data.id", required: true, schema: { type: "string" } },
+        ...["x-signature", "x-request-id"].map((name) => ({
+          in: "header",
+          name,
+          required: true,
+          schema: { type: "string" },
+        })),
+      ];
+      operacao.requestBody = {
+        required: true,
+        content: { "application/json": { schema: { type: "object" } } },
+      };
+    }
+    (paths["/api/financeiro/" + rota] ??= {})[metodo] = operacao;
+  }
+
   return {
     openapi: "3.1.0",
     info: {
       title: "ConcursaAI API",
       version: "1.0.0",
       description:
-        "Backend Next.js do ConcursaAI.\n\n" +
-        "Para testar rotas protegidas: execute POST /api/Autenticacao/entrar-estudante ou /api/Autenticacao/entrar-administrador com e-mail e senha. Copie data.accessToken da resposta e informe somente o token em Authorize (sem o prefixo Bearer). A autorização permanece apenas nesta página e é removida ao recarregar.\n\n" +
-        "As rotas Navegador utilizam cookies HttpOnly e a origem autorizada do frontend. Abra /api/docs pelo frontend para testar esse fluxo. As demais rotas também aceitam a sessão do frontend; no Swagger da API, utilize Bearer.",
+        "Selecione uma rota, clique em **Try it out**, preencha os campos e clique em **Execute**. " +
+        "Comece por `GET /api/health` no grupo **Saúde da API**.\n\n" +
+        "**Rotas protegidas:** execute `POST /api/Autenticacao/entrar-estudante` ou `POST /api/Autenticacao/entrar-administrador` " +
+        "com e-mail e senha. Copie `data.accessToken` da resposta e cole no campo `bearerAuth` em **Authorize**, " +
+        "sem o prefixo Bearer. A autorização é descartada ao recarregar a página.\n\n" +
+        "**Rotas Navegador:** para testar a sessão HttpOnly no Swagger, inclua a origem da API em " +
+        "`BACKEND_CORS_ALLOWED_ORIGINS` e entre por uma rota do grupo **Navegador**.",
     },
     servers: [{ url: "/", description: "Servidor atual" }],
     paths,
@@ -406,6 +542,11 @@ export function gerarDocumentoOpenApi() {
           bearerFormat: "JWT",
           description:
             "Informe data.accessToken retornado pelo login em Autenticacao, sem o prefixo Bearer.",
+        },
+        agendadorBearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          description: "Credencial do agendador para /api/financeiro/tarefas.",
         },
       },
     },

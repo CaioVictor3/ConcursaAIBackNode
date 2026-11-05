@@ -10,6 +10,8 @@ import {
   criarRespostaErro,
   criarRespostaSucesso,
   ErroRegraNegocioHttp,
+  estruturaBancoAusente,
+  obterCodigoErroAplicacao,
 } from "../domain/erros-validacoes-respostas-api.js";
 import { criarDespachoOperacoesApi } from "./despacho-operacoes-rotas-api.js";
 import {
@@ -30,6 +32,7 @@ import {
 import { ServicoEnvioEmailsTransacionaisResend } from "../infrastructure/envio-emails-transacionais-resend.js";
 import { RepositorioContasSessoesPostgreSql } from "../infrastructure/repositorio-contas-sessoes-postgresql.js";
 import { criarClienteSupabaseRequisicao } from "../utils/supabase/server.js";
+import { temCookieSessaoSupabase } from "../utils/supabase/opcoes-cookie-sessao.js";
 import { RepositorioConsultasNegocioSupabase } from "../infrastructure/repositorio-consultas-supabase.js";
 import { ServicoComunicacaoSupabase } from "../infrastructure/comunicacao-supabase.js";
 import { criarClienteSupabaseAdministrativo } from "../utils/supabase/admin.js";
@@ -213,7 +216,7 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       }
       resposta.headers.set(
         "Access-Control-Allow-Headers",
-        "Content-Type, Authorization, X-Concursa-Client",
+        "Content-Type, Authorization, X-Concursa-Client, X-Idempotency-Key",
       );
       resposta.headers.set(
         "Access-Control-Allow-Methods",
@@ -246,7 +249,9 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
             status: "healthy",
             aplicacao: "ConcursaAI",
             runtime: "next",
-            bancoConfigurado: !!(process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL),
+            bancoConfigurado: !!(
+              process.env.SUPABASE_PROJECT_URL && process.env.SUPABASE_PUBLISHABLE_API_KEY
+            ),
           },
           "API em execução.",
         ),
@@ -262,9 +267,7 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
 
     const mutacao = !["GET", "HEAD"].includes(metodo);
     const tokenBearer = requisicao.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
-    const possuiCookieSupabase = /(?:^|;\s*)sb-[^=]+-auth-token(?:\.\d+)?=/.test(
-      requisicao.headers.get("cookie") ?? "",
-    );
+    const possuiCookieSupabase = temCookieSessaoSupabase(requisicao.headers.get("cookie"));
     if (
       mutacao &&
       !tokenBearer &&
@@ -334,6 +337,26 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       throw new ErroRegraNegocioHttp("Entre na sua conta para continuar.", 401);
     }
     const repositorioSupabase = new RepositorioConsultasNegocioSupabase(supabase, usuario);
+    if (
+      rotaAdicional ||
+      ["Questao", "Prova", "Simulado", "Tentativa", "Estudo", "AnaliseQuestao"].includes(
+        rota?.controller ?? "",
+      )
+    ) {
+      const acesso = await supabase.rpc("tem_acesso_premium");
+      if (acesso.error) {
+        if (!estruturaBancoAusente(acesso.error) || !usuario.id) throw acesso.error;
+        // O catálogo administrativo pode ser usado antes da instalação dos pagamentos.
+        const administrador = await supabase.rpc("eh_administrador");
+        if (administrador.error) throw administrador.error;
+        if (administrador.data !== true) throw acesso.error;
+      } else if (acesso.data !== true) {
+        throw new ErroRegraNegocioHttp(
+          "Escolha um plano Premium para acessar os recursos de estudo.",
+          403,
+        );
+      }
+    }
 
     const enderecoCliente = identificarEnderecoCliente(requisicao);
     if (rota?.controller === "Autenticacao" || rota?.controller === "Navegador") {
@@ -395,6 +418,7 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       {
         requestId: identificador,
         status,
+        errorCode: obterCodigoErroAplicacao(erro),
         errorType: erro instanceof Error ? erro.name : "Unknown",
       },
       "Requisição recusada",

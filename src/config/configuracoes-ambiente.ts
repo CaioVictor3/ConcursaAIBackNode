@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./carregar-arquivo-ambiente.js";
 import { readFileSync } from "node:fs";
 
 export function carregarConfiguracoesAmbiente(
@@ -56,10 +56,7 @@ export function carregarConfiguracoesAmbiente(
       .map((valorAtual) => valorAtual.trim())
       .filter(Boolean);
 
-  const keyText = obterTextoAmbiente(
-    "AUTH_SIGNING_KEY",
-    obterTextoAmbiente("Autenticacao__ChaveAssinatura"),
-  );
+  const keyText = obterTextoAmbiente("AUTHENTICATION_LEGACY_TOKEN_SIGNING_KEY");
 
   const chaveConfiguracao = /^[A-Za-z0-9+/]+={0,2}$/.test(keyText)
     ? Buffer.from(keyText, "base64")
@@ -68,20 +65,22 @@ export function carregarConfiguracoesAmbiente(
   const production = obterTextoAmbiente("NODE_ENV", "development") === "production";
 
   if (production && !opcoes.supabase && chaveConfiguracao.length < 64) {
-    throw new Error("AUTH_SIGNING_KEY deve conter pelo menos 64 bytes em base64.");
+    throw new Error(
+      "AUTHENTICATION_LEGACY_TOKEN_SIGNING_KEY deve conter pelo menos 64 bytes em base64.",
+    );
   }
 
-  const origins = obterListaAmbiente("CORS_ORIGINS");
+  const frontendUrl = obterTextoAmbiente("FRONTEND_APPLICATION_URL").trim();
+  const origins = obterListaAmbiente("BACKEND_CORS_ALLOWED_ORIGINS", frontendUrl);
 
-  for (const origin of origins) {
+  const origensConfiguradas = frontendUrl ? [...origins, frontendUrl] : origins;
+  for (const origin of origensConfiguradas) {
     const url = new URL(origin);
+    const httpLocal =
+      url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
 
-    if (
-      url.origin !== origin ||
-      url.username ||
-      (!["localhost", "127.0.0.1", "[::1]"].includes(url.hostname) && url.protocol !== "https:")
-    ) {
-      throw new Error("CORS_ORIGINS contém uma origem inválida.");
+    if (url.origin !== origin || (url.protocol !== "https:" && !httpLocal)) {
+      throw new Error("Configure uma origem HTTPS ou HTTP local para o frontend, sem caminho.");
     }
   }
 
@@ -90,64 +89,84 @@ export function carregarConfiguracoesAmbiente(
     host: obterTextoAmbiente("HOST", "127.0.0.1"),
     port: obterNumeroAmbiente("PORT", 3000, 1, 65535),
     origins,
-    trustProxy: obterNumeroAmbiente("TRUST_PROXY_HOPS", 0, 0, 10),
-    logLevel: obterTextoAmbiente("LOG_LEVEL", "info"),
-    databaseUrl: opcoes.supabase
-      ? ""
-      : obterTextoAmbiente("DATABASE_URL", obterTextoAmbiente("ConnectionStrings__ConcursaAI")),
+    trustProxy: obterNumeroAmbiente("BACKEND_TRUSTED_PROXY_HOP_COUNT", 0, 0, 10),
+    logLevel: obterTextoAmbiente("BACKEND_LOG_LEVEL", "info"),
+    databaseUrl: opcoes.supabase ? "" : obterTextoAmbiente("POSTGRESQL_CONNECTION_URL"),
     databaseCa:
-      !opcoes.supabase && obterTextoAmbiente("DATABASE_CA_FILE")
-        ? readFileSync(obterTextoAmbiente("DATABASE_CA_FILE"), "utf8")
+      !opcoes.supabase && obterTextoAmbiente("POSTGRESQL_ROOT_CA_CERTIFICATE_FILE")
+        ? readFileSync(obterTextoAmbiente("POSTGRESQL_ROOT_CA_CERTIFICATE_FILE"), "utf8")
         : undefined,
-    poolMax: obterNumeroAmbiente("DATABASE_POOL_MAX", 20, 1, 100),
-    databaseTimeout: obterNumeroAmbiente("DATABASE_TIMEOUT_MS", 15000, 100, 120000),
-    databaseCommandTimeout: obterNumeroAmbiente("DATABASE_COMMAND_TIMEOUT_MS", 60000, 100, 300000),
+    poolMax: obterNumeroAmbiente("POSTGRESQL_CONNECTION_POOL_MAX_SIZE", 20, 1, 100),
+    databaseTimeout: obterNumeroAmbiente(
+      "POSTGRESQL_CONNECTION_TIMEOUT_MILLISECONDS",
+      15000,
+      100,
+      120000,
+    ),
+    databaseCommandTimeout: obterNumeroAmbiente(
+      "POSTGRESQL_COMMAND_TIMEOUT_MILLISECONDS",
+      60000,
+      100,
+      300000,
+    ),
     auth: {
       key: chaveConfiguracao,
-      issuer: obterTextoAmbiente("AUTH_ISSUER", "ConcursaAI"),
-      audience: obterTextoAmbiente("AUTH_AUDIENCE", "ConcursaAI"),
-      accessMinutes: obterNumeroAmbiente("AUTH_ACCESS_MINUTES", 15, 5, 30),
-      sessionDays: obterNumeroAmbiente("AUTH_SESSION_DAYS", 7, 1, 30),
-      clientUrl: obterTextoAmbiente("AUTH_CLIENT_URL"),
-      googleClientId: obterTextoAmbiente("GOOGLE_CLIENT_ID"),
-      googleClientSecret: obterTextoAmbiente("GOOGLE_CLIENT_SECRET"),
+      issuer: obterTextoAmbiente("AUTHENTICATION_TOKEN_ISSUER", "ConcursaAI"),
+      audience: obterTextoAmbiente("AUTHENTICATION_TOKEN_AUDIENCE", "ConcursaAI"),
+      accessMinutes: obterNumeroAmbiente("AUTHENTICATION_ACCESS_TOKEN_DURATION_MINUTES", 15, 5, 30),
+      sessionDays: obterNumeroAmbiente("AUTHENTICATION_SESSION_DURATION_DAYS", 7, 1, 30),
+      clientUrl: frontendUrl,
+      googleClientId: obterTextoAmbiente("GOOGLE_OAUTH_CLIENT_ID"),
+      googleClientSecret: obterTextoAmbiente("GOOGLE_OAUTH_CLIENT_SECRET"),
       googleAuthorizationUrl: obterTextoAmbiente(
-        "GOOGLE_AUTHORIZATION_URL",
+        "GOOGLE_OAUTH_AUTHORIZATION_URL",
         "https://accounts.google.com/o/oauth2/v2/auth",
       ),
-      googleTokenUrl: obterTextoAmbiente("GOOGLE_TOKEN_URL", "https://oauth2.googleapis.com/token"),
+      googleTokenUrl: obterTextoAmbiente(
+        "GOOGLE_OAUTH_TOKEN_URL",
+        "https://oauth2.googleapis.com/token",
+      ),
       googleDiscoveryUrl: obterTextoAmbiente(
-        "GOOGLE_DISCOVERY_URL",
+        "GOOGLE_OAUTH_DISCOVERY_URL",
         "https://accounts.google.com/.well-known/openid-configuration",
       ),
     },
     openai: {
       key: obterTextoAmbiente("OPENAI_API_KEY"),
-      model: obterTextoAmbiente("OPENAI_MODEL", "gpt-4.1-mini"),
-      precoEntradaPorMilhaoUsd: obterPrecoTokensPorMilhao("OPENAI_PRECO_ENTRADA_MILHAO_USD"),
-      precoSaidaPorMilhaoUsd: obterPrecoTokensPorMilhao("OPENAI_PRECO_SAIDA_MILHAO_USD"),
+      model: obterTextoAmbiente("OPENAI_MODEL_NAME", "gpt-4.1-mini"),
+      precoEntradaPorMilhaoUsd: obterPrecoTokensPorMilhao(
+        "OPENAI_INPUT_PRICE_PER_MILLION_TOKENS_USD",
+      ),
+      precoSaidaPorMilhaoUsd: obterPrecoTokensPorMilhao(
+        "OPENAI_OUTPUT_PRICE_PER_MILLION_TOKENS_USD",
+      ),
       responsesUrl: obterTextoAmbiente(
-        "OPENAI_RESPONSES_URL",
+        "OPENAI_RESPONSES_API_URL",
         "https://api.openai.com/v1/responses",
       ),
     },
-    viaCepUrl: obterTextoAmbiente("VIACEP_URL", "https://viacep.com.br/ws/"),
+    viaCepUrl: obterTextoAmbiente("VIACEP_API_BASE_URL", "https://viacep.com.br/ws/"),
     email: {
-      appName: obterTextoAmbiente("EMAIL_APP_NAME", "ConcursaAI"),
+      appName: obterTextoAmbiente("TRANSACTIONAL_EMAIL_APPLICATION_NAME", "ConcursaAI"),
       key: obterTextoAmbiente("RESEND_API_KEY"),
-      from: obterTextoAmbiente("RESEND_FROM"),
-      fromName: obterTextoAmbiente("RESEND_FROM_NAME", "ConcursaAI"),
-      webhookSecret: obterTextoAmbiente("RESEND_WEBHOOK_SECRET"),
-      url: obterTextoAmbiente("RESEND_URL", "https://api.resend.com/"),
-      worker: obterBooleanoAmbiente("EMAIL_WORKER_ENABLED", true),
-      interval: obterNumeroAmbiente("EMAIL_INTERVAL_SECONDS", 15, 2, 300),
-      batch: obterNumeroAmbiente("EMAIL_BATCH_SIZE", 25, 1, 100),
-      attempts: obterNumeroAmbiente("EMAIL_MAX_ATTEMPTS", 5, 1, 20),
-      reservation: obterNumeroAmbiente("EMAIL_RESERVATION_SECONDS", 120, 30, 900),
-      retryBase: obterNumeroAmbiente("EMAIL_RETRY_BASE_SECONDS", 30, 1, 3600),
-      retryMax: obterNumeroAmbiente("EMAIL_RETRY_MAX_SECONDS", 3600, 1, 86400),
-      retention: obterNumeroAmbiente("EMAIL_RETENTION_DAYS", 90, 30, 3650),
-      inactivityDays: obterListaAmbiente("EMAIL_INACTIVITY_DAYS", "7,15,30")
+      from: obterTextoAmbiente("RESEND_SENDER_EMAIL_ADDRESS"),
+      fromName: obterTextoAmbiente("RESEND_SENDER_DISPLAY_NAME", "ConcursaAI"),
+      webhookSecret: obterTextoAmbiente("RESEND_WEBHOOK_SIGNING_SECRET"),
+      url: obterTextoAmbiente("RESEND_API_BASE_URL", "https://api.resend.com/"),
+      worker: obterBooleanoAmbiente("TRANSACTIONAL_EMAIL_WORKER_ENABLED", true),
+      interval: obterNumeroAmbiente("TRANSACTIONAL_EMAIL_WORKER_INTERVAL_SECONDS", 15, 2, 300),
+      batch: obterNumeroAmbiente("TRANSACTIONAL_EMAIL_WORKER_BATCH_SIZE", 25, 1, 100),
+      attempts: obterNumeroAmbiente("TRANSACTIONAL_EMAIL_MAX_DELIVERY_ATTEMPTS", 5, 1, 20),
+      reservation: obterNumeroAmbiente(
+        "TRANSACTIONAL_EMAIL_RESERVATION_DURATION_SECONDS",
+        120,
+        30,
+        900,
+      ),
+      retryBase: obterNumeroAmbiente("TRANSACTIONAL_EMAIL_RETRY_BASE_DELAY_SECONDS", 30, 1, 3600),
+      retryMax: obterNumeroAmbiente("TRANSACTIONAL_EMAIL_RETRY_MAX_DELAY_SECONDS", 3600, 1, 86400),
+      retention: obterNumeroAmbiente("TRANSACTIONAL_EMAIL_HISTORY_RETENTION_DAYS", 90, 30, 3650),
+      inactivityDays: obterListaAmbiente("TRANSACTIONAL_EMAIL_INACTIVITY_THRESHOLD_DAYS", "7,15,30")
         .map(Number)
         .filter(
           (quantidadeDiasInatividade) =>
@@ -156,10 +175,14 @@ export function carregarConfiguracoesAmbiente(
             quantidadeDiasInatividade <= 365,
         ),
       workflows: {
-        EMAIL_VERIFICATION: obterBooleanoAmbiente("EMAIL_VERIFICATION_ENABLED", true),
-        WELCOME_EMAIL: obterBooleanoAmbiente("EMAIL_WELCOME_ENABLED", true),
-        PASSWORD_RESET: obterBooleanoAmbiente("EMAIL_PASSWORD_RESET_ENABLED", true),
-        USER_INACTIVE: obterBooleanoAmbiente("EMAIL_INACTIVE_ENABLED", false),
+        EMAIL_VERIFICATION: obterBooleanoAmbiente("TRANSACTIONAL_EMAIL_VERIFICATION_ENABLED", true),
+        WELCOME_EMAIL: obterBooleanoAmbiente("TRANSACTIONAL_EMAIL_WELCOME_ENABLED", true),
+        PASSWORD_RESET: obterBooleanoAmbiente("TRANSACTIONAL_EMAIL_PASSWORD_RESET_ENABLED", true),
+        USER_INACTIVE: obterBooleanoAmbiente("TRANSACTIONAL_EMAIL_INACTIVE_USER_ENABLED", false),
+        SUBSCRIPTION_EXPIRING: obterBooleanoAmbiente(
+          "TRANSACTIONAL_EMAIL_SUBSCRIPTION_EXPIRING_ENABLED",
+          true,
+        ),
       },
     },
   };

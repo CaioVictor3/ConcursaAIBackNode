@@ -3,17 +3,13 @@ import { createClient as criarCliente } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { obterConfiguracaoPublicaSupabase } from "./config.js";
+import { opcoesCookieSessaoSupabase } from "./opcoes-cookie-sessao.js";
 
 export async function createClient() {
   const cookieStore = await cookies();
   const { url, chave } = obterConfiguracaoPublicaSupabase();
   return createServerClient(url, chave, {
-    cookieOptions: {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-    },
+    cookieOptions: opcoesCookieSessaoSupabase(),
     cookies: {
       getAll: () => cookieStore.getAll(),
       setAll: (valores, _cabecalhos) => {
@@ -49,12 +45,7 @@ export function criarClienteSupabaseRequisicao(
     return cliente;
   }
   return createServerClient(url, chave, {
-    cookieOptions: {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/",
-    },
+    cookieOptions: opcoesCookieSessaoSupabase(),
     cookies: {
       getAll: () => requisicao.cookies.getAll(),
       setAll: (valores, cabecalhos) => {

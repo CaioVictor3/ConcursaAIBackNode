@@ -35,6 +35,12 @@ export class RepositorioConsultasNegocioSupabase implements RepositorioConsultas
     const inicio = parametros.offset ?? 0;
     if (inicio < 0 || limite < 1 || limite > 1000)
       throw new Error("Intervalo de consulta inválido.");
+    if (
+      parametros.filters?.some(
+        (filtro) => filtro.op === "in" && Array.isArray(filtro.value) && filtro.value.length === 0,
+      )
+    )
+      return { itens: [], total: 0 };
     const mapa = tableJson[tabela];
     let consulta = this.supabase.from(mapa.table).select(mapa.select, { count: "exact" });
     const escapar = (valor: unknown) => String(valor).replace(/[\\%_]/g, "\\$&");

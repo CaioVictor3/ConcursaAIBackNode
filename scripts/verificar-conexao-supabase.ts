@@ -1,6 +1,5 @@
-import { config } from "dotenv";
+import "../src/config/carregar-arquivo-ambiente.js";
 import { criarClienteSupabaseAdministrativo } from "../src/utils/supabase/admin.js";
-config({ path: ".env.local" });
 try {
   const { error } = await criarClienteSupabaseAdministrativo()
     .from("usuarios")

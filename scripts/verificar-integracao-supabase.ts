@@ -1,10 +1,10 @@
-import { config } from "dotenv";
+import "../src/config/carregar-arquivo-ambiente.js";
 import { randomBytes, randomUUID } from "node:crypto";
 import assert from "node:assert/strict";
 import { criarClienteSupabaseAdministrativo } from "../src/utils/supabase/admin.js";
 
-config({ path: ".env.local" });
-const base = process.env.CONCURSA_TEST_API_URL ?? "http://127.0.0.1:5173";
+const base = new URL(process.env.INTEGRATION_TEST_API_BASE_URL ?? "http://localhost:3000").origin;
+const origemFrontend = process.env.FRONTEND_APPLICATION_URL || "http://localhost:5173";
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname))
   throw new Error("Execute a verificação contra a API local.");
 const banco = criarClienteSupabaseAdministrativo();
@@ -68,7 +68,7 @@ async function criarConta(tipo: "estudante" | "administrador") {
         Accept: "application/json",
         "Content-Type": "application/json",
         "X-Concursa-Client": "web",
-        Origin: base,
+        Origin: origemFrontend,
         Cookie: [...cookies].map(([k, v]) => k + "=" + v).join("; "),
       },
       body: dados === undefined ? undefined : JSON.stringify(dados),
@@ -105,7 +105,7 @@ try {
   const aluno = await criarConta("estudante"),
     outro = await criarConta("estudante"),
     admin = await criarConta("administrador");
-  resultados.push("Login de aluno e administrador via proxy do frontend");
+  resultados.push("Login de aluno e administrador pela API local");
   await inserir("bancas", { idBanca, nome: "Teste de integração API", sigla: "QA" });
   await inserir("concursos", {
     idConcurso: idProva,

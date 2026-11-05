@@ -24,7 +24,9 @@
     "check:integration": "tsx scripts/verificar-integracao-supabase.ts",
     "build:worker": "tsc -p tsconfig.worker.json",
     "worker:email": "node dist-worker/worker-emails-supabase.js",
-    "check:worker": "node dist-worker/worker-emails-supabase.js --verificar"
+    "check:worker": "node dist-worker/worker-emails-supabase.js --verificar",
+    "worker:pagamentos": "node dist-worker/worker-pagamentos-supabase.js",
+    "test:pagamentos": "tsx --test tests/pagamentos*.test.ts tests/postgres/pagamentos*.test.ts"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",
