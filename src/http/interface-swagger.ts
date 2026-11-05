@@ -28,18 +28,19 @@ const inicializacaoSwagger = `window.ui = SwaggerUIBundle({
   dom_id: "#swagger-ui",
   deepLinking: true,
   filter: true,
-  docExpansion: "none",
+  docExpansion: "list",
   displayRequestDuration: true,
-  defaultModelsExpandDepth: -1,
+  defaultModelsExpandDepth: 0,
+  showCommonExtensions: true,
   persistAuthorization: false,
   validatorUrl: null,
   requestInterceptor: function (request) {
     var destino = new URL(request.url, window.location.origin);
-    if (destino.origin === window.location.origin) {
+    if (destino.origin === window.location.origin && destino.pathname.startsWith("/api/Navegador/")) {
       request.headers["X-Concursa-Client"] = "web";
-      // As rotas Autenticacao usam Bearer; Navegador usa a sessão HttpOnly do frontend.
-      request.credentials = destino.pathname.startsWith("/api/Navegador/")
-        ? "same-origin" : "omit";
+      request.credentials = "same-origin";
+    } else {
+      request.credentials = "omit";
     }
     return request;
   }

@@ -86,7 +86,7 @@ Todas as rotas abaixo começam com `/api/financeiro`. Aceitam os envelopes JSON 
 | POST `/admin/operacao` | `{id,acao,justificativa}`, ação `cancelar` ou `estornar` integral |
 | POST `/admin/reprocessar` | Recoloca eventos com falha na fila |
 | POST `/webhook` | Público; exige assinatura válida e `data.id` na query |
-| POST ou GET `/tarefas` | Manutenção; Bearer `MP_WORKER_SECRET`, não a sessão de aluno |
+| POST ou GET `/tarefas` | Manutenção; Bearer `MERCADO_PAGO_MAINTENANCE_AUTHORIZATION_SECRET`, não a sessão de aluno |
 
 O OpenAPI inclui essas rotas. DTOs de integração e estados estão nos módulos de domínio/cliente; os tipos de apresentação estão em `ConcursaAI/src/types/financeiro.ts` e as chamadas em `services/requisicoesFinanceiroHttp.ts`.
 
@@ -96,15 +96,15 @@ O painel diferencia bruto, estornos, valores contestados e líquido estimado. A 
 
 ## Configuração e operação
 
-Veja `.env.example`. Todos os campos `MP_*` pertencem ao backend:
+O `.env.example` lista as credenciais opcionais. Configure as variáveis `MERCADO_PAGO_*` no backend.
 
-- `MP_AMBIENTE=teste`, `MP_ACCESS_TOKEN`, `MP_WEBHOOK_SECRET`, `MP_SELLER_ID`, `MP_APPLICATION_ID`.
-- `MP_RETORNO_URL`: URL HTTPS pública do frontend, terminando em `/pagamento/retorno`, sem query. O servidor acrescenta o pedido.
-- `MP_MAX_PARCELAS=1`: padrão conservador; configure até 12 após validar a oferta/custos da conta. Mensal permanece à vista; semestral/anual aceitam o limite configurado.
-- `MP_TIMEOUT_MS=7000`; falhas transitórias têm uma retentativa curta com a mesma chave. `Retry-After` maior que um segundo deixa a recuperação para o agendador.
-- `MP_WORKER_SECRET`: segredo aleatório de pelo menos 32 caracteres para o agendador externo.
-- `MP_PRODUCAO_HABILITADA=false`; operações de cancelamento/estorno ficam bloqueadas por padrão com `MP_OPERACOES_FINANCEIRAS_HABILITADAS=false` e, em produção, também exigem `MP_OPERACOES_PRODUCAO_AUTORIZADAS=true`.
-- `EMAIL_SUBSCRIPTION_EXPIRING_ENABLED=true`, além da configuração Resend já existente.
+- `MERCADO_PAGO_ENVIRONMENT=teste`, `MERCADO_PAGO_ACCESS_TOKEN`, `MERCADO_PAGO_WEBHOOK_SIGNING_SECRET`, `MERCADO_PAGO_SELLER_ACCOUNT_ID`, `MERCADO_PAGO_APPLICATION_ID`.
+- `MERCADO_PAGO_CHECKOUT_RETURN_URL`: URL HTTPS pública do frontend, terminando em `/pagamento/retorno`, sem query. O servidor acrescenta o pedido.
+- `MERCADO_PAGO_MAX_INSTALLMENTS=1`: padrão conservador; configure até 12 após validar a oferta/custos da conta. Mensal permanece à vista; semestral/anual aceitam o limite configurado.
+- `MERCADO_PAGO_REQUEST_TIMEOUT_MILLISECONDS=7000`; falhas transitórias têm uma retentativa curta com a mesma chave. `Retry-After` maior que um segundo deixa a recuperação para o agendador.
+- `MERCADO_PAGO_MAINTENANCE_AUTHORIZATION_SECRET`: segredo aleatório de pelo menos 32 caracteres para o agendador externo.
+- `MERCADO_PAGO_PRODUCTION_ENABLED=false`; operações de cancelamento/estorno ficam bloqueadas por padrão com `MERCADO_PAGO_FINANCIAL_OPERATIONS_ENABLED=false` e, em produção, também exigem `MERCADO_PAGO_PRODUCTION_OPERATIONS_AUTHORIZED=true`.
+- `TRANSACTIONAL_EMAIL_SUBSCRIPTION_EXPIRING_ENABLED=true`, além da configuração Resend já existente.
 
 No painel Mercado Pago, crie uma aplicação de Checkout Pro por Orders. Selecione **Teste**, copie as credenciais correspondentes, confira IDs da conta/aplicação e configure a URL HTTPS `https://API/api/financeiro/webhook`. Habilite **Order (Mercado Pago)** e **Contestações**. O provedor envia `data.id` e os headers de assinatura; não configure IPN. O webhook é configurado no painel, sem adicionar um parâmetro de preferências à criação da order.
 
@@ -127,7 +127,7 @@ O processo de e-mail existente deve continuar em execução: `npm run worker:ema
 4. Confirmar a disponibilidade de Pix no checkout da conta. O código permite o método; não foi adicionado fluxo de Checkout Transparente para simular Pix. Ausência do método no ambiente de teste não deve ser contornada com cobranças reais.
 5. Validar parcelas com as condições comerciais reais oferecidas no checkout; não anunciar juros inexistentes.
 6. Antes da produção, publicar política comercial, configurar atendimento, monitoramento e agendamento. Definir explicitamente o tratamento dos usuários existentes, pois endpoints Premium passam a exigir uma compra confirmada.
-7. **Somente com autorização do responsável**, configurar credenciais de produção e novos segredos/URLs, definir `MP_AMBIENTE=producao`, habilitar `MP_PRODUCAO_HABILITADA=true` e atualizar a configuração privada do banco no projeto de produção:
+7. **Somente com autorização do responsável**, configurar credenciais de produção e novos segredos/URLs, definir `MERCADO_PAGO_ENVIRONMENT=producao`, habilitar `MERCADO_PAGO_PRODUCTION_ENABLED=true` e atualizar a configuração privada do banco no projeto de produção:
 
 ```sql
 update financeiro.configuracao set ambiente='producao' where id=true;

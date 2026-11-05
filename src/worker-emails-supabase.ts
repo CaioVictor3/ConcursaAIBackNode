@@ -1,4 +1,3 @@
-import { config as carregarArquivoAmbiente } from "dotenv";
 import { pino } from "pino";
 import { carregarConfiguracoesAmbiente } from "./config/configuracoes-ambiente.js";
 import { ConexaoTransacoesPostgreSql } from "./infrastructure/conexao-transacoes-postgresql.js";
@@ -7,7 +6,6 @@ import { PersistenciaWorkerEmailsSupabase } from "./infrastructure/persistencia-
 import { iniciarWorkerEnvioEmailsTransacionais } from "./infrastructure/worker-envio-emails-transacionais.js";
 import { criarClienteSupabaseAdministrativo } from "./utils/supabase/admin.js";
 
-carregarArquivoAmbiente({ path: ".env.local" });
 const ambiente = carregarConfiguracoesAmbiente(process.env, { supabase: true });
 const logger = pino({ level: ambiente.logLevel });
 const persistencia = new PersistenciaWorkerEmailsSupabase(criarClienteSupabaseAdministrativo());
@@ -19,9 +17,13 @@ if (process.argv.includes("--verificar")) {
   logger.info("Worker de e-mails desabilitado na configuração.");
 } else {
   if (!ambiente.email.key || !ambiente.email.from)
-    throw new Error("Configure RESEND_API_KEY e RESEND_FROM para iniciar o worker.");
+    throw new Error(
+      "Configure RESEND_API_KEY e RESEND_SENDER_EMAIL_ADDRESS para iniciar o worker.",
+    );
   if (!ambiente.auth.clientUrl || !ambiente.origins.includes(ambiente.auth.clientUrl))
-    throw new Error("Configure AUTH_CLIENT_URL com uma origem autorizada em CORS_ORIGINS.");
+    throw new Error(
+      "Configure FRONTEND_APPLICATION_URL com uma origem autorizada em BACKEND_CORS_ALLOWED_ORIGINS.",
+    );
   const servico = new ServicoEnvioEmailsTransacionaisResend(
     new ConexaoTransacoesPostgreSql(ambiente),
     ambiente,

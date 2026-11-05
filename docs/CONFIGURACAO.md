@@ -1,60 +1,36 @@
-# Configuração e operação
+# Configuração da API
 
-Todos os valores são lidos do ambiente, com suporte a `.env` em execução local. `.env.example` contém a lista completa; nenhum secret aparece nesta documentação.
+Em desenvolvimento, configure `.env` na raiz de `ConcursaIA.BackNode` usando `.env.example` como base. A API, os workers e os scripts leem esse arquivo. Na hospedagem, defina as variáveis no ambiente de cada processo.
 
-| Origem .NET | Ambiente Node | Comportamento |
-| --- | --- | --- |
-| `Urls` / `PORT` | `HOST`, `PORT` | 127.0.0.1:3000 por padrão; 0.0.0.0 para hospedagem |
-| Ambiente ASP.NET | `NODE_ENV` | development ou production; produção exige chave válida |
-| `Cors:Origens` | `CORS_ORIGINS` | Lista explícita; credenciais somente para origens permitidas |
-| `ConnectionStrings:ConcursaAI` | `DATABASE_URL` | URL PostgreSQL; papel concursa_backend |
-| Root Certificate / SSL Mode | `DATABASE_CA_FILE`, `sslmode=verify-full` na URL | CA pública em certificates; verificação completa de hostname e cadeia |
-| Pool / timeout Npgsql | `DATABASE_POOL_MAX`, `DATABASE_TIMEOUT_MS`, `DATABASE_COMMAND_TIMEOUT_MS` | 20 conexões / conexão 15 s / comando 60 s, preservados da configuração local |
-| `Autenticacao:ChaveAssinatura` | `AUTH_SIGNING_KEY` | Base64 de pelo menos 64 bytes |
-| `Autenticacao:Emissor` / `Audiencia` | `AUTH_ISSUER`, `AUTH_AUDIENCE` | ConcursaAI por padrão |
-| `MinutosAcesso` / `DiasSessao` | `AUTH_ACCESS_MINUTES`, `AUTH_SESSION_DAYS` | 15 minutos e 7 dias; mesmas faixas aceitas |
-| `FrontendUrl` | `AUTH_CLIENT_URL` | Origem para links/retorno OAuth; não cria dependência operacional do frontend |
-| `Google:ClientId` / `ClientSecret` | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Credenciais OAuth privadas |
-| URLs Google | `GOOGLE_AUTHORIZATION_URL`, `GOOGLE_TOKEN_URL`, `GOOGLE_DISCOVERY_URL` | Endpoints originais HTTPS; JWKS descoberto e validado |
-| `OpenAI:ApiKey`, `Modelo`, `ResponsesUrl` | `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_RESPONSES_URL` | Responses API, gpt-4.1-mini, timeout 60 s, store=false, limite 4000 tokens |
-| `Integracoes:ViaCep:UrlBase` | `VIACEP_URL` | HTTPS, timeout 10 s, sem redirecionamentos |
-| `EmailsTransacionais:NomeAplicacao` | `EMAIL_APP_NAME` | Marca dos templates |
-| `Resend:ApiKey`, `Remetente`, `NomeRemetente` | `RESEND_API_KEY`, `RESEND_FROM`, `RESEND_FROM_NAME` | Credenciais e remetente verificado |
-| `Resend:WebhookSecret`, `UrlBase` | `RESEND_WEBHOOK_SECRET`, `RESEND_URL` | Assinatura Svix e envio HTTPS; timeout 20 s |
-| Worker Habilitado / Intervalo / Lote | `EMAIL_WORKER_ENABLED`, `EMAIL_INTERVAL_SECONDS`, `EMAIL_BATCH_SIZE` | true / 15 s / 25 por padrão |
-| Tentativas / Reserva | `EMAIL_MAX_ATTEMPTS`, `EMAIL_RESERVATION_SECONDS` | 5 tentativas / 120 s |
-| Retentativas | `EMAIL_RETRY_BASE_SECONDS`, `EMAIL_RETRY_MAX_SECONDS` | Backoff exponencial com jitter; 30 s a 3600 s |
-| DiasInatividade / RetencaoDias | `EMAIL_INACTIVITY_DAYS`, `EMAIL_RETENTION_DAYS` | 7,15,30 / 90 dias |
-| Workflows | `EMAIL_VERIFICATION_ENABLED`, `EMAIL_WELCOME_ENABLED`, `EMAIL_PASSWORD_RESET_ENABLED`, `EMAIL_INACTIVE_ENABLED` | Defaults true/true/true/false; overrides persistidos prevalecem |
-| Logging | `LOG_LEVEL` | Pino estruturado; sem corpo, tokens, query string ou senhas nos logs |
-| Proxy da hospedagem | `TRUST_PROXY_HOPS` | 0 por padrão; configure apenas para a topologia real |
-| Importador que lia appsettings | `CONCURSA_API_URL`, `CONCURSA_IMPORT_TOKEN` | URL do backend e token temporário de administrador |
+| Variável | Finalidade |
+| --- | --- |
+| `FRONTEND_APPLICATION_URL` | Origem da interface para CORS e links de autenticação, sem caminho ou barra final. Pode ficar vazia quando a API atende apenas clientes sem navegador. |
+| `SUPABASE_PROJECT_URL` | URL raiz do projeto Supabase, sem `/rest/v1` ou `/auth/v1`. |
+| `SUPABASE_PUBLISHABLE_API_KEY` | Chave usada pelo servidor para autenticação e consultas com a sessão do usuário. |
+| `SUPABASE_SERVER_SECRET_API_KEY` | Chave privada para operações administrativas, workers e verificação de prontidão. |
 
-## Persistência
+O frontend chama a API pela origem de `VITE_BACKEND_API_BASE_URL`, configurada no build da interface. Para desenvolvimento, use `http://localhost:3000` na API e abra `http://localhost:5173` na interface. Use o mesmo nome de host nos dois endereços para que o navegador envie os cookies da sessão local.
 
-Preservados schemas, tabelas, nomes sensíveis a caixa, índices, FKs, constraints, views, triggers e funções SQL das 21 migrations. As projeções são uma whitelist extraída de `ModelosSupabase`; respostas públicas de questões nunca selecionam explicações ou gabaritos. A correção só é obtida pela função autorizada após finalizar a tentativa. O driver `pg` mantém transações na mesma conexão, faz rollback em falhas e restaura o papel/contexto ao devolver a conexão.
+## Produção
 
-A API não precisa de URL, chave publicável, service_role, bucket ou Supabase Auth: esses clientes existem como código legado na origem, mas a composição atual de `Program.cs` usa PostgreSQL nativo. Não foi identificada implementação ativa de Storage, uploads, SMTP, pagamentos, embeddings, PDF ou mensageria. As configurações SMTP encontradas no arquivo local estavam sem credenciais e não são utilizadas pelo código registrado; o provedor de emails efetivo é Resend.
+1. Configure as chaves do Supabase e das integrações no Web Service do Render. O serviço fornece uma URL HTTPS em `onrender.com`. Use essa URL em `VITE_BACKEND_API_BASE_URL` e na configuração dos webhooks.
+2. Cadastre a origem HTTPS da interface em `FRONTEND_APPLICATION_URL`. Se usar `BACKEND_CORS_ALLOWED_ORIGINS`, inclua a origem da interface na lista.
+3. No Supabase Auth, configure o Site URL do frontend e adicione as rotas `/autenticacao/google`, `/autenticacao/confirmar-email` e `/autenticacao/redefinir-senha` com a URL pública completa da interface. Configure o SMTP do Supabase Auth para confirmar contas e recuperar senhas. [URLs de retorno](https://supabase.com/docs/guides/auth/redirect-urls) e [SMTP do Supabase](https://supabase.com/docs/guides/auth/auth-smtp).
+4. Para receber pagamentos reais, use as credenciais de produção, configure `MERCADO_PAGO_ENVIRONMENT=producao` e `MERCADO_PAGO_PRODUCTION_ENABLED=true`. O webhook aponta para `/api/financeiro/webhook` na API. `MERCADO_PAGO_CHECKOUT_RETURN_URL` aponta para `/pagamento/retorno` na interface.
+5. Para e-mails transacionais, configure as credenciais Resend e execute o worker de e-mails com `TRANSACTIONAL_EMAIL_WORKER_ENABLED=true`. O webhook do Resend aponta para `/api/ResendWebhook/registrar-evento-entrega` na API.
 
-## Emails e tarefas
+A sessão em produção usa cookies HTTPS, HttpOnly e particionados. Quando os serviços estiverem em sites distintos, o navegador precisa aceitar cookies particionados. Para suportar navegadores antigos que bloqueiam cookies entre sites, publique a interface e a API em subdomínios do mesmo domínio, como `app.seu-dominio.com` e `api.seu-dominio.com`. A API pode continuar hospedada no Render. [Cookies particionados](https://developer.mozilla.org/en-US/docs/Web/Privacy/Guides/Third-party_cookies/Partitioned_cookies)
 
-A emissão de tokens e a inclusão na fila ocorrem na mesma transação. Links usam HMAC-SHA256 para derivar a chave e AES-256-GCM no mesmo formato binário da origem (nonce, tag, ciphertext em base64). Trocar `AUTH_SIGNING_KEY` invalida links pendentes; preserve a chave durante a migração.
+## Ajustes opcionais
 
-O worker executa ciclos sem sobreposição; reserva com `FOR UPDATE SKIP LOCKED`, expiração de lease e contador de tentativas; usa chave idempotente no Resend e distingue aceite de entrega. Webhooks exigem corpo bruto até 64 KiB, HMAC e timestamp com tolerância de 5 minutos. Eventos repetidos não duplicam efeitos, e eventos recebidos antes do aceite são reaplicados quando o identificador do provedor é persistido. Bounce/reclamação/falha têm precedência sobre entrega.
+- `BACKEND_CORS_ALLOWED_ORIGINS` substitui a lista de origens permitidas. Por padrão a lista contém `FRONTEND_APPLICATION_URL`. Para aceitar mais de uma origem, inclua a do frontend e separe os valores por vírgulas.
+- `BACKEND_LOG_LEVEL` usa `info` por padrão. `BACKEND_TRUSTED_PROXY_HOP_COUNT` usa `0`. Configure a contagem conforme a topologia do proxy.
+- A análise de questões usa `OPENAI_API_KEY` e, por padrão, `OPENAI_MODEL_NAME=gpt-4.1-mini`. Para estimar custos, informe `OPENAI_INPUT_PRICE_PER_MILLION_TOKENS_USD` e `OPENAI_OUTPUT_PRICE_PER_MILLION_TOKENS_USD` para o modelo contratado.
+- Para o worker de e-mails, configure `RESEND_API_KEY` e `RESEND_SENDER_EMAIL_ADDRESS`. O webhook usa `RESEND_WEBHOOK_SIGNING_SECRET`. `TRANSACTIONAL_EMAIL_WORKER_ENABLED=false` desativa os envios do worker. Os valores padrão de processamento e dos fluxos estão em [configuracoes-ambiente.ts](../src/config/configuracoes-ambiente.ts).
+- `AUTHENTICATION_LEGACY_TOKEN_SIGNING_KEY` preserva links antigos cifrados na fila de e-mails. Se já tiver esses links, conserve o valor original em base64.
+- Para pagamentos, consulte [a configuração do Mercado Pago](mercado-pago.md). Para importação administrativa, forneça um token temporário em `ADMINISTRATIVE_IMPORT_ACCESS_TOKEN` e configure `BACKEND_API_BASE_URL` se quiser usar outro endereço de API.
+- `INTEGRATION_TEST_API_BASE_URL` permite apontar `npm run check:integration` para outra porta local da API. O padrão é `http://localhost:3000`.
 
-Limpeza por retenção e seleção de inativos ocorrem no máximo a cada hora. Inatividade exige opt-in e usuário ainda inativo; cada marco é idempotente. Desabilitar a preferência cancela envios ainda pendentes/processando. Workflows podem ser pausados sem consumir tentativas. Reprocessamento manual só aceita falhas permanentes 4xx seguras de boas-vindas/inatividade, sem mensagem já aceita pelo provedor.
+O runtime Next.js e os workers consultam a Data API do Supabase. `POSTGRESQL_CONNECTION_URL` e os ajustes `POSTGRESQL_*` atendem apenas aos utilitários e à implementação legada de PostgreSQL.
 
-O `.env` local foi deixado com o worker desabilitado para que a validação da migração não acione limpeza ou envio no banco existente. A opção continua disponível e o padrão do código permanece habilitado como no .NET. Ative `EMAIL_WORKER_ENABLED=true` no ambiente apropriado após configurar o provedor e revisar os workflows.
-
-## Publicação
-
-1. Publique o conteúdo de `ConcursaIA.BackNode` como backend independente.
-2. Execute `npm ci`, `npm run build` e `npm run start`, ou use o Dockerfile.
-3. Forneça secrets na hospedagem, `HOST=0.0.0.0`, porta da plataforma e origens CORS autorizadas.
-4. Use o PostgreSQL existente com o papel restrito, grants e migrations já aplicadas. Não reaplique o histórico ao banco existente.
-5. Configure retorno Google como `AUTH_CLIENT_URL/autenticacao/google` e webhook Resend como a URL pública da API seguida de `/api/ResendWebhook/registrar-evento-entrega`.
-6. Use HTTPS no acesso público e confira `/api/health`, logs e `npm run check:database`.
-
-Rate limiting mantém contadores por processo, como na origem. Em várias réplicas, a limitação global precisa ocorrer no gateway ou em um store compartilhado. O pool deve ser dimensionado conforme o limite de conexões do provedor e o número de réplicas. OpenAPI está disponível também em produção para documentar clientes externos; restrinja sua exposição no gateway se necessário ao ambiente.
-
-Referências consultadas: [Responses e saídas estruturadas](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses), [modelo preservado](https://developers.openai.com/api/docs/models/gpt-4.1-mini), [conexões Supabase](https://supabase.com/docs/guides/database/connecting-to-postgres), [transações pg](https://node-postgres.com/features/transactions), [ciclo Node LTS](https://nodejs.org/en/about/previous-releases). A revisão do [changelog Supabase](https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes) não identificou uso dos recursos afetados no runtime migrado.
+Para migrar uma instalação que já usa variáveis privadas na hospedagem, mantenha os valores e atualize os nomes conforme o exemplo. Em particular, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` e `SUPABASE_SECRET_KEY` passam a usar os nomes da tabela acima. `AUTH_CLIENT_URL` passa a ser `FRONTEND_APPLICATION_URL`.

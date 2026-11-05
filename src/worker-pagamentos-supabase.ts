@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./config/carregar-arquivo-ambiente.js";
 import { ServicoPagamentosAssinaturas } from "./application/pagamentos-assinaturas.service.js";
 import { carregarMercadoPago } from "./config/configuracoes-mercado-pago.js";
 import { ClienteMercadoPago } from "./infrastructure/cliente-mercado-pago.js";

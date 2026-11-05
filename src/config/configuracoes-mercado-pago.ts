@@ -1,3 +1,4 @@
+import "./carregar-arquivo-ambiente.js";
 import { ErroRegraNegocioHttp } from "../domain/erros-validacoes-respostas-api.js";
 
 export interface ConfiguracaoMercadoPago {
@@ -16,16 +17,16 @@ export function carregarMercadoPago(env: NodeJS.ProcessEnv = process.env): Confi
       "Pagamentos indisponíveis. A configuração do Mercado Pago precisa ser concluída.",
       503,
     );
-  const ambiente = env.MP_AMBIENTE ?? "teste";
+  const ambiente = env.MERCADO_PAGO_ENVIRONMENT ?? "teste";
   if (!["teste", "producao"].includes(ambiente)) throw falha();
-  if (ambiente === "producao" && env.MP_PRODUCAO_HABILITADA !== "true") throw falha();
-  const accessToken = env.MP_ACCESS_TOKEN ?? "";
-  const webhookSecret = env.MP_WEBHOOK_SECRET ?? "";
-  const sellerId = env.MP_SELLER_ID ?? "";
-  const applicationId = env.MP_APPLICATION_ID ?? "";
-  const retornoUrl = env.MP_RETORNO_URL ?? "";
-  const maxParcelas = Number(env.MP_MAX_PARCELAS ?? "1");
-  const timeoutMs = Number(env.MP_TIMEOUT_MS ?? "7000");
+  if (ambiente === "producao" && env.MERCADO_PAGO_PRODUCTION_ENABLED !== "true") throw falha();
+  const accessToken = env.MERCADO_PAGO_ACCESS_TOKEN ?? "";
+  const webhookSecret = env.MERCADO_PAGO_WEBHOOK_SIGNING_SECRET ?? "";
+  const sellerId = env.MERCADO_PAGO_SELLER_ACCOUNT_ID ?? "";
+  const applicationId = env.MERCADO_PAGO_APPLICATION_ID ?? "";
+  const retornoUrl = env.MERCADO_PAGO_CHECKOUT_RETURN_URL ?? "";
+  const maxParcelas = Number(env.MERCADO_PAGO_MAX_INSTALLMENTS ?? "1");
+  const timeoutMs = Number(env.MERCADO_PAGO_REQUEST_TIMEOUT_MILLISECONDS ?? "7000");
   if (
     !accessToken ||
     webhookSecret.length < 16 ||

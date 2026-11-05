@@ -1,11 +1,12 @@
+import "../../config/carregar-arquivo-ambiente.js";
+
 export function obterConfiguracaoPublicaSupabase() {
-  const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const chave =
-    process.env.SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  const url = process.env.SUPABASE_PROJECT_URL;
+  const chave = process.env.SUPABASE_PUBLISHABLE_API_KEY;
 
   if (!url || !chave) {
     throw new ErroRegraNegocioHttp(
-      "Configure SUPABASE_URL e SUPABASE_PUBLISHABLE_KEY no servidor.",
+      "Configure SUPABASE_PROJECT_URL e SUPABASE_PUBLISHABLE_API_KEY no servidor.",
       503,
     );
   }
@@ -23,7 +24,7 @@ export function obterConfiguracaoPublicaSupabase() {
       throw new Error();
   } catch {
     throw new ErroRegraNegocioHttp(
-      "SUPABASE_URL deve conter a URL raiz do projeto, sem /rest/v1.",
+      "SUPABASE_PROJECT_URL deve conter a URL raiz do projeto, sem /rest/v1.",
       503,
     );
   }

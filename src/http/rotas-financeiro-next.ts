@@ -2,6 +2,7 @@ import { createHash, randomUUID, timingSafeEqual } from "node:crypto";
 import { pino } from "pino";
 import { after, NextResponse, type NextRequest } from "next/server";
 import { carregarMercadoPago } from "../config/configuracoes-mercado-pago.js";
+import { carregarConfiguracoesAmbiente } from "../config/configuracoes-ambiente.js";
 import {
   consultarMinhaAssinatura,
   ServicoPagamentosAssinaturas,
@@ -25,7 +26,8 @@ import {
 } from "../utils/supabase/server.js";
 
 const uuid = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/i;
-const loggerFinanceiro = pino({ name: "financeiro", level: process.env.LOG_LEVEL ?? "info" });
+const ambiente = carregarConfiguracoesAmbiente(process.env, { supabase: true });
+const loggerFinanceiro = pino({ name: "financeiro", level: ambiente.logLevel });
 export function identificadorFinanceiro(valor: unknown) {
   if (typeof valor !== "string" || !uuid.test(valor))
     throw new ErroRegraNegocioHttp("Identificador inválido.");
@@ -96,7 +98,7 @@ function servico() {
   );
 }
 function validarAgendador(req: Request) {
-  const secreto = process.env.MP_WORKER_SECRET ?? "";
+  const secreto = process.env.MERCADO_PAGO_MAINTENANCE_AUTHORIZATION_SECRET ?? "";
   const recebido = req.headers.get("authorization")?.replace(/^Bearer /i, "") ?? "";
   if (
     secreto.length < 32 ||
@@ -113,9 +115,7 @@ export async function atenderFinanceiro(req: NextRequest) {
   const caminho = new URL(req.url).pathname.replace(/\/$/, "");
   const url = new URL(req.url);
   const origem = req.headers.get("origin");
-  const origens = (process.env.CORS_ORIGINS ?? "http://localhost:5173,http://127.0.0.1:5173")
-    .split(",")
-    .map((s) => s.trim());
+  const origens = ambiente.origins;
   const cookies: CookieSupabasePendente[] = [];
   const cabecalhosSessao: Record<string, string> = {};
   function responder(dados: unknown, status = 200) {

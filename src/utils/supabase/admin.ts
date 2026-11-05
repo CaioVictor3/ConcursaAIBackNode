@@ -4,7 +4,7 @@ import { ErroRegraNegocioHttp } from "../../domain/erros-validacoes-respostas-ap
 
 export function criarClienteSupabaseAdministrativo() {
   const { url } = obterConfiguracaoPublicaSupabase();
-  const chave = process.env.SUPABASE_SECRET_KEY;
+  const chave = process.env.SUPABASE_SERVER_SECRET_API_KEY;
   if (!chave)
     throw new ErroRegraNegocioHttp(
       "A integração administrativa com o banco precisa ser configurada no servidor.",

@@ -9,7 +9,7 @@ import { criarAplicacaoHttpExpress } from "../src/aplicacao-http-express.js";
 import { carregarConfiguracoesAmbiente } from "../src/config/configuracoes-ambiente.js";
 
 const runtime = criarAplicacaoHttpExpress({
-  config: carregarConfiguracoesAmbiente({ LOG_LEVEL: "silent" }),
+  config: carregarConfiguracoesAmbiente({ BACKEND_LOG_LEVEL: "silent" }),
 });
 
 const services = criarServicosAplicacaoApi(

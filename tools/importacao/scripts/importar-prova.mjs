@@ -1,7 +1,9 @@
-import "dotenv/config";
+import { config } from "dotenv";
 import { readFileSync, writeFileSync } from "node:fs";
 import { randomUUID } from "node:crypto";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
+
+config({ path: fileURLToPath(new URL("../../../.env", import.meta.url)), quiet: true });
 
 const formatoIdentificadorUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -181,17 +183,17 @@ async function executar() {
     return;
   }
 
-  const urlApi = new URL(process.env.CONCURSA_API_URL ?? "http://127.0.0.1:3000");
+  const urlApi = new URL(process.env.BACKEND_API_BASE_URL ?? "http://127.0.0.1:3000");
 
   if (urlApi.protocol !== "https:" && !["localhost", "127.0.0.1"].includes(urlApi.hostname)) {
     throw new Error("Use HTTPS para enviar credenciais fora do ambiente local.");
   }
 
-  const tokenAdministrador = process.env.CONCURSA_IMPORT_TOKEN;
+  const tokenAdministrador = process.env.ADMINISTRATIVE_IMPORT_ACCESS_TOKEN;
 
   if (!tokenAdministrador) {
     throw new Error(
-      "Informe um token temporário de administrador em CONCURSA_IMPORT_TOKEN. Não utilize service_role.",
+      "Informe um token temporário de administrador em ADMINISTRATIVE_IMPORT_ACCESS_TOKEN. Não utilize service_role.",
     );
   }
 

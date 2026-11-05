@@ -1,11 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 import { obterConfiguracaoPublicaSupabase } from "./config.js";
+import { opcoesCookieSessaoSupabase } from "./opcoes-cookie-sessao.js";
 
 export async function atualizarSessao(request: NextRequest) {
   let response = NextResponse.next({ request });
   const { url, chave } = obterConfiguracaoPublicaSupabase();
   const supabase = createServerClient(url, chave, {
+    cookieOptions: opcoesCookieSessaoSupabase(),
     cookies: {
       getAll: () => request.cookies.getAll(),
       setAll: (valores, cabecalhos) => {

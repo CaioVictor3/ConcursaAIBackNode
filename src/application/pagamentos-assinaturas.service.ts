@@ -137,9 +137,9 @@ export class ServicoPagamentosAssinaturas {
     justificativa: string,
   ) {
     if (
-      process.env.MP_OPERACOES_FINANCEIRAS_HABILITADAS !== "true" ||
+      process.env.MERCADO_PAGO_FINANCIAL_OPERATIONS_ENABLED !== "true" ||
       (this.mercadoPago.config.ambiente === "producao" &&
-        process.env.MP_OPERACOES_PRODUCAO_AUTORIZADAS !== "true")
+        process.env.MERCADO_PAGO_PRODUCTION_OPERATIONS_AUTHORIZED !== "true")
     )
       throw new ErroRegraNegocioHttp(
         "Operações financeiras precisam ser habilitadas pelo responsável pela conta.",
