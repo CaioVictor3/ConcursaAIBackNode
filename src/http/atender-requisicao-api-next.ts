@@ -339,9 +339,18 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
     const repositorioSupabase = new RepositorioConsultasNegocioSupabase(supabase, usuario);
     if (
       rotaAdicional ||
-      ["Questao", "Prova", "Simulado", "Tentativa", "Estudo", "AnaliseQuestao"].includes(
-        rota?.controller ?? "",
-      )
+      [
+        "AnaliseQuestao",
+        "Assunto",
+        "Banca",
+        "Concurso",
+        "Disciplina",
+        "Estudo",
+        "Prova",
+        "Questao",
+        "Simulado",
+        "Tentativa",
+      ].includes(rota?.controller ?? "")
     ) {
       const acesso = await supabase.rpc("tem_acesso_premium");
       if (acesso.error) {
@@ -354,6 +363,7 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
         throw new ErroRegraNegocioHttp(
           "Escolha um plano Premium para acessar os recursos de estudo.",
           403,
+          "PREMIUM_INATIVO",
         );
       }
     }
@@ -424,7 +434,10 @@ export async function atenderRequisicaoApiNext(requisicao: Request, _contexto: C
       "Requisição recusada",
     );
     const resposta = responder(
-      criarRespostaErro(status, classificado.message),
+      {
+        ...criarRespostaErro(status, classificado.message),
+        ...(erro instanceof ErroRegraNegocioHttp && erro.code ? { code: erro.code } : {}),
+      },
       status,
       requisicao,
       identificador,

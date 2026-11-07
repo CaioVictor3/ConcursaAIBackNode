@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack && npm run build:worker",
-    "start": "next start",
+    "start": "node scripts/iniciar-next-standalone.mjs",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write src tests scripts tools/importacao/scripts package.json tsconfig.json",
     "format:check": "prettier --check src tests scripts tools/importacao/scripts package.json tsconfig.json",

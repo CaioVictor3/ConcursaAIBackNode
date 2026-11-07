@@ -218,9 +218,9 @@ export async function atenderFinanceiro(req: NextRequest) {
     }
     let dados: unknown;
     if (caminho === "/api/financeiro/acesso" && req.method === "GET") {
-      const { data, error } = await cliente.rpc("tem_acesso_premium");
+      const { data: vigenciaAte, error } = await cliente.rpc("vigencia_acesso_premium");
       if (error) throw error;
-      dados = { premium: data === true };
+      dados = { premium: vigenciaAte != null, vigenciaAte };
     } else if (caminho === "/api/financeiro/minha-assinatura" && req.method === "GET") {
       dados = await consultarMinhaAssinatura(cliente);
     } else if (caminho === "/api/financeiro/checkout" && req.method === "POST") {

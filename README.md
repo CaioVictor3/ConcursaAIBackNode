@@ -21,6 +21,13 @@ npm run dev
 
 A API utiliza a porta 3000 por padrão e pode ser iniciada sozinha. Para usar a interface local, configure `BACKEND_API_BASE_URL=http://localhost:3000` no frontend e `FRONTEND_APPLICATION_URL=http://localhost:5173` no backend. Se trocar a porta da API, ajuste a URL do frontend.
 
+Para executar o build de produção localmente, use os comandos abaixo. O servidor standalone usa as variáveis `PORT` e `HOSTNAME` para definir o endereço de escuta.
+
+```sh
+npm run build
+npm run start
+```
+
 ## Verificação
 
 ```sh
