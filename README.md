@@ -1,4 +1,5 @@
 # ConcursaAI — API Next.js
+build
 
 O backend Next.js expõe uma API independente em `/api`. Ele autentica no Supabase Auth e consulta tabelas e funções pela Data API com a sessão do usuário.
 
